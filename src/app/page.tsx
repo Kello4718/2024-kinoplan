@@ -1,8 +1,8 @@
-import React from 'react'
-import Books from './components/Books/Books'
+import React from 'react';
+import Books from './components/Books/Books';
 
-const Main = async () => {
-	return <Books />
-}
+const Main = () => {
+	return <Books />;
+};
 
-export default Main
+export default Main;

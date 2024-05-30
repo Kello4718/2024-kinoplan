@@ -1,27 +1,34 @@
-import type { Metadata } from 'next'
-import { Manrope } from 'next/font/google'
-import Header from './components/Header/Header'
+import type { Metadata } from 'next';
+import { Manrope } from 'next/font/google';
+import { FC, PropsWithChildren } from 'react';
 
-import './globals.css'
+import Header from './components/Header/Header';
 
-const manrope = Manrope({ subsets: ['latin'] })
+import './globals.css';
+import BookClubContextProvider from './context/BookClub';
 
-export const metadata: Metadata = {
+const manrope = Manrope({ subsets: ['latin'] });
+
+const metadata: Metadata = {
 	title: 'Книгоплан',
 	description: 'Книги всех жанров на любой вкус',
-}
+};
 
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode
-}>) {
+const RootLayout: FC<PropsWithChildren> = ({ children }) => {
 	return (
-		<html lang="en">
+		<html lang="ru">
+			<head>
+				<link rel="icon" href="/favicon.ico" />
+			</head>
 			<body className={manrope.className}>
-				<Header />
-				<main className="main">{children}</main>
+				<BookClubContextProvider>
+					<Header />
+					<main className="main">{children}</main>
+				</BookClubContextProvider>
 			</body>
 		</html>
-	)
-}
+	);
+};
+
+export { metadata };
+export default RootLayout;

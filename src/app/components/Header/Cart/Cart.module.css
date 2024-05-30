@@ -1,0 +1,23 @@
+.cartContainer {
+	/* width: min(100%, 50vw); */
+	font-size: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
+
+	@media (width < 1280px) {
+		font-size: clamp(1rem, 0rem + 1.5625vw, 1.25rem);
+	}
+}
+
+.text {
+	margin: 0;
+}
+
+.list {
+	height: auto;
+	max-height: 400px;
+	display: flex;
+	flex-flow: column;
+	gap: 10px;
+	padding: 10px 0;
+	margin: 0 0 20px;
+	overflow-y: scroll;
+}
