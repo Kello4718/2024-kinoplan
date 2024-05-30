@@ -6,6 +6,11 @@ import React from 'react'
 import styles from './Header.module.css'
 
 import { usePathname } from 'next/navigation'
+import { ShoppingCartOutlined } from '@ant-design/icons'
+import { Popover } from 'antd'
+
+const cartContent = 'Корзина пуста 👀'
+
 const Header = () => {
 	const pathname = usePathname()
 	return (
@@ -36,6 +41,9 @@ const Header = () => {
 						</Link>
 					</li>
 				</ul>
+				<Popover placement="bottomRight" trigger={'hover'} content={cartContent}>
+					<ShoppingCartOutlined className={styles.cart} />
+				</Popover>
 			</nav>
 		</header>
 	)
