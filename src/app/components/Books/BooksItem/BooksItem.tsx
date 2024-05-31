@@ -1,34 +1,30 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
-
 import { Button } from '@/app/ui';
-import { Book } from '@/app/types';
-import { BookClubContext } from '@/app/context/BookClub';
+import { Book, CartBook } from '@/app/types';
 
 import styles from './BooksItem.module.css';
+import { useBookClub } from '@/app/hooks';
+import Image from 'next/image';
 
 const BooksItem = ({ book }: { book: Book }) => {
 	const { title, author, date, category, image, id } = book;
-	const { cart, setCart } = useContext(BookClubContext);
+	const { cart, setCart } = useBookClub();
 	const addInCart = () => {
-		setCart((prevState: Book[]) => [
-			...prevState,
-			{ title, quantity: 1, id },
-		]);
+		setCart((prevState) => [...prevState, { title, quantity: 1, id }]);
 	};
 
-	const removeFromCart = (id: number) => {
-		const filteredCart = cart.filter((item: Book) => item.id !== id);
+	const removeFromCart = (id: string) => {
+		const filteredCart = cart.filter((item: CartBook) => item.id !== id);
 		setCart(filteredCart);
 	};
 
-	const isInCart = cart.find((element: Book) => element.id === id);
+	const isInCart = cart.find((element: CartBook) => element.id === id);
 	return (
 		<li className={styles.book}>
 			<figure className={styles.figure}>
-				<img
-					src={image}
+				<Image
+					src={image ?? ''}
 					width={500}
 					height={500}
 					alt="Picture of the author"

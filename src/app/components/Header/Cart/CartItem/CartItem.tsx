@@ -1,17 +1,17 @@
-import React, { FC, useContext, useState } from 'react';
+import { FC, useState } from 'react';
 
 import styles from './CartItem.module.css';
-import { BookClubContext } from '@/app/context/BookClub';
-import { Book } from '@/app/types';
+import { CartBook } from '@/app/types';
+import { useBookClub } from '@/app/hooks';
 
 type CartItemProps = {
-	item: Book;
+	item: CartBook;
 	index: number;
 };
 
 const CartItem: FC<CartItemProps> = ({ item, index }) => {
 	const [quantity, setQuantity] = useState(item.quantity);
-	const { cart, setCart } = useContext(BookClubContext);
+	const { cart, setCart } = useBookClub();
 
 	const decrement = () => {
 		if (quantity === 1) {

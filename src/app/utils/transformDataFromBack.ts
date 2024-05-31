@@ -1,8 +1,7 @@
-import { BookFromBack } from "../types";
+import { BookFromBack } from '../types';
 
 const transformDataFromBack = (data: BookFromBack[]) =>
 	data.map((book: BookFromBack) => {
-		console.log('data', data);
 		const { volumeInfo, id } = book;
 		const { title, authors, publishedDate, categories, imageLinks } =
 			volumeInfo;

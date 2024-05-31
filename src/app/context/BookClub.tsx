@@ -1,8 +1,10 @@
 'use client';
 
 import {
+	Dispatch,
 	FC,
 	PropsWithChildren,
+	SetStateAction,
 	createContext,
 	useEffect,
 	useState,
@@ -10,27 +12,37 @@ import {
 
 import { transformDataFromBack } from '../utils';
 import { API_URL } from '../constants';
-import { Book } from '../types';
+import { Book, CartBook, Filter } from '../types';
 
 type TBookClubContext = {
-	cart: any; // TODO Book[]
-	setCart: any; // TODO Dispatch<SetStateAction<Book[]>>
-	books: any; // TODO Book[]
+	cart: CartBook[];
+	setCart: Dispatch<SetStateAction<CartBook[]>>;
+	books: Book[];
+	filter: Filter;
+	setFilter: Dispatch<SetStateAction<Filter>>;
+	isFilterVisible: boolean;
+	setIsFilterVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-const BookClubContext = createContext({
-	cart: [],
-	setCart: (cart: Book[]) => {},
-	books: [],
-});
+const BookClubContext = createContext<TBookClubContext | undefined>(undefined);
 
 const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
-	const [cart, setCart] = useState([]);
-	const [books, setBooks] = useState([]);
+	const [cart, setCart] = useState<CartBook[]>([]);
+	const [books, setBooks] = useState<Book[]>([]);
+	const [filter, setFilter] = useState<Filter>({
+		genre: null,
+		year: null,
+		author: null,
+	});
+	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const value: TBookClubContext = {
 		cart,
 		setCart,
 		books,
+		filter,
+		setFilter,
+		isFilterVisible,
+		setIsFilterVisible,
 	};
 
 	useEffect(() => {
@@ -45,7 +57,6 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
 			const data = await res.json();
 			const transformedData = await transformDataFromBack(data.items);
-			console.log('transformedData', transformedData);
 			setBooks(transformedData);
 		};
 
