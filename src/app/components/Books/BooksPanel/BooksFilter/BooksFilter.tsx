@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { Button } from '@/app/ui';
 import CustomSelect from '@/app/ui/CustomSelect/CustomSelect';
-import styles from './BooksFilter.module.css';
 import { useBookClub } from '@/app/hooks';
+
+import styles from './BooksFilter.module.css';
 
 const BooksFilter = () => {
 	const { isFilterVisible, setIsFilterVisible, books, setFilter } =
@@ -59,7 +60,12 @@ const BooksFilter = () => {
 					<CustomSelect label="По жанрам" data={sortedCategories} />
 					<CustomSelect label="По году издания" data={sortedYears} />
 					<CustomSelect label="По автору" data={sortedAuthors} />
-					<Button className={styles.reset} onClick={handleButtonResetOnClick}>Сбросить все фильтры</Button>
+					<Button
+						className={styles.reset}
+						onClick={handleButtonResetOnClick}
+					>
+						Сбросить все фильтры
+					</Button>
 				</div>
 			)}
 		</div>

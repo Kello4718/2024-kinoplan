@@ -2,11 +2,13 @@
 
 import { FC, useState } from 'react';
 
-import styles from './CustomSelect.module.css';
 import CustomOption from './CustomOption/CustomOption';
 import { Filter } from '@/app/types';
 import { Button } from '../Button';
 import { useBookClub } from '@/app/hooks';
+
+import styles from './CustomSelect.module.css';
+import { SELECT_KEY_MAP } from '@/app/constants';
 
 type CustomSelectProps = {
 	label: string;
@@ -24,19 +26,14 @@ const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
 	};
 
 	const handleButtonResetOnClick = () => {
-		if (label === 'По жанрам') {
+		if (SELECT_KEY_MAP[label]) {
 			setFilter((prevState: Filter) => ({
 				...prevState,
-				category: null,
+				[SELECT_KEY_MAP[label]]: null,
 			}));
 		}
-		if (label === 'По году издания') {
-			setFilter((prevState: Filter) => ({ ...prevState, year: null }));
-		}
-		if (label === 'По автору') {
-			setFilter((prevState: Filter) => ({ ...prevState, author: null }));
-		}
 	};
+
 	return (
 		<div className={styles.selectContainer}>
 			<Button onClick={handleSelectOnClick} className={styles.select}>

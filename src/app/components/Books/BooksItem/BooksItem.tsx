@@ -3,9 +3,10 @@
 import { Button } from '@/app/ui';
 import { Book, CartBook } from '@/app/types';
 
-import styles from './BooksItem.module.css';
 import { useBookClub } from '@/app/hooks';
 import Image from 'next/image';
+
+import styles from './BooksItem.module.css';
 
 const BooksItem = ({ book }: { book: Book }) => {
 	const { title, author, year, category, image, id } = book;
@@ -34,9 +35,15 @@ const BooksItem = ({ book }: { book: Book }) => {
 					<h2 title={title} className={styles.title}>
 						{title}
 					</h2>
-					<p className={styles.author}><strong>Автор:</strong> {author}</p>
-					<p className={styles.year}><strong>Год издания:</strong> {year}</p>
-					<p className={styles.category}><strong>Жанр:</strong> {category}</p>
+					<p className={styles.author}>
+						<strong>Автор:</strong> {author}
+					</p>
+					<p className={styles.year}>
+						<strong>Год издания:</strong> {year}
+					</p>
+					<p className={styles.category}>
+						<strong>Жанр:</strong> {category}
+					</p>
 				</figcaption>
 				{Boolean(isInCart) && (
 					<Button

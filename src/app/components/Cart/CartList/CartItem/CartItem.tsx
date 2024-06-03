@@ -1,8 +1,9 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
-import styles from './CartItem.module.css';
 import { CartBook } from '@/app/types';
 import { useBookClub } from '@/app/hooks';
+
+import styles from './CartItem.module.css';
 
 type CartItemProps = {
 	item: CartBook;
@@ -10,19 +11,16 @@ type CartItemProps = {
 };
 
 const CartItem: FC<CartItemProps> = ({ item, index }) => {
-	const [quantity, setQuantity] = useState(item.quantity);
 	const { cart, setCart } = useBookClub();
+	const { id, quantity, title } = item;
 
 	const decrement = () => {
 		if (quantity === 1) {
-			const filteredCart = cart.filter(
-				(element) => element.id !== item.id
-			);
+			const filteredCart = cart.filter((element) => element.id !== id);
 			setCart(filteredCart);
 			return;
 		}
 
-		setQuantity((prevState) => prevState - 1);
 		const updatedCart = cart.with(index, {
 			...item,
 			quantity: quantity - 1,
@@ -31,7 +29,6 @@ const CartItem: FC<CartItemProps> = ({ item, index }) => {
 	};
 
 	const increment = () => {
-		setQuantity((prevState) => prevState + 1);
 		const updatedCart = cart.with(index, {
 			...item,
 			quantity: quantity + 1,
@@ -40,8 +37,8 @@ const CartItem: FC<CartItemProps> = ({ item, index }) => {
 	};
 
 	return (
-		<li className={styles.item} key={item.id}>
-			<span className={styles.title}>{item.title}</span>
+		<li className={styles.item} key={id}>
+			<span className={styles.title}>{title}</span>
 			<div className={styles.buttonContainer}>
 				<button onClick={decrement} className={styles.button}>
 					-

@@ -1,8 +1,11 @@
 import { FC } from 'react';
 
-import styles from './CustomOption.module.css';
 import { CheckOutlined } from '@ant-design/icons';
 import { useBookClub } from '@/app/hooks';
+
+import styles from './CustomOption.module.css';
+import { Filter } from '@/app/types';
+import { SELECT_KEY_MAP } from '@/app/constants';
 
 type CustomOptionProps = {
 	item: string;
@@ -11,26 +14,18 @@ type CustomOptionProps = {
 
 const CustomOption: FC<CustomOptionProps> = ({ item, label }) => {
 	const { filter, setFilter, setIsFilterVisible } = useBookClub();
+
 	const handleOptionOnChange = () => {
-		if (label === 'По жанрам') {
-			setFilter((prevState) => ({ ...prevState, category: item }));
+		if (SELECT_KEY_MAP[label]) {
+			setFilter((prevState) => ({
+				...prevState,
+				[SELECT_KEY_MAP[label]]: item,
+			}));
 			setIsFilterVisible(false);
 		}
-		if (label === 'По году издания') {
-			setFilter((prevState) => ({ ...prevState, year: item }));
-			setIsFilterVisible(false);
-		}
-		if (label === 'По автору') {
-			setFilter((prevState) => ({ ...prevState, author: item }));
-			setIsFilterVisible(false);
-		}
-		// TODO Сделать мапу
 	};
 
-	const isChecked =
-		filter.category === item ||
-		filter.author === item ||
-		filter.year === item;
+	const isChecked = Object.values(filter).includes(item);
 	return (
 		<li className={styles.option} key={item} onClick={handleOptionOnChange}>
 			<span>{item}</span>

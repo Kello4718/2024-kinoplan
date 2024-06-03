@@ -1,0 +1,44 @@
+.buttonBack {
+	display: inline-block;
+	color: #ffffff;
+	margin: 0 0 30px;
+}
+
+.title {
+	font-size: 64px;
+	color: #ffffff;
+	margin: 0 0 30px;
+}
+
+.buttonPay {
+	width: max-content;
+	height: auto;
+	font-size: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
+	color: #ffffff;
+	background-color: #178cfb;
+	border: none;
+	border-radius: 8px;
+	padding: 10px 5px;
+	margin: 0;
+	cursor: pointer;
+	user-select: none;
+
+	@media (width < 1280px) {
+		font-size: 16px;
+	}
+}
+
+.empty {
+	font-size: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
+	color: #ffffff;
+	@media (width < 1280px) {
+		font-size: 16px;
+	}
+}
+
+.result {
+	width: min(100%, 800px);
+	border-radius: 8px;
+	background: #ffffff;
+	margin: 0 auto;
+}
