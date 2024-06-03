@@ -1,9 +1,4 @@
 .book {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-flow: column;
-	gap: 20px;
 	background: #f6f9ff;
 	border-radius: 8px;
 	padding: 10px;
@@ -14,7 +9,7 @@
 	height: 100%;
 	display: flex;
 	flex-flow: column;
-	gap: 10px;
+	gap: 30px;
 	position: relative;
 	padding: 0;
 	margin: 0;
@@ -29,7 +24,7 @@
 
 .figcaption {
 	height: 100%;
-	font-size: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
+	font-size: clamp(1rem, 0.5rem + 0.625vw, 1.25rem);
 	display: flex;
 	flex-flow: column;
 	gap: 10px;
@@ -37,12 +32,12 @@
 	margin: 0;
 
 	@media (width < 1280px) {
-		font-size: clamp(1rem, 0rem + 1.5625vw, 1.25rem);
+		font-size: 16px;
 	}
 }
 
 .title {
-	font-size: clamp(1.875rem, 1.25rem + 0.7813vw, 2.1875rem);
+	font-size: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
@@ -50,7 +45,7 @@
 	margin: 0 0 auto;
 
 	@media (width < 1280px) {
-		font-size: clamp(1.25rem, 0.1071rem + 1.4286vw, 1.875rem);
+		font-size: 20px;
 	}
 }
 
@@ -62,14 +57,13 @@
 	margin: 0;
 }
 
-.genre {
-	margin: 0 0 30px;
+.category {
+	margin: 0;
 }
 
 .button {
 	width: max-content;
-	font-size: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
-	font-weight: 600;
+	font-size: clamp(1rem, 0.5rem + 0.625vw, 1.25rem);
 	color: #ffffff;
 	background-color: #178cfb;
 	border: none;
@@ -79,6 +73,6 @@
 	cursor: pointer;
 
 	@media (width < 1280px) {
-		font-size: clamp(1rem, 0.5rem + 0.625vw, 1.25rem);
+		font-size: 16px;
 	}
 }

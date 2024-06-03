@@ -1,3 +1,5 @@
+'use client';
+
 import { FC, useState } from 'react';
 
 import styles from './CustomSelect.module.css';
@@ -15,13 +17,18 @@ const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
 	const [isListVisible, setIsListVisible] = useState(false);
 	const { setFilter } = useBookClub();
 
+	const uniqueData = new Set([...data]);
+
 	const handleSelectOnClick = () => {
 		setIsListVisible((prevState) => !prevState);
 	};
 
-	const handleOnReset = () => {
+	const handleButtonResetOnClick = () => {
 		if (label === 'По жанрам') {
-			setFilter((prevState: Filter) => ({ ...prevState, genre: null }));
+			setFilter((prevState: Filter) => ({
+				...prevState,
+				category: null,
+			}));
 		}
 		if (label === 'По году издания') {
 			setFilter((prevState: Filter) => ({ ...prevState, year: null }));
@@ -38,7 +45,7 @@ const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
 			{isListVisible && (
 				<>
 					<ul className={styles.optionList}>
-						{data.map((item) => (
+						{Array.from(uniqueData).map((item) => (
 							<CustomOption
 								key={item}
 								item={item}
@@ -46,7 +53,10 @@ const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
 							/>
 						))}
 					</ul>
-					<Button className={styles.reset} onClick={handleOnReset}>
+					<Button
+						className={styles.reset}
+						onClick={handleButtonResetOnClick}
+					>
 						Сбросить
 					</Button>
 				</>

@@ -13,7 +13,7 @@ const CustomOption: FC<CustomOptionProps> = ({ item, label }) => {
 	const { filter, setFilter, setIsFilterVisible } = useBookClub();
 	const handleOptionOnChange = () => {
 		if (label === 'По жанрам') {
-			setFilter((prevState) => ({ ...prevState, genre: item }));
+			setFilter((prevState) => ({ ...prevState, category: item }));
 			setIsFilterVisible(false);
 		}
 		if (label === 'По году издания') {
@@ -27,7 +27,10 @@ const CustomOption: FC<CustomOptionProps> = ({ item, label }) => {
 		// TODO Сделать мапу
 	};
 
-	const isChecked = filter.genre === item;
+	const isChecked =
+		filter.category === item ||
+		filter.author === item ||
+		filter.year === item;
 	return (
 		<li className={styles.option} key={item} onClick={handleOptionOnChange}>
 			<span>{item}</span>

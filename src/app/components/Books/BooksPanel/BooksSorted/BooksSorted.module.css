@@ -32,10 +32,10 @@
 	}
 }
 
-.selectContainer {
+.buttonContainer {
 	width: max-content;
-	display: grid;
-	grid-template-columns: repeat(3, max-content);
+	display: flex;
+	flex-flow: column;
 	gap: 10px;
 	position: absolute;
 	top: 0;
@@ -51,18 +51,21 @@
 	z-index: 1;
 }
 
-.reset {
+.sortedButton {
 	width: 100%;
 	font-size: clamp(1rem, 0.75rem + 0.3125vw, 1.125rem);
-	text-align: center;
-	grid-column: 1 / -1;
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+	position: relative;
 	color: #ffffff;
-	background: #178cfb;
+	background-color: #178cfb;
 	border: none;
 	border-radius: 8px;
 	padding: 10px;
 	margin: 0;
 	cursor: pointer;
+	z-index: 2;
 
 	@media (width < 1280px) {
 		font-size: 16px;

@@ -7,15 +7,30 @@ import styles from './BooksFilter.module.css';
 import { useBookClub } from '@/app/hooks';
 
 const BooksFilter = () => {
-	const { isFilterVisible, setIsFilterVisible, books } = useBookClub();
+	const { isFilterVisible, setIsFilterVisible, books, setFilter } =
+		useBookClub();
 	const selectContainer = useRef<HTMLDivElement>(null);
 	const handleButtonOnChange = () => {
 		setIsFilterVisible((prevState) => !prevState);
 	};
 
-	const genres = books.map((book) => book.category);
-	const dates = books.map((book) => book.date);
+	const categories = books.map((book) => book.category);
+	const sortedCategories = categories.sort();
+
+	const years = books.map((book) => book.year);
+	const sortedYears = years.sort((a, b) => Number(a) - Number(b));
+
 	const authors = books.map((book) => book.author);
+	const sortedAuthors = authors.sort();
+
+	const handleButtonResetOnClick = () => {
+		setFilter({
+			author: null,
+			category: null,
+			year: null,
+		});
+		setIsFilterVisible(false);
+	};
 
 	const closeFilter = useCallback(
 		(evt: MouseEvent) => {
@@ -41,9 +56,10 @@ const BooksFilter = () => {
 			</Button>
 			{isFilterVisible && (
 				<div className={styles.selectContainer}>
-					<CustomSelect label="По жанрам" data={genres} />
-					<CustomSelect label="По году издания" data={dates} />
-					<CustomSelect label="По автору" data={authors} />
+					<CustomSelect label="По жанрам" data={sortedCategories} />
+					<CustomSelect label="По году издания" data={sortedYears} />
+					<CustomSelect label="По автору" data={sortedAuthors} />
+					<Button className={styles.reset} onClick={handleButtonResetOnClick}>Сбросить все фильтры</Button>
 				</div>
 			)}
 		</div>

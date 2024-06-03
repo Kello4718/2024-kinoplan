@@ -8,7 +8,7 @@ import { useBookClub } from '@/app/hooks';
 import Image from 'next/image';
 
 const BooksItem = ({ book }: { book: Book }) => {
-	const { title, author, date, category, image, id } = book;
+	const { title, author, year, category, image, id } = book;
 	const { cart, setCart } = useBookClub();
 	const addInCart = () => {
 		setCart((prevState) => [...prevState, { title, quantity: 1, id }]);
@@ -34,9 +34,9 @@ const BooksItem = ({ book }: { book: Book }) => {
 					<h2 title={title} className={styles.title}>
 						{title}
 					</h2>
-					<p className={styles.author}>Автор: {author}</p>
-					<p className={styles.year}>Год издания: {date}</p>
-					<p className={styles.genre}>Жанр: {category}</p>
+					<p className={styles.author}><strong>Автор:</strong> {author}</p>
+					<p className={styles.year}><strong>Год издания:</strong> {year}</p>
+					<p className={styles.category}><strong>Жанр:</strong> {category}</p>
 				</figcaption>
 				{Boolean(isInCart) && (
 					<Button

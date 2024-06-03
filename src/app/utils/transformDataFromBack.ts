@@ -8,7 +8,7 @@ const transformDataFromBack = (data: BookFromBack[]) =>
 		return {
 			title,
 			author: authors[0],
-			date: publishedDate,
+			year: publishedDate.slice(0, 4),
 			category: categories[0],
 			image: imageLinks.thumbnail,
 			id,

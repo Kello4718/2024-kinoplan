@@ -1,9 +1,45 @@
 .list {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	display: flex;
+	flex-flow: row wrap;
 	gap: 30px;
+}
+
+.list li {
+	width: 23%;
+	height: auto;
+	transition-property: width;
+	transition-timing-function: ease-in-out;
+	transition-duration: 300ms;
 
 	@media (width < 1280px) {
-		grid-template-columns: repeat(2, 1fr);
+		width: 31%;
 	}
+}
+
+.listViewLine {
+	flex-flow: column;
+}
+
+.listViewLine li {
+	width: 100%;
+}
+
+.listViewLine figure {
+	flex-flow: row;
+}
+
+.listViewLine img {
+	width: 200px;
+	flex-shrink: 0;
+}
+
+.listViewLine button {
+	width: max-content;
+	height: 50px;
+	flex-shrink: 0;
+	margin: 0 0 0 auto;
+}
+
+.listViewLine p {
+	margin: 0;
 }

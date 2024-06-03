@@ -1,7 +1,7 @@
 type Book = {
 	title: string;
 	author: string;
-	date: string;
+	year: string;
 	category: string;
 	image: string;
 	id: string;
@@ -25,9 +25,11 @@ type BookFromBack = {
 };
 
 type Filter = {
-	genre: null | string;
+	category: null | string;
 	year: null | string;
 	author: null | string;
 };
 
-export type { Book, CartBook, BookFromBack, Filter };
+type Sorted = Record<'category' | 'year' | 'author', boolean>;
+
+export type { Book, CartBook, BookFromBack, Filter, Sorted };

@@ -7,7 +7,7 @@
 
 .select {
 	width: 100%;
-	font-size: 16px;
+	font-size: clamp(1rem, 0.75rem + 0.3125vw, 1.125rem);
 	text-align: left;
 	color: #ffffff;
 	background: #178cfb;
@@ -16,6 +16,10 @@
 	padding: 10px;
 	margin: 0;
 	cursor: pointer;
+
+	@media (width < 1280px) {
+		font-size: 16px;
+	}
 }
 
 .optionList {
@@ -28,8 +32,7 @@
 
 .reset {
 	width: 100%;
-	font-size: 14px;
-	font-weight: 600;
+	font-size: clamp(1rem, 0.75rem + 0.3125vw, 1.125rem);
 	color: #ffffff;
 	background-color: #24374e;
 	border: none;
@@ -37,4 +40,8 @@
 	padding: 5px;
 	margin: 0;
 	cursor: pointer;
+
+	@media (width < 1280px) {
+		font-size: 16px;
+	}
 }
