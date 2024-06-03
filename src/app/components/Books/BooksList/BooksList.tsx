@@ -2,13 +2,13 @@
 
 import BooksItem from '../BooksItem/BooksItem';
 
-import { Book } from '@/app/types';
+import { Book, View } from '@/app/types';
 import { useBookClub } from '@/app/hooks';
 
 import styles from './BooksList.module.css';
 
-const BooksList = () => {
-	const { books, filter, view } = useBookClub();
+const BooksList = ({ view }: { view: View }) => {
+	const { books, filter } = useBookClub();
 
 	const getBooks = () => {
 		return books.filter((book: Book) => {

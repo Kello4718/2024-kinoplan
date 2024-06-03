@@ -32,4 +32,6 @@ type Filter = {
 
 type Sorted = Record<'category' | 'year' | 'author', boolean>;
 
-export type { Book, CartBook, BookFromBack, Filter, Sorted };
+type View = 'table' | 'line';
+
+export type { Book, CartBook, BookFromBack, Filter, Sorted, View };

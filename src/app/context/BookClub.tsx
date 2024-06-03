@@ -27,8 +27,6 @@ type TBookClubContext = {
 	setIsFilterVisible: Dispatch<SetStateAction<boolean>>;
 	isSortedVisible: boolean;
 	setIsSortedVisible: Dispatch<SetStateAction<boolean>>;
-	view: 'table' | 'line';
-	setView: Dispatch<SetStateAction<'table' | 'line'>>;
 };
 
 const BookClubContext = createContext<TBookClubContext | undefined>(undefined);
@@ -36,7 +34,6 @@ const BookClubContext = createContext<TBookClubContext | undefined>(undefined);
 const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [cart, setCart] = useState<CartBook[]>([]);
 	const [books, setBooks] = useState<Book[]>([]);
-	const [view, setView] = useState<'table' | 'line'>('table');
 	const [filter, setFilter] = useState<Filter>({
 		category: null,
 		year: null,
@@ -62,8 +59,6 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		setSorted,
 		isSortedVisible,
 		setIsSortedVisible,
-		view,
-		setView,
 	};
 
 	useEffect(() => {
