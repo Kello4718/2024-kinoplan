@@ -4,16 +4,12 @@ import Link from 'next/link';
 import React from 'react';
 
 import { usePathname } from 'next/navigation';
-import { ShoppingCartOutlined } from '@ant-design/icons';
-import { Badge, Popover } from 'antd';
 import Cart from './Cart/Cart';
 
 import styles from './Header.module.css';
-import { useBookClub } from '@/app/hooks';
 
 const Header = () => {
 	const pathname = usePathname();
-	const { cart } = useBookClub();
 	return (
 		<header className={styles.header}>
 			<h1 className={styles.title}>Книгоплан</h1>
@@ -42,16 +38,7 @@ const Header = () => {
 						</Link>
 					</li>
 				</ul>
-				<Popover
-					placement="bottomRight"
-					trigger={'click'}
-					content={<Cart />}
-					className={styles.popover}
-				>
-					<Badge count={cart.length}>
-						<ShoppingCartOutlined className={styles.cart} />
-					</Badge>
-				</Popover>
+				<Cart />
 			</nav>
 		</header>
 	);
