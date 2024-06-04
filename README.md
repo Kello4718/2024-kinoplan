@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Проект: Книгоплан для Киноплан
 
-## Getting Started
+## Конечная цель
+Реализованное приложение согласно предоставленному ТЗ
 
-First, run the development server:
+## Общие требования к проекту
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Приложение должно состоять из двух страниц:
+1. Главная
+2. Корзина
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Приложение должно работать со следующим функционалом:
+1. Cобрать себе на любом сайте, который позволяет мокать (использовать заранее подготовленные структуры данных) данные (например https://my-json-server.typicode.com/) о книгах - достаточно 20 штук.
+2. Карточка книги должна содержать базовую информацию - фото, автор, год издания, жанр. Так же должна быть возможность добавления / удаления книги из корзины для покупки, и счетчик добавленных экземпляров (например можно добавить в корзину более одного экземпляра книги)
+3. Должна быть возможность добавить книги в корзину для дальнейшей оплаты (корзина должна быть доступна глобально - при клике на значок корзины открывается popover с информацией о купленных книгах, оттуда можно сразу убрать экземпляры / добавить экземпляры, так же должна быть кнопка перейти в корзину - на отдельный роут /cart, на котором виден список книг, количество, и кнопка оплаты. По нажатию на кнопку оплаты выводится диалоговое окно, в котором написано что оплата совершена успешно.
+4. Данные о выбранных книгах в корзине нужно запоминать между сессиями.
+5. Добавить иконку сайта (во вкладку и на сайт, где на макете указано Icon)
+6. С роута /cart должна быть возможность вернуться обратно на список книг.
+7. Список книг должен быть доступен в двух видах - табличный и строчный.
+8. Необходимо реализовать фильтрацию по (жанру, году издания, автору).
+9. Необходимо реализовать сортировку по (жанру, году издания, автору).
+10. В рамках реализации можно использовать Popover из https://ant.design/components/popover/. Реализации кнопок, селектов и т д должны быть самописными.
+11. Для стилизации можно использовать любой подходящий css-фреймворк, либо же писать CSS самому (допускается CSS Flexbox или же CSS Grid).
+12. Для первого этапа необходимо реализовать базовый функционал на JS, next.js и react. Использование стейт-менеджеров остается на усмотрение исполнителя, но не рекомендуется. Так же необходимо настроить eslint.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Используемые технологии
+-   **UI Frameworks** (Antd)
+-   **Styling** (modules)
+-   **SSR** (next js)
+-   **Typification** (Typescript)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Запуск проекта
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Конечно же сначала нам нужно установить все зависимости `npm i` в помощь
+2. Ну и все, что нам остается это просто запустить проект `npm run dev`
