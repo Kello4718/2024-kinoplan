@@ -1,14 +1,11 @@
-'use client';
-
 import BooksItem from '../BooksItem/BooksItem';
-
-import { Book, View } from '@/app/types';
+import { Book } from '@/app/types';
 import { useBookClub } from '@/app/hooks';
 
 import styles from './BooksList.module.css';
 
-const BooksList = ({ view }: { view: View }) => {
-	const { books, filter } = useBookClub();
+const BooksList = () => {
+	const { books, filter, view } = useBookClub();
 
 	const getBooks = () => {
 		return books.filter((book: Book) => {

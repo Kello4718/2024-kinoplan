@@ -34,4 +34,10 @@ type Sorted = Record<'category' | 'year' | 'author', boolean>;
 
 type View = 'table' | 'line';
 
-export type { Book, CartBook, BookFromBack, Filter, Sorted, View };
+type Status = {
+	isError: boolean;
+	isLoading: boolean;
+	isSuccess: boolean;
+};
+
+export type { Book, CartBook, BookFromBack, Filter, Sorted, View, Status };

@@ -12,9 +12,13 @@ import {
 
 import { transformDataFromBack } from '../utils';
 import { API_URL } from '../constants';
-import { Book, CartBook, Filter, Sorted } from '../types';
+import { Book, CartBook, Filter, Sorted, Status, View } from '../types';
 
 type TBookClubContext = {
+	status: Status;
+	setStatus: Dispatch<SetStateAction<Status>>;
+	view: View;
+	setView: Dispatch<SetStateAction<View>>;
 	cart: CartBook[];
 	setCart: Dispatch<SetStateAction<CartBook[]>>;
 	books: Book[];
@@ -32,6 +36,12 @@ type TBookClubContext = {
 const BookClubContext = createContext<TBookClubContext | undefined>(undefined);
 
 const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
+	const [status, setStatus] = useState<Status>({
+		isError: false,
+		isLoading: false,
+		isSuccess: false,
+	});
+	const [view, setView] = useState<View>('table');
 	const [cart, setCart] = useState<CartBook[]>([]);
 	const [books, setBooks] = useState<Book[]>([]);
 	const [filter, setFilter] = useState<Filter>({
@@ -47,6 +57,10 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const [isSortedVisible, setIsSortedVisible] = useState(false);
 	const value: TBookClubContext = {
+		status,
+		setStatus,
+		view,
+		setView,
 		cart,
 		setCart,
 		books,
@@ -61,19 +75,44 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		setIsSortedVisible,
 	};
 
+	const changeStatus = (
+		isLoading: boolean,
+		isError: boolean,
+		isSuccess: boolean
+	) => {
+		setStatus({
+			isError,
+			isLoading,
+			isSuccess,
+		});
+	};
+
 	useEffect(() => {
 		const getBooks = async () => {
-			const res = await fetch(API_URL, {
-				method: 'GET',
-				mode: 'cors',
-			});
-			if (!res.ok) {
-				throw new Error('Ой-ой. Что-то пошло не так...');
-			}
+			try {
+				changeStatus(true, false, false);
+				const res = await fetch(API_URL, {
+					method: 'GET',
+					mode: 'cors',
+				});
+				if (!res.ok) {
+					changeStatus(false, true, false);
+					return;
+				}
 
-			const data = await res.json();
-			const transformedData = await transformDataFromBack(data.items);
-			setBooks(transformedData);
+				const data = await res.json();
+				if (Array.isArray(data.items)) {
+					const transformedData = await transformDataFromBack(
+						data.items
+					);
+					setBooks(transformedData);
+					changeStatus(false, false, true);
+				} else {
+					changeStatus(false, true, false);
+				}
+			} catch (error) {
+				changeStatus(false, true, false);
+			}
 		};
 
 		getBooks();
