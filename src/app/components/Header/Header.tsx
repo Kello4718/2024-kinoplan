@@ -12,7 +12,7 @@ const Header = () => {
 	const pathname = usePathname();
 	return (
 		<header className={styles.header}>
-			<h1 className={styles.title}>Книгоплан</h1>
+			<span className={styles.title}>Книгоплан</span>
 			<nav className={styles.navigation}>
 				<ul className={styles.navigationList}>
 					<li className={styles.navigationItem}>

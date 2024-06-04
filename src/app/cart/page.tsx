@@ -8,23 +8,26 @@ import CartList from '../components/Cart/CartList/CartList';
 import { Button } from '../ui';
 import { Result } from 'antd';
 
-import styles from './styles.module.css';
+import styles from './page.module.css';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 const Cart = () => {
 	const [isPaid, setIsPaid] = useState(false);
-	const { cart } = useBookClub();
+	const { cart, setCart } = useBookClub();
 
 	const handleButtonPayOnClick = () => {
 		setIsPaid(true);
+		setCart([]);
 	};
 	return (
 		<>
 			<Link className={styles.buttonBack} href="/">
-				Вернуться назад
+				<ArrowLeftOutlined />
+				<span>Вернуться назад</span>
 			</Link>
 			{!isPaid ? (
 				<>
-					<h1 className={styles.title}>Корзина</h1>
+					<h1>Корзина</h1>
 					{cart.length ? (
 						<>
 							<CartList />
@@ -45,8 +48,8 @@ const Cart = () => {
 			) : (
 				<Result
 					status="success"
-					title="Подравляю, вы успешно оплатили товары!"
-					subTitle="Номер заказа: 2017182818828182881. Чек придет на почту, в течении 5 минут. Хорошего вам дня"
+					title={<p className={styles.title}>Подравляю, вы успешно оплатили товары!</p>}
+					subTitle={<p className={styles.subtitle}>Номер заказа: 2017182818828182881. Чек придет на почту, в течении 5 минут. Хорошего вам дня</p>}
 					className={styles.result}
 				/>
 			)}

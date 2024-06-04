@@ -1,7 +1,6 @@
 .book {
 	background: #f6f9ff;
 	border-radius: 8px;
-	padding: 10px;
 }
 
 .figure {
@@ -11,8 +10,17 @@
 	flex-flow: column;
 	gap: 30px;
 	position: relative;
-	padding: 0;
+	padding: 0 0 10px;
 	margin: 0;
+
+	@media (width < 1024px) {
+		gap: 10px;
+	}
+
+	@media (width < 768px) {
+		height: auto;
+		gap: 10px;
+	}
 }
 
 .image {
@@ -20,32 +28,39 @@
 	height: 200px;
 	object-fit: contain;
 	object-position: left;
+	border-radius: 8px 8px 0 0;
+
+	@media (width < 768px) {
+		height: auto;
+	}
 }
 
 .figcaption {
 	height: 100%;
-	font-size: clamp(1rem, 0.5rem + 0.625vw, 1.25rem);
+	font-size: 20px;
 	display: flex;
 	flex-flow: column;
 	gap: 10px;
-	padding: 0;
+	padding: 0 10px;
 	margin: 0;
 
-	@media (width < 1280px) {
-		font-size: 16px;
+	@media (width < 768px) {
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
 	}
 }
 
 .title {
-	font-size: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
+	font-size: 30px;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
 	overflow: hidden;
 	margin: 0 0 auto;
 
-	@media (width < 1280px) {
-		font-size: 20px;
+	@media (width < 768px) {
+		font-size: clamp(1.5rem, 1.1691rem + 1.4706vw, 1.875rem); /* 24-30 */
+		text-align: center;
+		display: block;
 	}
 }
 
@@ -63,16 +78,16 @@
 
 .button {
 	width: max-content;
-	font-size: clamp(1rem, 0.5rem + 0.625vw, 1.25rem);
+	font-size: 20px;
 	color: #ffffff;
 	background-color: #178cfb;
 	border: none;
 	border-radius: 8px;
 	padding: 10px;
-	margin: 0;
+	margin: 20px 10px 0;
 	cursor: pointer;
 
-	@media (width < 1280px) {
-		font-size: 16px;
+	@media (width < 768px) {
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
 	}
 }

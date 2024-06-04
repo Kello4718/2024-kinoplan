@@ -33,6 +33,18 @@ a.navigationLinkActive {
 	position: relative;
 	color: #24374e;
 
+	@media (width < 1280px) {
+		font-size: clamp(1.6875rem, 0.9375rem + 1.1719vw, 1.875rem); /* 27-30 */
+	}
+
+	@media (width < 1024px) {
+		font-size: clamp(1.5rem, 0.9375rem + 1.1719vw, 1.6875rem); /* 24-27 */
+	}
+
+	@media (width < 768px) {
+		font-size: clamp(1.25rem, 1.0294rem + 0.9804vw, 1.5rem); /* 20-24 */
+	}
+
 	&::before {
 		content: '';
 		width: 100%;
@@ -41,5 +53,31 @@ a.navigationLinkActive {
 		top: 100%;
 		left: 0;
 		background: #24374e;
+	}
+}
+
+h1 {
+	font-size: clamp(2.875rem, 2.375rem + 0.625vw, 3.125rem); /* 46-50*/
+	text-align: center;
+	color: #ffffff;
+	margin: 0 0 30px;
+
+	@media (width < 1280px) {
+		font-size: clamp(2.5rem, 1rem + 2.3438vw, 2.875rem); /* 40-46 */
+	}
+
+	@media (width < 1024px) {
+		font-size: clamp(2.25rem, 1.5rem + 1.5625vw, 2.5rem); /* 36-40 */
+	}
+
+	@media (width < 768px) {
+		font-size: clamp(1.875rem, 1.5433rem + 1.4742vw, 2.25rem); /* 30-36 */
+	}
+}
+
+.ant-popover {
+	@media (width < 1280px) {
+		width: auto;
+		max-width: 90%;
 	}
 }

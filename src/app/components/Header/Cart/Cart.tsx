@@ -4,9 +4,11 @@ import Link from 'next/link';
 import { useBookClub } from '@/app/hooks';
 import CartList from '../../Cart/CartList/CartList';
 
-import styles from './Cart.module.css';
 import { Badge, Popover } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { CartBook } from '@/app/types';
+
+import styles from './Cart.module.css';
 
 const Content = () => {
 	const { cart } = useBookClub();
@@ -27,15 +29,18 @@ const Content = () => {
 
 const Cart = () => {
 	const { cart } = useBookClub();
+	const quantity = cart.reduce(
+		(acc, item: CartBook) => acc + item.quantity,
+		0
+	);
 	return (
 		<>
 			<Popover
 				placement="bottomRight"
 				trigger={'click'}
 				content={<Content />}
-				className={styles.popover}
 			>
-				<Badge count={cart.length}>
+				<Badge count={quantity}>
 					<ShoppingCartOutlined className={styles.cart} />
 				</Badge>
 			</Popover>

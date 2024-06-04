@@ -7,7 +7,7 @@
 
 .select {
 	width: 100%;
-	font-size: clamp(1rem, 0.75rem + 0.3125vw, 1.125rem);
+	font-size: 20px;
 	text-align: left;
 	color: #ffffff;
 	background: #178cfb;
@@ -18,7 +18,7 @@
 	cursor: pointer;
 
 	@media (width < 1280px) {
-		font-size: 16px;
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
 	}
 }
 
@@ -32,7 +32,7 @@
 
 .reset {
 	width: 100%;
-	font-size: clamp(1rem, 0.75rem + 0.3125vw, 1.125rem);
+	font-size: 20px;
 	color: #ffffff;
 	background-color: #24374e;
 	border: none;
@@ -42,6 +42,6 @@
 	cursor: pointer;
 
 	@media (width < 1280px) {
-		font-size: 16px;
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
 	}
 }

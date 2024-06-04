@@ -1,3 +1,39 @@
 {
-  "extends": "next/core-web-vitals"
+	"extends": [
+		"next/core-web-vitals",
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:prettier/recommended"
+	],
+	"plugins": ["react", "prettier"],
+	"rules": {
+		"array-callback-return": ["error", { "allowImplicit": true }],
+		"no-const-assign": "error",
+		"no-constant-condition": "warn",
+		"arrow-body-style": [
+			"error",
+			"as-needed",
+			{ "requireReturnForObjectLiteral": true }
+		],
+		"block-scoped-var": "error",
+		"camelcase": ["error", { "properties": "always" }],
+		"default-case": "error",
+		"default-param-last": "error",
+		"dot-notation": [
+			"error",
+			{
+				"allowKeywords": true,
+				"allowPattern": "^[a-z]+(_[a-z]+)+$"
+			}
+		],
+		"eqeqeq": ["error", "always"],
+		"logical-assignment-operators": [
+			"error",
+			"always",
+			{
+				"enforceForIfStatements": true
+			}
+		],
+		"no-console": "warn"
+	}
 }

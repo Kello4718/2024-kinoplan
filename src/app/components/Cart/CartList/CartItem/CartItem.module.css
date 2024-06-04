@@ -1,12 +1,16 @@
 .item {
+	font-size: 20px;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 	gap: 30px;
 	background: #ffffff;
 	border: 1px solid #178cfb;
 	border-radius: 8px;
 	padding: 5px 10px;
+
+	@media (width < 768px) {
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+	}
 }
 
 .buttonContainer {
@@ -19,7 +23,7 @@
 	width: 40px;
 	height: auto;
 	aspect-ratio: 1;
-	font-size: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
+	font-size: 20px;
 	color: #ffffff;
 	background-color: #178cfb;
 	border: none;
@@ -29,8 +33,7 @@
 	cursor: pointer;
 	user-select: none;
 
-	@media (width < 1280px) {
-		width: 25px;
-		font-size: 16px;
+	@media (width < 768px) {
+		width: 30px;
 	}
 }
