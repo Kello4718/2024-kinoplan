@@ -1,7 +1,7 @@
 import { BookFromBack } from '../types';
 
 const transformDataFromBack = (data: BookFromBack[]) =>
-	data.map((book: BookFromBack) => {
+	data.map((book) => {
 		const { volumeInfo, id } = book;
 		const { title, authors, publishedDate, categories, imageLinks } =
 			volumeInfo;

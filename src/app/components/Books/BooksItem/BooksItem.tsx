@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/app/ui';
-import { Book, CartBook } from '@/app/types';
+import { Book } from '@/app/types';
 
 import { useBookClub } from '@/app/hooks';
 import Image from 'next/image';
@@ -16,11 +16,11 @@ const BooksItem = ({ book }: { book: Book }) => {
 	};
 
 	const removeFromCart = (id: string) => {
-		const filteredCart = cart.filter((item: CartBook) => item.id !== id);
+		const filteredCart = cart.filter((item) => item.id !== id);
 		setCart(filteredCart);
 	};
 
-	const isInCart = cart.find((element: CartBook) => element.id === id);
+	const isInCart = cart.find((element) => element.id === id);
 	return (
 		<li className={styles.book}>
 			<figure className={styles.figure}>

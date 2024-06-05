@@ -30,7 +30,7 @@ const Content = () => {
 const Cart = () => {
 	const { cart } = useBookClub();
 	const quantity = cart.reduce(
-		(acc, item: CartBook) => acc + item.quantity,
+		(acc, item) => acc + item.quantity,
 		0
 	);
 	return (

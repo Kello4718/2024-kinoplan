@@ -15,7 +15,7 @@ const useSorted = () => {
 		switch (field) {
 			case 'category':
 				setBooks((prevState) =>
-					prevState.sort((a: Book, b: Book) =>
+					prevState.sort((a, b) =>
 						sorted.category
 							? b.category.localeCompare(a.category)
 							: a.category.localeCompare(b.category)
@@ -24,7 +24,7 @@ const useSorted = () => {
 				break;
 			case 'year':
 				setBooks((prevState) =>
-					prevState.sort((a: Book, b: Book) =>
+					prevState.sort((a, b) =>
 						sorted.year
 							? Number(b.year) - Number(a.year)
 							: Number(a.year) - Number(b.year)
@@ -33,7 +33,7 @@ const useSorted = () => {
 				break;
 			case 'author':
 				setBooks((prevState) =>
-					prevState.sort((a: Book, b: Book) =>
+					prevState.sort((a, b) =>
 						sorted.author
 							? b.author.localeCompare(a.author)
 							: a.author.localeCompare(b.author)

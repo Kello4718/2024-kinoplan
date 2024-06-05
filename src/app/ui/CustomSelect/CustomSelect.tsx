@@ -27,7 +27,7 @@ const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
 
 	const handleButtonResetOnClick = () => {
 		if (SELECT_KEY_MAP[label]) {
-			setFilter((prevState: Filter) => ({
+			setFilter((prevState) => ({
 				...prevState,
 				[SELECT_KEY_MAP[label]]: null,
 			}));

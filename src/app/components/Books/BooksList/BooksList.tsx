@@ -8,7 +8,7 @@ const BooksList = () => {
 	const { books, filter, view } = useBookClub();
 
 	const getBooks = () => {
-		return books.filter((book: Book) => {
+		return books.filter((book) => {
 			return Object.entries(filter).every(([key, value]) => {
 				if (value && book[key as keyof Book] !== value) {
 					return false;
@@ -24,7 +24,7 @@ const BooksList = () => {
 				view === 'line' ? styles.listViewLine : ''
 			}`}
 		>
-			{getBooks()?.map((book: Book) => (
+			{getBooks()?.map((book) => (
 				<BooksItem key={book.title} book={book} />
 			))}
 		</ul>
