@@ -1,0 +1,74 @@
+.filterContainer {
+	width: max-content;
+	position: relative;
+}
+
+.button {
+	width: max-content;
+	font-size: 20px;
+	position: relative;
+	color: var(--white00);
+	background: var(--blue01);
+	border: none;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 0;
+	cursor: pointer;
+	z-index: 2;
+
+	@media (width < 768px) {
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+	}
+}
+
+@keyframes appearance {
+	0% {
+		transform: translate3d(0, 0, 0);
+		opacity: 0;
+	}
+	100% {
+		transform: translate3d(0, 50px, 0);
+		opacity: 1;
+	}
+}
+
+.selectContainer {
+	width: max-content;
+	display: grid;
+	grid-template-columns: repeat(3, max-content);
+	gap: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: var(--white01);
+	border-radius: 8px;
+	padding: 10px;
+	animation-name: appearance;
+	animation-duration: 400ms;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+	animation-iteration-count: 1;
+	z-index: 1;
+
+	@media (width < 768px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.reset {
+	width: 100%;
+	font-size: 20px;
+	text-align: center;
+	grid-column: 1 / -1;
+	color: var(--white00);
+	background: var(--blue01);
+	border: none;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 0;
+	cursor: pointer;
+
+	@media (width < 768px) {
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+	}
+}

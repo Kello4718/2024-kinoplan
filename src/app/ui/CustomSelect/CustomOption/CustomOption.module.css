@@ -1,0 +1,15 @@
+.option {
+	width: 100%;
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+	border-bottom: 1px solid var(--blue01);
+	padding: 5px 0;
+	cursor: pointer;
+
+	@media (width < 768px) {
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+	}
+}

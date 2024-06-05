@@ -1,0 +1,90 @@
+:root {
+	--main: #24374e;
+	--white00: #ffffff;
+	--white01: #f6f9ff;
+	--blue01: #178cfb;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: grid;
+	grid-template-rows: max-content 1fr;
+}
+
+.main {
+	background: var(--main);
+	padding: 20px;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: clamp(2.875rem, 2.375rem + 0.625vw, 3.125rem); /* 46-50*/
+	text-align: center;
+	color: var(--white00);
+	margin: 0 0 30px;
+
+	@media (width < 1280px) {
+		font-size: clamp(2.5rem, 1rem + 2.3438vw, 2.875rem); /* 40-46 */
+	}
+
+	@media (width < 1024px) {
+		font-size: clamp(2.25rem, 1.5rem + 1.5625vw, 2.5rem); /* 36-40 */
+	}
+
+	@media (width < 768px) {
+		font-size: clamp(1.875rem, 1.5433rem + 1.4742vw, 2.25rem); /* 30-36 */
+	}
+}
+
+.ant-popover {
+	@media (width < 1280px) {
+		width: auto;
+		max-width: 90%;
+	}
+
+	@media (width < 768px) {
+		width: 100%;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+	}
+
+	.ant-popover-arrow {
+		@media (width < 768px) {
+			left: 50%;
+		}
+	}
+}
+
+.logoLink {
+	font-size: 80px;
+	text-transform: uppercase;
+	text-align: center;
+	text-decoration: none;
+	color: transparent;
+	background: url('../../public/images/preview/preview.jpg') no-repeat 50% 50% /
+		cover;
+	background-clip: text;
+	margin: 0;
+	cursor: pointer;
+
+	@media (width < 1280px) {
+		font-size: clamp(3.125rem, 2.3913rem + 3.2609vw, 5rem); /* 50-80 */
+	}
+}

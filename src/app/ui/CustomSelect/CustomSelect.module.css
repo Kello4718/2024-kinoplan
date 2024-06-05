@@ -1,0 +1,47 @@
+.selectContainer {
+	width: 100%;
+	height: max-content;
+	border: 1px solid var(--blue01);
+	border-radius: 8px;
+}
+
+.select {
+	width: 100%;
+	font-size: 20px;
+	text-align: left;
+	color: var(--white00);
+	background: var(--blue01);
+	border: none;
+	border-radius: 8px 8px 0 0;
+	padding: 10px;
+	margin: 0;
+	cursor: pointer;
+
+	@media (width < 1280px) {
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+	}
+}
+
+.optionList {
+	display: flex;
+	flex-flow: column;
+	gap: 10px;
+	padding: 0 10px 10px;
+	margin: 10px 0 0;
+}
+
+.reset {
+	width: 100%;
+	font-size: 20px;
+	color: var(--white00);
+	background: var(--main);
+	border: none;
+	border-radius: 0 0 8px 8px;
+	padding: 5px;
+	margin: 0;
+	cursor: pointer;
+
+	@media (width < 1280px) {
+		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+	}
+}

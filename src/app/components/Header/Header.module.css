@@ -1,0 +1,13 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 50px;
+	background: var(--white01);
+	padding: 20px;
+
+	@media (width < 768px) {
+		flex-flow: column;
+		gap: 20px;
+	}
+}
