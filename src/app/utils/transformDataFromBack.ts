@@ -2,9 +2,11 @@ import { BookFromBack } from '../types';
 
 const transformDataFromBack = (data: BookFromBack[]) =>
 	data.map((book) => {
-		const { volumeInfo, id } = book;
+		const { volumeInfo, id, saleInfo } = book;
 		const { title, authors, publishedDate, categories, imageLinks } =
 			volumeInfo;
+		const price = saleInfo?.retailPrice?.amount ?? 100;
+		const currency = saleInfo?.retailPrice?.currencyCode ?? 'RUB';
 		return {
 			title,
 			author: authors[0],
@@ -12,6 +14,9 @@ const transformDataFromBack = (data: BookFromBack[]) =>
 			category: categories[0],
 			image: imageLinks.thumbnail,
 			id,
+			quantity: 1,
+			price,
+			currency,
 		};
 	});
 

@@ -12,15 +12,15 @@ import {
 
 import { transformDataFromBack } from '../utils';
 import { API_URL } from '../constants';
-import { Book, CartBook, Filter, Sorted, Status, View } from '../types';
+import { Book, Filter, Sorted, Status, View } from '../types';
 
 type TBookClubContext = {
 	status: Status;
 	setStatus: Dispatch<SetStateAction<Status>>;
 	view: View;
 	setView: Dispatch<SetStateAction<View>>;
-	cart: CartBook[];
-	setCart: Dispatch<SetStateAction<CartBook[]>>;
+	cart: Book[];
+	setCart: Dispatch<SetStateAction<Book[]>>;
 	books: Book[];
 	setBooks: Dispatch<SetStateAction<Book[]>>;
 	filter: Filter;
@@ -42,7 +42,7 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		isSuccess: false,
 	});
 	const [view, setView] = useState<View>('table');
-	const [cart, setCart] = useState<CartBook[]>([]);
+	const [cart, setCart] = useState<Book[]>([]);
 	const [books, setBooks] = useState<Book[]>([]);
 	const [filter, setFilter] = useState<Filter>({
 		category: null,
@@ -89,28 +89,22 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
 	useEffect(() => {
 		const getBooks = async () => {
-			try {
-				changeStatus(true, false, false);
-				const res = await fetch(API_URL, {
-					method: 'GET',
-					mode: 'cors',
-				});
-				if (!res.ok) {
-					changeStatus(false, true, false);
-					return;
-				}
+			changeStatus(true, false, false);
+			const res = await fetch(API_URL, {
+				method: 'GET',
+				mode: 'cors',
+			});
+			if (!res.ok) {
+				changeStatus(false, true, false);
+				return;
+			}
 
-				const data = await res.json();
-				if (Array.isArray(data.items)) {
-					const transformedData = await transformDataFromBack(
-						data.items
-					);
-					setBooks(transformedData);
-					changeStatus(false, false, true);
-				} else {
-					changeStatus(false, true, false);
-				}
-			} catch (error) {
+			const data = await res.json();
+			if (Array.isArray(data.items)) {
+				const transformedData = await transformDataFromBack(data.items);
+				setBooks(transformedData);
+				changeStatus(false, false, true);
+			} else {
 				changeStatus(false, true, false);
 			}
 		};

@@ -34,35 +34,6 @@ ul {
 	padding: 0;
 }
 
-a.navigationLinkActive {
-	font-size: 30px;
-	text-decoration: none;
-	position: relative;
-	color: var(--main);
-
-	@media (width < 1280px) {
-		font-size: clamp(1.6875rem, 0.9375rem + 1.1719vw, 1.875rem); /* 27-30 */
-	}
-
-	@media (width < 1024px) {
-		font-size: clamp(1.5rem, 0.9375rem + 1.1719vw, 1.6875rem); /* 24-27 */
-	}
-
-	@media (width < 768px) {
-		font-size: clamp(1.25rem, 1.0294rem + 0.9804vw, 1.5rem); /* 20-24 */
-	}
-
-	&::before {
-		content: '';
-		width: 100%;
-		height: 1px;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		background: var(--main);
-	}
-}
-
 h1 {
 	font-size: clamp(2.875rem, 2.375rem + 0.625vw, 3.125rem); /* 46-50*/
 	text-align: center;
@@ -86,5 +57,34 @@ h1 {
 	@media (width < 1280px) {
 		width: auto;
 		max-width: 90%;
+	}
+
+	@media (width < 768px) {
+		width: 100%;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+	}
+
+	.ant-popover-arrow {
+		@media (width < 768px) {
+			left: 50%;
+		}
+	}
+}
+
+.logoLink {
+	font-size: 80px;
+	text-transform: uppercase;
+	text-align: center;
+	text-decoration: none;
+	color: transparent;
+	background: url('../../public/images/preview/preview.jpg') no-repeat 50% 50% /
+		cover;
+	background-clip: text;
+	margin: 0;
+	cursor: pointer;
+
+	@media (width < 1280px) {
+		font-size: clamp(3.125rem, 2.3913rem + 3.2609vw, 5rem); /* 50-80 */
 	}
 }

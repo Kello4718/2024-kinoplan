@@ -24,8 +24,8 @@ const BooksList = () => {
 				view === 'line' ? styles.listViewLine : ''
 			}`}
 		>
-			{getBooks()?.map((book) => (
-				<BooksItem key={book.title} book={book} />
+			{getBooks()?.map((book, index) => (
+				<BooksItem key={book.title} book={book} index={index}/>
 			))}
 		</ul>
 	);

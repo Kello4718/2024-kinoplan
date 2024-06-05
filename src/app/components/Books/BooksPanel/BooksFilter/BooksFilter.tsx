@@ -6,6 +6,7 @@ import CustomSelect from '@/app/ui/CustomSelect/CustomSelect';
 import { useBookClub } from '@/app/hooks';
 
 import styles from './BooksFilter.module.css';
+import { FilterOutlined } from '@ant-design/icons';
 
 const BooksFilter = () => {
 	const { isFilterVisible, setIsFilterVisible, books, setFilter } =
@@ -53,7 +54,7 @@ const BooksFilter = () => {
 	return (
 		<div ref={selectContainer} className={styles.filterContainer}>
 			<Button className={styles.button} onClick={handleButtonOnChange}>
-				Фильтры
+				<FilterOutlined />
 			</Button>
 			{isFilterVisible && (
 				<div className={styles.selectContainer}>

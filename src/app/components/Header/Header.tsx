@@ -7,39 +7,21 @@ import { usePathname } from 'next/navigation';
 import Cart from './Cart/Cart';
 
 import styles from './Header.module.css';
+import { useBookClub } from '@/app/hooks';
 
 const Header = () => {
 	const pathname = usePathname();
+	const { cart } = useBookClub();
 	return (
 		<header className={styles.header}>
-			<span className={styles.title}>Книгоплан</span>
-			<nav className={styles.navigation}>
-				<ul className={styles.navigationList}>
-					<li className={styles.navigationItem}>
-						<Link
-							className={
-								pathname === '/' ? 'navigationLinkActive' : ''
-							}
-							href="/"
-						>
-							Главная
-						</Link>
-					</li>
-					<li className={styles.navigationItem}>
-						<Link
-							className={
-								pathname === '/cart'
-									? 'navigationLinkActive'
-									: ''
-							}
-							href="/cart"
-						>
-							Корзина
-						</Link>
-					</li>
-				</ul>
-				<Cart />
-			</nav>
+			<Link
+				href="/"
+				className="logoLink"
+				style={pathname === '/' ? { pointerEvents: 'none' } : {}}
+			>
+				Книгоплан
+			</Link>
+			{cart.length > 0 && pathname === '/' && <Cart />}
 		</header>
 	);
 };

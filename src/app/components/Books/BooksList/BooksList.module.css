@@ -62,3 +62,21 @@
 .listViewLine p {
 	margin: 0;
 }
+
+.listViewLine figcaption + div {
+	justify-content: space-between;
+	margin: 10px 0 10px auto;
+}
+
+.listViewLine figcaption + div div {
+	width: 100%;
+	justify-content: space-between;
+}
+
+.listViewLine .button  {
+	margin: auto 0 0 0;
+}
+
+.listViewLine div button  {
+	margin: 0;
+}

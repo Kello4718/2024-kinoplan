@@ -14,7 +14,10 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 const Cart = () => {
 	const [isPaid, setIsPaid] = useState(false);
 	const { cart, setCart } = useBookClub();
-
+	const cost = cart.reduce(
+		(acc, item) => Math.floor(acc + item.quantity * item.price),
+		0
+	);
 	const handleButtonPayOnClick = () => {
 		setIsPaid(true);
 		setCart([]);
@@ -31,6 +34,10 @@ const Cart = () => {
 					{cart.length ? (
 						<>
 							<CartList />
+							<p className={styles.total}>
+								<strong>Итого в корзине книг на сумму:</strong>{' '}
+								{cost} RUB
+							</p>
 							<Button
 								onClick={handleButtonPayOnClick}
 								className={styles.buttonPay}
@@ -48,8 +55,17 @@ const Cart = () => {
 			) : (
 				<Result
 					status="success"
-					title={<p className={styles.title}>Подравляю, вы успешно оплатили товары!</p>}
-					subTitle={<p className={styles.subtitle}>Номер заказа: 2017182818828182881. Чек придет на почту, в течении 5 минут. Хорошего вам дня</p>}
+					title={
+						<p className={styles.title}>
+							Подравляю, вы успешно оплатили товары!
+						</p>
+					}
+					subTitle={
+						<p className={styles.subtitle}>
+							Номер заказа: 2017182818828182881. Чек придет на
+							почту, в течении 5 минут. Хорошего вам дня
+						</p>
+					}
 					className={styles.result}
 				/>
 			)}

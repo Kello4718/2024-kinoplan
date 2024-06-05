@@ -1,52 +1,32 @@
 import { FC } from 'react';
-
-import { CartBook } from '@/app/types';
-import { useBookClub } from '@/app/hooks';
+import ChangeQuantity from '@/app/components/ChangeQuantity/ChangeQuantity';
+import { Book } from '@/app/types';
 
 import styles from './CartItem.module.css';
 
 type CartItemProps = {
-	item: CartBook;
+	item: Book;
 	index: number;
 };
 
 const CartItem: FC<CartItemProps> = ({ item, index }) => {
-	const { cart, setCart } = useBookClub();
-	const { id, quantity, title } = item;
-
-	const decrement = () => {
-		if (quantity === 1) {
-			const filteredCart = cart.filter((element) => element.id !== id);
-			setCart(filteredCart);
-			return;
-		}
-
-		const updatedCart = cart.with(index, {
-			...item,
-			quantity: quantity - 1,
-		});
-		setCart(updatedCart);
-	};
-
-	const increment = () => {
-		const updatedCart = cart.with(index, {
-			...item,
-			quantity: quantity + 1,
-		});
-		setCart(updatedCart);
-	};
-
+	const { author, category, image, price, title, year, currency } = item;
 	return (
-		<li className={styles.item} key={id}>
+		<li className={styles.item} key={item.title}>
+			<img
+				src={image ?? ''}
+				width={500}
+				height={500}
+				alt={title}
+				className={styles.image}
+			/>
 			<span className={styles.title}>{title}</span>
-			<div className={styles.buttonContainer}>
-				<button onClick={decrement} className={styles.button}>
-					-
-				</button>
-				<span className={styles.quantity}>{quantity}</span>
-				<button onClick={increment} className={styles.button}>
-					+
-				</button>
+			<span className={styles.author}>{author}</span>
+			<span className={styles.year}>{year}</span>
+			<span className={styles.category}>{category}</span>
+			<span className={styles.price}>{price} {currency}</span>
+			<div className={styles.quantityContainer}>
+				<ChangeQuantity item={item} index={index} />
 			</div>
 		</li>
 	);

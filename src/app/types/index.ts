@@ -5,10 +5,9 @@ type Book = {
 	category: string;
 	image: string;
 	id: string;
-};
-
-type CartBook = Pick<Book, 'title' | 'id'> & {
 	quantity: number;
+	price: number;
+	currency: string;
 };
 
 type BookFromBack = {
@@ -20,6 +19,12 @@ type BookFromBack = {
 		categories: string[];
 		imageLinks: {
 			thumbnail: string;
+		};
+	};
+	saleInfo: {
+		retailPrice: {
+			amount: number;
+			currencyCode: string;
 		};
 	};
 };
@@ -40,4 +45,4 @@ type Status = {
 	isSuccess: boolean;
 };
 
-export type { Book, CartBook, BookFromBack, Filter, Sorted, View, Status };
+export type { Book, BookFromBack, Filter, Sorted, View, Status };

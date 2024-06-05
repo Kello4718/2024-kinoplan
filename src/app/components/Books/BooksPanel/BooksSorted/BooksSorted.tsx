@@ -5,6 +5,7 @@ import { Button } from '@/app/ui';
 import { useBookClub, useSorted } from '@/app/hooks';
 
 import {
+	AlignRightOutlined,
 	SortAscendingOutlined,
 	SortDescendingOutlined,
 } from '@ant-design/icons';
@@ -53,7 +54,7 @@ const BooksSorted = () => {
 	return (
 		<div ref={selectContainer} className={styles.filterContainer}>
 			<Button className={styles.button} onClick={handleButtonOnChange}>
-				Сортировка
+				<AlignRightOutlined />
 			</Button>
 			{isSortedVisible && (
 				<div className={styles.buttonContainer}>

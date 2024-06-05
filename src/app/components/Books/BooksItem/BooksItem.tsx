@@ -7,12 +7,13 @@ import { useBookClub } from '@/app/hooks';
 import Image from 'next/image';
 
 import styles from './BooksItem.module.css';
+import ChangeQuantity from '../../ChangeQuantity/ChangeQuantity';
 
-const BooksItem = ({ book }: { book: Book }) => {
-	const { title, author, year, category, image, id } = book;
+const BooksItem = ({ book, index }: { book: Book; index: number }) => {
+	const { title, author, year, category, image, id, price, currency } = book;
 	const { cart, setCart } = useBookClub();
 	const addInCart = () => {
-		setCart((prevState) => [...prevState, { title, quantity: 1, id }]);
+		setCart((prevState) => [...prevState, book]);
 	};
 
 	const removeFromCart = (id: string) => {
@@ -28,7 +29,7 @@ const BooksItem = ({ book }: { book: Book }) => {
 					src={image ?? ''}
 					width={500}
 					height={500}
-					alt="Picture of the author"
+					alt={title}
 					className={styles.image}
 				/>
 				<figcaption className={styles.figcaption}>
@@ -44,14 +45,20 @@ const BooksItem = ({ book }: { book: Book }) => {
 					<p className={styles.category}>
 						<strong>Жанр:</strong> {category}
 					</p>
+					<p className={styles.price}>
+						<strong>Стоимость книги:</strong> {price} {currency}
+					</p>
 				</figcaption>
 				{Boolean(isInCart) && (
-					<Button
-						className={styles.button}
-						onClick={() => removeFromCart(id)}
-					>
-						Удалить из корзины
-					</Button>
+					<div className={styles.activityContainer}>
+						<Button
+							className={styles.button}
+							onClick={() => removeFromCart(id)}
+						>
+							Удалить из корзины
+						</Button>
+						<ChangeQuantity item={book} index={index} />
+					</div>
 				)}
 				{Boolean(!isInCart) && (
 					<Button className={styles.button} onClick={addInCart}>
