@@ -30,7 +30,7 @@ type Filter = {
 	author: null | string;
 };
 
-type Sorted = Record<'category' | 'year' | 'author', boolean>;
+type Sorted = Record<keyof Filter, boolean>;
 
 type View = 'table' | 'line';
 
