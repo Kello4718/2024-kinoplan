@@ -1,7 +1,7 @@
 .selectContainer {
 	width: 100%;
 	height: max-content;
-	border: 1px solid #178cfb;
+	border: 1px solid var(--blue01);
 	border-radius: 8px;
 }
 
@@ -9,8 +9,8 @@
 	width: 100%;
 	font-size: 20px;
 	text-align: left;
-	color: #ffffff;
-	background: #178cfb;
+	color: var(--white00);
+	background: var(--blue01);
 	border: none;
 	border-radius: 8px 8px 0 0;
 	padding: 10px;
@@ -33,8 +33,8 @@
 .reset {
 	width: 100%;
 	font-size: 20px;
-	color: #ffffff;
-	background-color: #24374e;
+	color: var(--white00);
+	background: var(--main);
 	border: none;
 	border-radius: 0 0 8px 8px;
 	padding: 5px;

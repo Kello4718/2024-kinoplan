@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: center;
 	gap: 50px;
-	background: #f6f9ff;
+	background: var(--white01);
 	padding: 20px;
 
 	@media (width < 768px) {
@@ -34,7 +34,7 @@
 		position: absolute;
 		top: 0;
 		right: -25px;
-		background: #24374e;
+		background: var(--main);
 
 		@media (width < 768px) {
 			content: none;
@@ -60,7 +60,7 @@
 	font-size: 30px;
 	text-decoration: none;
 	position: relative;
-	color: #24374e;
+	color: var(--main);
 
 	@media (width < 1280px) {
 		font-size: clamp(1.6875rem, 0.9375rem + 1.1719vw, 1.875rem); /* 27-30 */
@@ -81,7 +81,7 @@
 		position: absolute;
 		top: 100%;
 		left: 0;
-		background: #24374e;
+		background: var(--main);
 		transition-property: width;
 		transition-duration: 300ms;
 		transition-timing-function: ease-in-out;

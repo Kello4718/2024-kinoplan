@@ -1,3 +1,10 @@
+:root {
+	--main: #24374e;
+	--white00: #ffffff;
+	--white01: #f6f9ff;
+	--blue01: #178cfb;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -17,7 +24,7 @@ body {
 }
 
 .main {
-	background: #24374e;
+	background: var(--main);
 	padding: 20px;
 }
 
@@ -31,7 +38,7 @@ a.navigationLinkActive {
 	font-size: 30px;
 	text-decoration: none;
 	position: relative;
-	color: #24374e;
+	color: var(--main);
 
 	@media (width < 1280px) {
 		font-size: clamp(1.6875rem, 0.9375rem + 1.1719vw, 1.875rem); /* 27-30 */
@@ -52,14 +59,14 @@ a.navigationLinkActive {
 		position: absolute;
 		top: 100%;
 		left: 0;
-		background: #24374e;
+		background: var(--main);
 	}
 }
 
 h1 {
 	font-size: clamp(2.875rem, 2.375rem + 0.625vw, 3.125rem); /* 46-50*/
 	text-align: center;
-	color: #ffffff;
+	color: var(--white00);
 	margin: 0 0 30px;
 
 	@media (width < 1280px) {

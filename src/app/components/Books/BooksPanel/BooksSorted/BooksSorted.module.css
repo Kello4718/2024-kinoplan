@@ -7,8 +7,8 @@
 	width: max-content;
 	font-size: 20px;
 	position: relative;
-	color: #ffffff;
-	background-color: #178cfb;
+	color: var(--white00);
+	background: var(--blue01);
 	border: none;
 	border-radius: 8px;
 	padding: 10px;
@@ -40,7 +40,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: #f6f9ff;
+	background: var(--white01);
 	border-radius: 8px;
 	padding: 10px;
 	animation-name: appearance;
@@ -63,8 +63,8 @@
 	justify-content: space-between;
 	gap: 30px;
 	position: relative;
-	color: #ffffff;
-	background-color: #178cfb;
+	color: var(--white00);
+	background: var(--blue01);
 	border: none;
 	border-radius: 8px;
 	padding: 10px;

@@ -21,8 +21,8 @@
 	width: clamp(2.375rem, 1.75rem + 0.7813vw, 2.6875rem);
 	height: auto;
 	aspect-ratio: 1;
-	color: #ffffff;
-	background-color: #178cfb;
+	color: var(--white00);
+	background: var(--blue01);
 	border: none;
 	border-radius: 8px;
 	padding: 5px;

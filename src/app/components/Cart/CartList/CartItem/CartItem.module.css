@@ -3,8 +3,8 @@
 	display: flex;
 	justify-content: space-between;
 	gap: 30px;
-	background: #ffffff;
-	border: 1px solid #178cfb;
+	background: var(--white00);
+	border: 1px solid var(--blue01);
 	border-radius: 8px;
 	padding: 5px 10px;
 
@@ -24,8 +24,8 @@
 	height: auto;
 	aspect-ratio: 1;
 	font-size: 20px;
-	color: #ffffff;
-	background-color: #178cfb;
+	color: var(--white00);
+	background: var(--blue01);
 	border: none;
 	border-radius: 8px;
 	padding: 0;

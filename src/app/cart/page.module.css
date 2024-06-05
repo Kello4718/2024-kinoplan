@@ -6,8 +6,8 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	color: #ffffff;
-	background-color: #178cfb;
+	color: var(--white00);
+	background: var(--blue01);
 	border: none;
 	border-radius: 8px;
 	padding: 10px;
@@ -24,8 +24,8 @@
 	width: max-content;
 	height: auto;
 	font-size: 20px;
-	color: #ffffff;
-	background-color: #178cfb;
+	color: var(--white00);
+	background: var(--blue01);
 	border: none;
 	border-radius: 8px;
 	padding: 10px 5px;
@@ -41,7 +41,7 @@
 .empty {
 	font-size: 20px;
 	text-align: center;
-	color: #ffffff;
+	color: var(--white00);
 	margin: 0;
 
 	@media (width < 768px) {
@@ -52,14 +52,14 @@
 .result {
 	width: min(100%, 800px);
 	border-radius: 8px;
-	background: #ffffff;
+	background: var(--white00);
 	margin: 30px auto 0;
 }
 
 .title {
 	font-size: 30px;
 	text-align: center;
-	color: #24374e;
+	color: var(--main);
 	margin: 0 0 30px;
 
 	@media (width < 768px) {
@@ -69,7 +69,7 @@
 
 .subtitle {
 	font-size: 20px;
-	color: #24374e;
+	color: var(--main);
 
 	@media (width < 768px) {
 		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
