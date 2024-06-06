@@ -1,12 +1,36 @@
 {
 	"extends": [
 		"next/core-web-vitals",
+		"prettier",
 		"eslint:recommended",
 		"plugin:react/recommended",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:react/jsx-runtime", // Добавьте это для нового JSX Transform
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:import/typescript"
 	],
-	"plugins": ["react", "prettier"],
+	"plugins": ["react", "prettier", "simple-import-sort"],
 	"rules": {
+		"simple-import-sort/imports": [
+			"error",
+			{
+				"groups": [
+					// Группа для "сторонних" библиотек как 'react' или 'lodash'.
+					["^@?\\w"],
+					// Группа для абсолютных путей и алиасов (если используются).
+					["^(@|components|utils|config|vendored-lib)(/.*|$)"],
+					// Группа для относительных импортов.
+					["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+					// Группа для стилей.
+					["^.+\\.s?css$"]
+				]
+			}
+		],
+		"prettier/prettier": "error",
+		"react/jsx-uses-react": "off", // Для нового JSX Transform
+		"react/react-in-jsx-scope": "off", // Для нового JSX Transform
+		"simple-import-sort/exports": "error",
 		"array-callback-return": ["error", { "allowImplicit": true }],
 		"no-const-assign": "error",
 		"no-constant-condition": "warn",
@@ -35,5 +59,13 @@
 			}
 		],
 		"no-console": "warn"
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"paths": ["src"],
+				"extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+			}
+		}
 	}
 }

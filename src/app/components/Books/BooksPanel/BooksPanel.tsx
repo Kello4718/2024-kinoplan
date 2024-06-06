@@ -1,8 +1,10 @@
-import BooksFilter from './BooksFilter/BooksFilter';
-import { Button } from '@/app/ui';
 import { TableOutlined, UnorderedListOutlined } from '@ant-design/icons';
+
+import { useBookClub } from '@/hooks';
+import { Button } from '@/ui';
+
+import BooksFilter from './BooksFilter/BooksFilter';
 import BooksSorted from './BooksSorted/BooksSorted';
-import { useBookClub } from '@/app/hooks';
 
 import styles from './BooksPanel.module.css';
 

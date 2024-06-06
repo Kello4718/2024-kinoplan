@@ -35,14 +35,8 @@ type Filter = {
 	author: null | string;
 };
 
-type Sorted = Record<keyof Filter, boolean>;
+type Sort = Record<keyof Filter, 'asc' | 'desc'>;
 
 type View = 'table' | 'line';
 
-type Status = {
-	isError: boolean;
-	isLoading: boolean;
-	isSuccess: boolean;
-};
-
-export type { Book, BookFromBack, Filter, Sorted, View, Status };
+export type { Book, BookFromBack, Filter, Sort, View };

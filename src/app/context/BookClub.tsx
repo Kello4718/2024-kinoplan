@@ -1,22 +1,24 @@
 'use client';
 
 import {
+	createContext,
 	Dispatch,
 	FC,
 	PropsWithChildren,
 	SetStateAction,
-	createContext,
 	useEffect,
 	useState,
 } from 'react';
 
-import { transformDataFromBack } from '../utils';
-import { API_URL } from '../constants';
-import { Book, Filter, Sorted, Status, View } from '../types';
+import { API_URL } from '@/constants';
+import { Book, Filter, Sort, View } from '@/types';
+import { transformDataFromBack } from '@/utils';
 
-type TBookClubContext = {
-	status: Status;
-	setStatus: Dispatch<SetStateAction<Status>>;
+export type TBookClubContext = {
+	isLoading: boolean;
+	setIsLoading: Dispatch<SetStateAction<boolean>>;
+	isError: boolean;
+	setIsError: Dispatch<SetStateAction<boolean>>;
 	view: View;
 	setView: Dispatch<SetStateAction<View>>;
 	cart: Book[];
@@ -25,22 +27,46 @@ type TBookClubContext = {
 	setBooks: Dispatch<SetStateAction<Book[]>>;
 	filter: Filter;
 	setFilter: Dispatch<SetStateAction<Filter>>;
-	sorted: Sorted;
-	setSorted: Dispatch<SetStateAction<Sorted>>;
+	sort: Sort;
+	setSort: Dispatch<SetStateAction<Sort>>;
 	isFilterVisible: boolean;
 	setIsFilterVisible: Dispatch<SetStateAction<boolean>>;
-	isSortedVisible: boolean;
-	setIsSortedVisible: Dispatch<SetStateAction<boolean>>;
+	isSortVisible: boolean;
+	setIsSortVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-const BookClubContext = createContext<TBookClubContext | undefined>(undefined);
+export const BookClubContext = createContext<TBookClubContext | undefined>({
+	isLoading: false,
+	setIsLoading: () => {},
+	isError: false,
+	setIsError: () => {},
+	view: 'table',
+	setView: () => {},
+	cart: [],
+	setCart: () => {},
+	books: [],
+	setBooks: () => {},
+	filter: {
+		category: '',
+		year: '',
+		author: '',
+	},
+	setFilter: () => {},
+	sort: {
+		category: 'desc',
+		year: 'desc',
+		author: 'desc',
+	},
+	setSort: () => {},
+	isFilterVisible: false,
+	setIsFilterVisible: () => {},
+	isSortVisible: false,
+	setIsSortVisible: () => {},
+});
 
 const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
-	const [status, setStatus] = useState<Status>({
-		isError: false,
-		isLoading: false,
-		isSuccess: false,
-	});
+	const [isLoading, setIsLoading] = useState(false);
+	const [isError, setIsError] = useState(false);
 	const [view, setView] = useState<View>('table');
 	const [cart, setCart] = useState<Book[]>([]);
 	const [books, setBooks] = useState<Book[]>([]);
@@ -49,16 +75,18 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		year: null,
 		author: null,
 	});
-	const [sorted, setSorted] = useState<Sorted>({
-		category: false,
-		year: false,
-		author: false,
+	const [sort, setSort] = useState<Sort>({
+		category: 'desc',
+		year: 'desc',
+		author: 'desc',
 	});
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
-	const [isSortedVisible, setIsSortedVisible] = useState(false);
+	const [isSortVisible, setIsSortVisible] = useState(false);
 	const value: TBookClubContext = {
-		status,
-		setStatus,
+		isLoading,
+		setIsLoading,
+		isError,
+		setIsError,
 		view,
 		setView,
 		cart,
@@ -69,43 +97,31 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		setFilter,
 		isFilterVisible,
 		setIsFilterVisible,
-		sorted,
-		setSorted,
-		isSortedVisible,
-		setIsSortedVisible,
-	};
-
-	const changeStatus = (
-		isLoading: boolean,
-		isError: boolean,
-		isSuccess: boolean
-	) => {
-		setStatus({
-			isError,
-			isLoading,
-			isSuccess,
-		});
+		sort,
+		setSort,
+		isSortVisible,
+		setIsSortVisible,
 	};
 
 	useEffect(() => {
 		const getBooks = async () => {
-			changeStatus(true, false, false);
-			const res = await fetch(API_URL, {
-				method: 'GET',
-				mode: 'cors',
-			});
-			if (!res.ok) {
-				changeStatus(false, true, false);
-				return;
-			}
-
-			const data = await res.json();
-			if (Array.isArray(data.items)) {
+			try {
+				setIsLoading(true);
+				const res = await fetch(API_URL, {
+					method: 'GET',
+					mode: 'cors',
+				});
+				if (!res.ok) {
+					throw new Error(`Server status is ${res.status}`);
+				}
+				const data = await res.json();
 				const transformedData = await transformDataFromBack(data.items);
 				setBooks(transformedData);
-				changeStatus(false, false, true);
-			} else {
-				changeStatus(false, true, false);
+			} catch (error) {
+				setIsLoading(false);
+				setIsError(true);
+			} finally {
+				setIsLoading(false);
 			}
 		};
 
@@ -119,6 +135,4 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	);
 };
 
-export type { TBookClubContext };
-export { BookClubContext };
 export default BookClubContextProvider;

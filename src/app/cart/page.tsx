@@ -1,21 +1,21 @@
 'use client';
 
+import { ArrowLeftOutlined } from '@ant-design/icons';
+import { Result } from 'antd';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useBookClub } from '../hooks';
 
-import CartList from '../components/Cart/CartList/CartList';
-import { Button } from '../ui';
-import { Result } from 'antd';
+import CartList from '@/components/Cart/CartList/CartList';
+import { useBookClub } from '@/hooks';
+import { Button } from '@/ui';
 
 import styles from './page.module.css';
-import { ArrowLeftOutlined } from '@ant-design/icons';
 
 const Cart = () => {
 	const [isPaid, setIsPaid] = useState(false);
 	const { cart, setCart } = useBookClub();
 	const cost = cart.reduce(
-		(acc, item) => Math.floor(acc + item.quantity * item.price),
+		(acc, item) => Number((acc + item.quantity * item.price).toFixed(2)),
 		0
 	);
 	const handleButtonPayOnClick = () => {

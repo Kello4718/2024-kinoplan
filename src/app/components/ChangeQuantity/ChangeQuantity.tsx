@@ -1,6 +1,7 @@
+import { useBookClub } from '@/hooks';
+import { Book } from '@/types';
+
 import styles from './ChangeQuantity.module.css';
-import { useBookClub } from '@/app/hooks';
-import { Book } from '@/app/types';
 
 const ChangeQuantity = ({ item, index }: { item: Book; index: number }) => {
 	const { cart, setCart, books, setBooks } = useBookClub();

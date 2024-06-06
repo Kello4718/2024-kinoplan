@@ -1,8 +1,8 @@
-import { useBookClub } from '@/app/hooks';
-import React from 'react';
+import { useBookClub } from '@/hooks';
+
+import CartItem from './CartItem/CartItem';
 
 import styles from './CartList.module.css';
-import CartItem from './CartItem/CartItem';
 
 const CartList = () => {
 	const { cart } = useBookClub();

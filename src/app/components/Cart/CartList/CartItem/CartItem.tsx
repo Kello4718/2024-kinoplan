@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import { FC } from 'react';
-import ChangeQuantity from '@/app/components/ChangeQuantity/ChangeQuantity';
-import { Book } from '@/app/types';
+
+import ChangeQuantity from '@/components/ChangeQuantity/ChangeQuantity';
+import { Book } from '@/types';
 
 import styles from './CartItem.module.css';
 
@@ -13,7 +15,7 @@ const CartItem: FC<CartItemProps> = ({ item, index }) => {
 	const { author, category, image, price, title, year, currency } = item;
 	return (
 		<li className={styles.item} key={item.title}>
-			<img
+			<Image
 				src={image ?? ''}
 				width={500}
 				height={500}
@@ -24,7 +26,9 @@ const CartItem: FC<CartItemProps> = ({ item, index }) => {
 			<span className={styles.author}>{author}</span>
 			<span className={styles.year}>{year}</span>
 			<span className={styles.category}>{category}</span>
-			<span className={styles.price}>{price} {currency}</span>
+			<span className={styles.price}>
+				{price} {currency}
+			</span>
 			<div className={styles.quantityContainer}>
 				<ChangeQuantity item={item} index={index} />
 			</div>

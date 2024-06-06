@@ -1,6 +1,6 @@
-import { BookFromBack } from '../types';
+import { BookFromBack } from '@/types';
 
-const transformDataFromBack = (data: BookFromBack[]) =>
+export const transformDataFromBack = (data: BookFromBack[]) =>
 	data.map((book) => {
 		const { volumeInfo, id, saleInfo } = book;
 		const { title, authors, publishedDate, categories, imageLinks } =
@@ -19,5 +19,3 @@ const transformDataFromBack = (data: BookFromBack[]) =>
 			currency,
 		};
 	});
-
-export { transformDataFromBack };

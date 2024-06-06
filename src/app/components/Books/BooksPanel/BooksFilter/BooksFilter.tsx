@@ -1,12 +1,12 @@
 'use client';
 
+import { FilterOutlined } from '@ant-design/icons';
 import { useCallback, useEffect, useRef } from 'react';
-import { Button } from '@/app/ui';
-import CustomSelect from '@/app/ui/CustomSelect/CustomSelect';
-import { useBookClub } from '@/app/hooks';
+
+import { useBookClub } from '@/hooks';
+import { Button, CustomSelect } from '@/ui';
 
 import styles from './BooksFilter.module.css';
-import { FilterOutlined } from '@ant-design/icons';
 
 const BooksFilter = () => {
 	const { isFilterVisible, setIsFilterVisible, books, setFilter } =
@@ -17,13 +17,13 @@ const BooksFilter = () => {
 	};
 
 	const categories = books.map((book) => book.category);
-	const sortedCategories = categories.sort();
+	const sortedCategories = [...categories].sort();
 
 	const years = books.map((book) => book.year);
-	const sortedYears = years.sort((a, b) => Number(a) - Number(b));
+	const sortedYears = [...years].sort((a, b) => Number(a) - Number(b));
 
 	const authors = books.map((book) => book.author);
-	const sortedAuthors = authors.sort();
+	const sortedAuthors = [...authors].sort();
 
 	const handleButtonResetOnClick = () => {
 		setFilter({
@@ -58,9 +58,9 @@ const BooksFilter = () => {
 			</Button>
 			{isFilterVisible && (
 				<div className={styles.selectContainer}>
-					<CustomSelect label="По жанрам" data={sortedCategories} />
-					<CustomSelect label="По году издания" data={sortedYears} />
-					<CustomSelect label="По автору" data={sortedAuthors} />
+					<CustomSelect essence="category" data={sortedCategories} />
+					<CustomSelect essence="year" data={sortedYears} />
+					<CustomSelect essence="author" data={sortedAuthors} />
 					<Button
 						className={styles.reset}
 						onClick={handleButtonResetOnClick}

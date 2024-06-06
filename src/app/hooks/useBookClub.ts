@@ -1,7 +1,8 @@
 import { useContext } from 'react';
-import { BookClubContext, TBookClubContext } from '../context/BookClub';
 
-const useBookClub = (): TBookClubContext => {
+import { BookClubContext, TBookClubContext } from '@/context/BookClub';
+
+export const useBookClub = (): TBookClubContext => {
 	const context = useContext(BookClubContext);
 	if (context === undefined) {
 		throw new Error(
@@ -10,5 +11,3 @@ const useBookClub = (): TBookClubContext => {
 	}
 	return context;
 };
-
-export { useBookClub };

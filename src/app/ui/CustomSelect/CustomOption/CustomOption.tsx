@@ -1,26 +1,28 @@
+import { CheckOutlined } from '@ant-design/icons';
 import { FC } from 'react';
 
-import { CheckOutlined } from '@ant-design/icons';
-import { useBookClub } from '@/app/hooks';
+import { SELECT_MAP } from '@/constants';
+import { useBookClub } from '@/hooks';
+import { Filter } from '@/types';
 
 import styles from './CustomOption.module.css';
-import { Filter } from '@/app/types';
-import { SELECT_KEY_MAP } from '@/app/constants';
 
 type CustomOptionProps = {
 	item: string;
-	label: string;
+	essence: keyof Filter;
 };
 
-const CustomOption: FC<CustomOptionProps> = ({ item, label }) => {
+export const CustomOption: FC<CustomOptionProps> = ({ item, essence }) => {
 	const { filter, setFilter, setIsFilterVisible } = useBookClub();
 
 	const handleOptionOnChange = () => {
-		if (SELECT_KEY_MAP[label]) {
-			setFilter((prevState) => ({
-				...prevState,
-				[SELECT_KEY_MAP[label]]: item,
-			}));
+		if (SELECT_MAP[essence]) {
+			setFilter((prevState) => {
+				return {
+					...prevState,
+					[essence]: item,
+				};
+			});
 			setIsFilterVisible(false);
 		}
 	};
@@ -33,5 +35,3 @@ const CustomOption: FC<CustomOptionProps> = ({ item, label }) => {
 		</li>
 	);
 };
-
-export default CustomOption;

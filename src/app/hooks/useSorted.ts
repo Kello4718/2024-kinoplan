@@ -1,44 +1,43 @@
-import { Book } from '../types';
+import { Book, Filter } from '@/types';
+
 import { useBookClub } from './useBookClub';
 
-const useSorted = () => {
-	const { setIsSortedVisible, setSorted, setBooks, sorted } = useBookClub();
+export const useSorted = () => {
+	const { setIsSortVisible, setSort, setBooks, sort } = useBookClub();
 
-	const handleSort = (field: string) => {
-		setIsSortedVisible((prevState) => !prevState);
-		setSorted((prevState) => ({
-			category: field === 'category' ? !prevState.category : false,
-			year: field === 'year' ? !prevState.year : false,
-			author: field === 'author' ? !prevState.author : false,
-		}));
+	const toSortByCategory = (a: Book, b: Book) =>
+		sort.category === 'asc'
+			? b.category.localeCompare(a.category)
+			: a.category.localeCompare(b.category);
+
+	const toSortByYear = (a: Book, b: Book) =>
+		sort.year === 'asc'
+			? Number(b.year) - Number(a.year)
+			: Number(a.year) - Number(b.year);
+
+	const toSortByAuthor = (a: Book, b: Book) =>
+		sort.author === 'asc'
+			? b.author.localeCompare(a.author)
+			: a.author.localeCompare(b.author);
+
+	const handleSort = (field: keyof Filter) => {
+		setIsSortVisible((prevState) => !prevState);
+		setSort((prevState) => {
+			return {
+				...prevState,
+				[field]: prevState[field] === 'asc' ? 'desc' : 'asc',
+			};
+		});
 
 		switch (field) {
 			case 'category':
-				setBooks((prevState) =>
-					prevState.sort((a, b) =>
-						sorted.category
-							? b.category.localeCompare(a.category)
-							: a.category.localeCompare(b.category)
-					)
-				);
+				setBooks((prevState) => [...prevState].sort(toSortByCategory));
 				break;
 			case 'year':
-				setBooks((prevState) =>
-					prevState.sort((a, b) =>
-						sorted.year
-							? Number(b.year) - Number(a.year)
-							: Number(a.year) - Number(b.year)
-					)
-				);
+				setBooks((prevState) => [...prevState].sort(toSortByYear));
 				break;
 			case 'author':
-				setBooks((prevState) =>
-					prevState.sort((a, b) =>
-						sorted.author
-							? b.author.localeCompare(a.author)
-							: a.author.localeCompare(b.author)
-					)
-				);
+				setBooks((prevState) => [...prevState].sort(toSortByAuthor));
 				break;
 			default:
 				break;
@@ -47,5 +46,3 @@ const useSorted = () => {
 
 	return { handleSort };
 };
-
-export { useSorted };

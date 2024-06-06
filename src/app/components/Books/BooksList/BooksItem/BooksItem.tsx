@@ -1,13 +1,13 @@
 'use client';
 
-import { Button } from '@/app/ui';
-import { Book } from '@/app/types';
-
-import { useBookClub } from '@/app/hooks';
 import Image from 'next/image';
 
+import ChangeQuantity from '@/components/ChangeQuantity/ChangeQuantity';
+import { useBookClub } from '@/hooks';
+import { Book } from '@/types';
+import { Button } from '@/ui';
+
 import styles from './BooksItem.module.css';
-import ChangeQuantity from '../../ChangeQuantity/ChangeQuantity';
 
 const BooksItem = ({ book, index }: { book: Book; index: number }) => {
 	const { title, author, year, category, image, id, price, currency } = book;

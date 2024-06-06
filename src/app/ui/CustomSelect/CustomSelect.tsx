@@ -2,20 +2,21 @@
 
 import { FC, useState } from 'react';
 
-import CustomOption from './CustomOption/CustomOption';
-import { Filter } from '@/app/types';
-import { Button } from '../Button';
-import { useBookClub } from '@/app/hooks';
+import { SELECT_MAP } from '@/constants';
+import { useBookClub } from '@/hooks';
+import { Filter } from '@/types';
+import { Button } from '@/ui';
+
+import { CustomOption } from './CustomOption/CustomOption';
 
 import styles from './CustomSelect.module.css';
-import { SELECT_KEY_MAP } from '@/app/constants';
 
 type CustomSelectProps = {
-	label: string;
+	essence: keyof Filter;
 	data: string[];
 };
 
-const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
+export const CustomSelect: FC<CustomSelectProps> = ({ essence, data }) => {
 	const [isListVisible, setIsListVisible] = useState(false);
 	const { setFilter } = useBookClub();
 
@@ -26,18 +27,20 @@ const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
 	};
 
 	const handleButtonResetOnClick = () => {
-		if (SELECT_KEY_MAP[label]) {
-			setFilter((prevState) => ({
-				...prevState,
-				[SELECT_KEY_MAP[label]]: null,
-			}));
+		if (essence) {
+			setFilter((prevState) => {
+				return {
+					...prevState,
+					[essence]: null,
+				};
+			});
 		}
 	};
 
 	return (
 		<div className={styles.selectContainer}>
 			<Button onClick={handleSelectOnClick} className={styles.select}>
-				{label}
+				{SELECT_MAP[essence]}
 			</Button>
 			{isListVisible && (
 				<>
@@ -46,7 +49,7 @@ const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
 							<CustomOption
 								key={item}
 								item={item}
-								label={label}
+								essence={essence}
 							/>
 						))}
 					</ul>
@@ -61,5 +64,3 @@ const CustomSelect: FC<CustomSelectProps> = ({ label, data }) => {
 		</div>
 	);
 };
-
-export default CustomSelect;

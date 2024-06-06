@@ -1,30 +1,37 @@
 'use client';
 
-import Link from 'next/link';
-import { useBookClub } from '@/app/hooks';
-import CartList from '../../Cart/CartList/CartList';
-
-import { Badge, Popover } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Badge, Popover } from 'antd';
+import Link from 'next/link';
+
+import CartList from '@/components/Cart/CartList/CartList';
+import { useBookClub } from '@/hooks';
 
 import styles from './Cart.module.css';
 
 const Content = () => {
 	const { cart } = useBookClub();
 	const cost = cart.reduce(
-		(acc, item) => Math.floor(acc + item.quantity * item.price),
+		(acc, item) => Number((acc + item.quantity * item.price).toFixed(2)),
 		0
 	);
 	return (
 		<div className={styles.cartContainer}>
-			<p className={styles.text}>Корзина:</p>
-			<CartList />
-			<div className={styles.totalContainer}>
-				<p className={styles.total}>
-					<strong>Итого в корзине книг на сумму:</strong> {cost} RUB
-				</p>
+			{cart.length ? (
+				<>
+					<p className={styles.text}>Корзина:</p>
+					<CartList />
+					<div className={styles.totalContainer}>
+						<p className={styles.total}>
+							<strong>Итого в корзине книг на сумму:</strong>{' '}
+							{cost} RUB
+						</p>
+						<Link href="/cart">Перейти в корзину</Link>
+					</div>
+				</>
+			) : (
 				<Link href="/cart">Перейти в корзину</Link>
-			</div>
+			)}
 		</div>
 	);
 };

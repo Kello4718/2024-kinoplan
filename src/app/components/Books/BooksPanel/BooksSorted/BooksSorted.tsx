@@ -1,23 +1,23 @@
 'use client';
 
-import { useCallback, useEffect, useRef } from 'react';
-import { Button } from '@/app/ui';
-import { useBookClub, useSorted } from '@/app/hooks';
-
 import {
 	AlignRightOutlined,
 	SortAscendingOutlined,
 	SortDescendingOutlined,
 } from '@ant-design/icons';
+import { useCallback, useEffect, useRef } from 'react';
+
+import { useBookClub, useSorted } from '@/hooks';
+import { Button } from '@/ui';
 
 import styles from './BooksSorted.module.css';
 
 const BooksSorted = () => {
-	const { isSortedVisible, setIsSortedVisible, sorted } = useBookClub();
+	const { isSortVisible, setIsSortVisible, sort } = useBookClub();
 	const selectContainer = useRef<HTMLDivElement>(null);
 
 	const handleButtonOnChange = () => {
-		setIsSortedVisible((prevState) => !prevState);
+		setIsSortVisible((prevState) => !prevState);
 	};
 
 	const { handleSort } = useSorted();
@@ -40,10 +40,10 @@ const BooksSorted = () => {
 				selectContainer.current &&
 				!selectContainer.current.contains(evt.target as Node)
 			) {
-				setIsSortedVisible(false);
+				setIsSortVisible(false);
 			}
 		},
-		[setIsSortedVisible]
+		[setIsSortVisible]
 	);
 
 	useEffect(() => {
@@ -56,14 +56,14 @@ const BooksSorted = () => {
 			<Button className={styles.button} onClick={handleButtonOnChange}>
 				<AlignRightOutlined />
 			</Button>
-			{isSortedVisible && (
+			{isSortVisible && (
 				<div className={styles.buttonContainer}>
 					<Button
 						className={styles.sortedButton}
 						onClick={handleSortedCategoriesButtonOnClick}
 					>
 						<span>По жанрам</span>
-						{sorted.category ? (
+						{sort.category === 'asc' ? (
 							<SortDescendingOutlined />
 						) : (
 							<SortAscendingOutlined />
@@ -74,7 +74,7 @@ const BooksSorted = () => {
 						onClick={handleSortedYearsButtonOnClick}
 					>
 						<span>По году издания</span>
-						{sorted.year ? (
+						{sort.year === 'asc' ? (
 							<SortDescendingOutlined />
 						) : (
 							<SortAscendingOutlined />
@@ -85,7 +85,7 @@ const BooksSorted = () => {
 						onClick={handleSortedAuthorsButtonOnClick}
 					>
 						<span>По авторам</span>
-						{sorted.author ? (
+						{sort.author === 'asc' ? (
 							<SortDescendingOutlined />
 						) : (
 							<SortAscendingOutlined />

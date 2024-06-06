@@ -1,17 +1,18 @@
 'use client';
 
-import BooksPanel from './components/Books/BooksPanel/BooksPanel';
-import BooksList from './components/Books/BooksList/BooksList';
-import { useBookClub } from './hooks';
 import { Result } from 'antd';
+
+import BooksList from './components/Books/BooksList/BooksList';
+import BooksPanel from './components/Books/BooksPanel/BooksPanel';
+import { useBookClub } from './hooks';
 
 import styles from './page.module.css';
 
 const Main = () => {
-	const { status } = useBookClub();
+	const { isLoading, isError, books } = useBookClub();
 	return (
 		<>
-			{status.isError && (
+			{isError && (
 				<Result
 					status="error"
 					title={
@@ -27,7 +28,7 @@ const Main = () => {
 					className={styles.result}
 				/>
 			)}
-			{status.isLoading && (
+			{isLoading && (
 				<Result
 					status="info"
 					title={<p className={styles.title}>Идет загрузка</p>}
@@ -37,7 +38,7 @@ const Main = () => {
 					className={styles.result}
 				/>
 			)}
-			{status.isSuccess && (
+			{!isLoading && books.length > 0 && (
 				<>
 					<h1>Здесь вы найдете любую книгу</h1>
 					<BooksPanel />
