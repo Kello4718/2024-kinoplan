@@ -1,3 +1,5 @@
+import { Result } from 'antd';
+
 import { useBookClub } from '@/hooks';
 import { Book } from '@/types';
 
@@ -19,15 +21,34 @@ const BooksList = () => {
 		);
 
 	return (
-		<ul
-			className={`${styles.list} ${
-				view === 'line' ? styles.listViewLine : ''
-			}`}
-		>
-			{getBooks()?.map((book, index) => (
-				<BooksItem key={book.title} book={book} index={index} />
-			))}
-		</ul>
+		<>
+			{getBooks().length ? (
+				<ul
+					className={`${styles.list} ${
+						view === 'line' ? styles.listViewLine : ''
+					}`}
+				>
+					{getBooks()?.map((book, index) => (
+						<BooksItem key={book.title} book={book} index={index} />
+					))}
+				</ul>
+			) : (
+				<Result
+					status="info"
+					title={
+						<p className={styles.title}>
+							По выбранным фильтрам книг нет
+						</p>
+					}
+					subTitle={
+						<p className={styles.subtitle}>
+							Попробуйте выбрать другие фильтры
+						</p>
+					}
+					className={styles.result}
+				/>
+			)}
+		</>
 	);
 };
 

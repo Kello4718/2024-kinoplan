@@ -19,8 +19,7 @@ type CustomSelectProps = {
 export const CustomSelect: FC<CustomSelectProps> = ({ essence, data }) => {
 	const [isListVisible, setIsListVisible] = useState(false);
 	const { setFilter } = useBookClub();
-
-	const uniqueData = new Set([...data]);
+	const uniqueData = new Set(data);
 
 	const handleSelectOnClick = () => {
 		setIsListVisible((prevState) => !prevState);
