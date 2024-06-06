@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import { useCallback, useEffect, useRef } from 'react';
 
-import { useBookClub, useSorted } from '@/hooks';
+import { useBookClub, useSort } from '@/hooks';
 import { Button } from '@/ui';
 
 import styles from './BooksSorted.module.css';
@@ -20,7 +20,7 @@ const BooksSorted = () => {
 		setIsSortVisible((prevState) => !prevState);
 	};
 
-	const { handleSort } = useSorted();
+	const { handleSort } = useSort();
 
 	const handleSortedCategoriesButtonOnClick = () => {
 		handleSort('category');

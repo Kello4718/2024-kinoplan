@@ -9,16 +9,13 @@ import styles from './Header.module.css';
 
 const Header = () => {
 	const pathname = usePathname();
+	const isMainPage = pathname === '/';
 	return (
 		<header className={styles.header}>
-			<Link
-				href="/"
-				className="logoLink"
-				style={pathname === '/' ? { pointerEvents: 'none' } : {}}
-			>
+			<Link href="/" className={`logo ${isMainPage ? '' : 'logoLink'}`}>
 				Книгоплан
 			</Link>
-			{pathname === '/' && <Cart />}
+			{!isMainPage && <Cart />}
 		</header>
 	);
 };

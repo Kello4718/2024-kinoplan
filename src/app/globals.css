@@ -72,7 +72,7 @@ h1 {
 	}
 }
 
-.logoLink {
+.logo {
 	font-size: 80px;
 	text-transform: uppercase;
 	text-align: center;
@@ -82,9 +82,14 @@ h1 {
 		cover;
 	background-clip: text;
 	margin: 0;
+	pointer-events: none;
 	cursor: pointer;
 
 	@media (width < 1280px) {
 		font-size: clamp(3.125rem, 2.3913rem + 3.2609vw, 5rem); /* 50-80 */
 	}
+}
+
+.logoLink {
+	pointer-events: all;
 }

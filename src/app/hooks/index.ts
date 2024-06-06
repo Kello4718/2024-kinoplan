@@ -1,2 +1,2 @@
 export * from './useBookClub';
-export * from './useSorted';
+export * from './useSort';

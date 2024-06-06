@@ -2,7 +2,7 @@ import { Book, Filter } from '@/types';
 
 import { useBookClub } from './useBookClub';
 
-export const useSorted = () => {
+export const useSort = () => {
 	const { setIsSortVisible, setSort, setBooks, sort } = useBookClub();
 
 	const toSortByCategory = (a: Book, b: Book) =>
