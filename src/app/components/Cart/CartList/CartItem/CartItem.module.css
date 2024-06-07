@@ -1,17 +1,16 @@
 .item {
 	font-size: 16px;
 	display: grid;
-	grid-template-columns: 10% 20% 10% 10% 10% 10% 1fr;
+	grid-template-columns: 10% 1fr;
 	gap: 10px;
 	background: var(--white00);
 	border-bottom: 1px solid var(--blue01);
-	padding: 0;
 	margin: 0;
 
 	@media (width < 768px) {
 		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
 		grid-template-columns: 1fr 1fr;
-		gap: 0 10px;
+		padding: 0 0 10px;
 	}
 }
 
@@ -19,12 +18,22 @@
 	width: 100%;
 	height: auto;
 	object-fit: contain;
-	object-position: left;
+	object-position: top left;
 	border-radius: 0;
 
 	@media (width < 768px) {
-		height: auto;
-		grid-row: 1 / 5;
+		max-height: 200px;
+	}
+}
+
+.infoContainer {
+	display: grid;
+	grid-template-columns: 22.6% 11.3% 11.3% 11.3% 15.53% 1fr;
+	gap: 10px;
+	@media (width < 768px) {
+		display: flex;
+		flex-flow: column;
+		gap: 5px;
 	}
 }
 
@@ -33,71 +42,59 @@
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
 	overflow: hidden;
-	padding: 5px 0;
 	margin: 0 0 auto;
 
 	@media (width < 768px) {
 		font-size: clamp(1.5rem, 1.1691rem + 1.4706vw, 1.875rem); /* 24-30 */
-		text-align: center;
-		grid-column: 2 / 3;
 	}
 }
 
 .author {
-	text-align: center;
-	padding: 5px 0;
+	display: block;
 	margin: 0;
-
-	@media (width < 768px) {
-		grid-column: 2 / 3;
-	}
 }
 
 .year {
 	text-align: center;
-	padding: 5px 0;
+	display: block;
 	margin: 0;
 
 	@media (width < 768px) {
-		grid-column: 2 / 3;
+		text-align: left;
 	}
 }
 
 .category {
 	text-align: center;
-	padding: 5px 0;
+	display: block;
 	margin: 0;
 
 	@media (width < 768px) {
-		grid-column: 2 / 3;
+		text-align: left;
 	}
 }
 
 .price {
 	text-align: center;
-	padding: 5px 0;
+	display: block;
 	margin: 0;
 
 	@media (width < 768px) {
-		grid-column: 1 / 2;
-		grid-row: 5 / 6;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		text-align: left;
 	}
 }
 
 .quantityContainer {
-	padding: 5px 0;
-
-	@media (width < 768px) {
-		grid-column: 2 / 3;
-		grid-row: 5 / 6;
-	}
+	padding: 0;
 }
 
 .quantityContainer div {
-	justify-content: center;
+	justify-content: flex-end;
+
+	@media (width < 768px) {
+		width: 140px;
+		justify-content: flex-start;
+	}
 }
 
 .quantityContainer button {

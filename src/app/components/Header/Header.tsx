@@ -15,7 +15,7 @@ const Header = () => {
 			<Link href="/" className={`logo ${isMainPage ? '' : 'logoLink'}`}>
 				Книгоплан
 			</Link>
-			{!isMainPage && <Cart />}
+			{isMainPage && <Cart />}
 		</header>
 	);
 };

@@ -9,9 +9,9 @@ import { Button } from '@/ui';
 
 import styles from './BooksItem.module.css';
 
-const BooksItem = ({ book, index }: { book: Book; index: number }) => {
+const BooksItem = ({ book }: { book: Book }) => {
 	const { title, author, year, category, image, id, price, currency } = book;
-	const { cart, setCart } = useBookClub();
+	const { cart, setCart, books, setBooks } = useBookClub();
 	const addInCart = () => {
 		setCart((prevState) => [...prevState, book]);
 	};
@@ -19,6 +19,12 @@ const BooksItem = ({ book, index }: { book: Book; index: number }) => {
 	const removeFromCart = (id: string) => {
 		const filteredCart = cart.filter((item) => item.id !== id);
 		setCart(filteredCart);
+		const indexOfItem = books.findIndex((element) => element.id === id);
+		const updatedBooks = books.with(indexOfItem, {
+			...book,
+			quantity: 1,
+		});
+		setBooks(updatedBooks);
 	};
 
 	const isInCart = cart.find((element) => element.id === id);
@@ -57,7 +63,7 @@ const BooksItem = ({ book, index }: { book: Book; index: number }) => {
 						>
 							Удалить из корзины
 						</Button>
-						<ChangeQuantity item={book} index={index} />
+						<ChangeQuantity item={book} />
 					</div>
 				)}
 				{Boolean(!isInCart) && (

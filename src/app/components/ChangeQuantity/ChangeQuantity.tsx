@@ -3,9 +3,11 @@ import { Book } from '@/types';
 
 import styles from './ChangeQuantity.module.css';
 
-const ChangeQuantity = ({ item, index }: { item: Book; index: number }) => {
+const ChangeQuantity = ({ item }: { item: Book }) => {
 	const { cart, setCart, books, setBooks } = useBookClub();
 	const { id, quantity } = item;
+	const indexOfItemBook = books.findIndex((element) => element.id === id);
+	const indexOfItemCart = cart.findIndex((element) => element.id === id);
 	const decrement = () => {
 		if (quantity === 1) {
 			const filteredCart = cart.filter((element) => element.id !== id);
@@ -13,13 +15,12 @@ const ChangeQuantity = ({ item, index }: { item: Book; index: number }) => {
 			return;
 		}
 
-		const updatedBooks = books.with(index, {
+		const updatedBooks = books.with(indexOfItemBook, {
 			...item,
 			quantity: quantity - 1,
 		});
 
-		const indexOfItem = cart.findIndex((element) => element.id === id);
-		const updatedCart = cart.with(indexOfItem, {
+		const updatedCart = cart.with(indexOfItemCart, {
 			...item,
 			quantity: quantity - 1,
 		});
@@ -28,13 +29,12 @@ const ChangeQuantity = ({ item, index }: { item: Book; index: number }) => {
 	};
 
 	const increment = () => {
-		const updatedBooks = books.with(index, {
+		const updatedBooks = books.with(indexOfItemBook, {
 			...item,
 			quantity: quantity + 1,
 		});
 
-		const indexOfItem = cart.findIndex((element) => element.id === id);
-		const updatedCart = cart.with(indexOfItem, {
+		const updatedCart = cart.with(indexOfItemCart, {
 			...item,
 			quantity: quantity + 1,
 		});

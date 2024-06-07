@@ -9,17 +9,13 @@
 }
 
 .list li {
-	width: 23%;
+	width: 31%;
 	height: auto;
 	transition-property: width;
 	transition-timing-function: ease-in-out;
 	transition-duration: 300ms;
 
 	@media (width < 1280px) {
-		width: 31%;
-	}
-
-	@media (width < 1024px) {
 		width: calc(50% - 15px);
 	}
 
@@ -64,6 +60,8 @@
 }
 
 .listViewLine figcaption + div {
+	display: flex;
+	flex-flow: column;
 	justify-content: space-between;
 	margin: 10px 0 10px auto;
 }

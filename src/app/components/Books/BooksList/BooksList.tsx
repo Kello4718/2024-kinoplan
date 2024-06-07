@@ -20,16 +20,18 @@ const BooksList = () => {
 			})
 		);
 
+	const updatedBooks = getBooks();
+
 	return (
 		<>
-			{getBooks().length ? (
+			{updatedBooks.length ? (
 				<ul
 					className={`${styles.list} ${
 						view === 'line' ? styles.listViewLine : ''
 					}`}
 				>
-					{getBooks()?.map((book, index) => (
-						<BooksItem key={book.title} book={book} index={index} />
+					{updatedBooks?.map((book) => (
+						<BooksItem key={book.title} book={book} />
 					))}
 				</ul>
 			) : (

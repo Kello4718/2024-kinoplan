@@ -6,6 +6,7 @@ import {
 	FC,
 	PropsWithChildren,
 	SetStateAction,
+	useCallback,
 	useEffect,
 	useState,
 } from 'react';
@@ -23,6 +24,8 @@ export type TBookClubContext = {
 	setView: Dispatch<SetStateAction<View>>;
 	cart: Book[];
 	setCart: Dispatch<SetStateAction<Book[]>>;
+	isCartOpen: boolean;
+	setIsCartOpen: Dispatch<SetStateAction<boolean>>;
 	books: Book[];
 	setBooks: Dispatch<SetStateAction<Book[]>>;
 	filter: Filter;
@@ -44,6 +47,8 @@ export const BookClubContext = createContext<TBookClubContext | undefined>({
 	setView: () => {},
 	cart: [],
 	setCart: () => {},
+	isCartOpen: false,
+	setIsCartOpen: () => {},
 	books: [],
 	setBooks: () => {},
 	filter: {
@@ -64,11 +69,15 @@ export const BookClubContext = createContext<TBookClubContext | undefined>({
 	setIsSortVisible: () => {},
 });
 
+const localBooks = localStorage.getItem('books');
+const localCart = localStorage.getItem('cart');
+
 const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [view, setView] = useState<View>('table');
 	const [cart, setCart] = useState<Book[]>([]);
+	const [isCartOpen, setIsCartOpen] = useState(false);
 	const [books, setBooks] = useState<Book[]>([]);
 	const [filter, setFilter] = useState<Filter>({
 		category: null,
@@ -91,6 +100,8 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		setView,
 		cart,
 		setCart,
+		isCartOpen,
+		setIsCartOpen,
 		books,
 		setBooks,
 		filter,
@@ -102,6 +113,13 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		isSortVisible,
 		setIsSortVisible,
 	};
+
+	const updateLocalStorage = useCallback(() => {
+		const booksForLocalStorage = JSON.stringify(books);
+		const cartForLocalStorage = JSON.stringify(cart);
+		localStorage.setItem('books', booksForLocalStorage);
+		localStorage.setItem('cart', cartForLocalStorage);
+	}, [books, cart]);
 
 	useEffect(() => {
 		const getBooks = async () => {
@@ -125,8 +143,20 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			}
 		};
 
+		if (localBooks && localCart) {
+			setBooks(JSON.parse(localBooks));
+			setCart(JSON.parse(localCart));
+			return;
+		}
+
 		getBooks();
 	}, []);
+
+	useEffect(() => {
+		window.addEventListener('beforeunload', updateLocalStorage);
+		return () =>
+			window.removeEventListener('beforeunload', updateLocalStorage);
+	}, [updateLocalStorage]);
 
 	return (
 		<BookClubContext.Provider value={value}>

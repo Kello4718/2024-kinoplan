@@ -81,9 +81,8 @@
 }
 
 .activityContainer {
-	display: flex;
-	flex-flow: column-reverse;
-	align-items: flex-start;
+	display: grid;
+	grid-template-columns: max-content 1fr;
 	gap: 20px;
 	margin: 20px 10px 0;
 }
@@ -96,14 +95,28 @@
 	border: none;
 	border-radius: 8px;
 	padding: 10px;
-	cursor: pointer;
 	margin: 20px 10px 0;
+	cursor: pointer;
+
+	@media (width < 1280px) {
+		font-size: 16px;
+	}
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		padding: 10px 5px;
 	}
 }
 
 .activityContainer .button {
 	margin: 0;
+}
+
+.activityContainer div {
+	width: min(100%, 140px);
+	justify-content: space-between;
+	margin: 0 0 0 auto;
+}
+
+.activityContainer div button {
+	width: 38px;
 }

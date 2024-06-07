@@ -4,13 +4,14 @@
 	gap: 10px;
 	background: var(--white00);
 	border-radius: 8px;
+	padding: 5px;
 	margin: 0 0 30px;
 }
 
 .item {
 	font-size: 16px;
 	display: grid;
-	grid-template-columns: 10% 20% 10% 10% 10% 10% 1fr;
+	grid-template-columns: 10% 20% 10% 10% 10% 13% 1fr;
 	gap: 10px;
 	border-bottom: 1px solid var(--blue01);
 	padding: 5px 0;
@@ -24,4 +25,17 @@
 .itemTitle {
 	font-weight: 700;
 	text-align: center;
+}
+
+.itemTitleYear {
+	text-align: center;
+}
+.itemTitleCategory {
+	text-align: center;
+}
+.itemTitleCost {
+	text-align: center;
+}
+.itemTitleQuantity {
+	text-align: right;
 }

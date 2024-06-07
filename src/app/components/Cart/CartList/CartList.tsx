@@ -9,16 +9,16 @@ const CartList = () => {
 	return (
 		<ul className={styles.list}>
 			<li className={styles.item}>
-				<span className={styles.itemTitle}>Обложка</span>
-				<span className={styles.itemTitle}>Название книги</span>
-				<span className={styles.itemTitle}>Автор</span>
-				<span className={styles.itemTitle}>Год издания</span>
-				<span className={styles.itemTitle}>Жанр</span>
-				<span className={styles.itemTitle}>Стоимость книги</span>
-				<span className={styles.itemTitle}>Количество</span>
+				<span className={styles.itemTitleImage}>Обложка</span>
+				<span className={styles.itemTitleTitle}>Название книги</span>
+				<span className={styles.itemTitleAuthor}>Автор</span>
+				<span className={styles.itemTitleYear}>Год издания</span>
+				<span className={styles.itemTitleCategory}>Жанр</span>
+				<span className={styles.itemTitleCost}>Стоимость книги</span>
+				<span className={styles.itemTitleQuantity}>Количество</span>
 			</li>
-			{cart.map((item, index) => (
-				<CartItem key={item.title} item={item} index={index} />
+			{cart.map((item) => (
+				<CartItem key={item.title} item={item} />
 			))}
 		</ul>
 	);
