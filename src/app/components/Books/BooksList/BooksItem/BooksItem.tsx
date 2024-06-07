@@ -13,7 +13,13 @@ const BooksItem = ({ book }: { book: Book }) => {
 	const { title, author, year, category, image, id, price, currency } = book;
 	const { cart, setCart, books, setBooks } = useBookClub();
 	const addInCart = () => {
-		setCart((prevState) => [...prevState, book]);
+		setCart((prevState) => [...prevState, { ...book, quantity: 1 }]);
+		const indexOfItem = books.findIndex((element) => element.id === id);
+		const updatedBooks = books.with(indexOfItem, {
+			...book,
+			quantity: 1,
+		});
+		setBooks(updatedBooks);
 	};
 
 	const removeFromCart = (id: string) => {
