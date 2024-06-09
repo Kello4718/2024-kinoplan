@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { ArrowLeftOutlined } from '@ant-design/icons';
-import { Result } from 'antd';
-import Link from 'next/link';
-import { useState } from 'react';
+import { ArrowLeftOutlined } from "@ant-design/icons";
+import { Result } from "antd";
+import Link from "next/link";
+import { useState } from "react";
 
-import CartList from '@/components/Cart/CartList/CartList';
-import { useBookClub } from '@/hooks';
-import { Button } from '@/ui';
+import CartList from "@/components/Cart/CartList/CartList";
+import { useBookClub } from "@/hooks";
+import { Button } from "@/ui";
 
-import styles from './page.module.css';
+import styles from "./page.module.css";
 
 const Cart = () => {
 	const [isPaid, setIsPaid] = useState(false);
 	const { cart, setCart } = useBookClub();
 	const cost = cart.reduce(
 		(acc, item) => Number((acc + item.quantity * item.price).toFixed(2)),
-		0
+		0,
 	);
 	const handleButtonPayOnClick = () => {
 		setIsPaid(true);
@@ -35,7 +35,7 @@ const Cart = () => {
 						<>
 							<CartList />
 							<p className={styles.total}>
-								<strong>Итого в корзине книг на сумму:</strong>{' '}
+								<strong>Итого в корзине книг на сумму:</strong>{" "}
 								{cost} RUB
 							</p>
 							<Button

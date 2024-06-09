@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
 	createContext,
@@ -9,11 +9,11 @@ import {
 	useCallback,
 	useEffect,
 	useState,
-} from 'react';
+} from "react";
 
-import { API_URL } from '@/constants';
-import { Book, Filter, Sort, View } from '@/types';
-import { transformDataFromBack } from '@/utils';
+import { API_URL } from "@/constants";
+import { Book, Filter, Sort, View } from "@/types";
+import { transformDataFromBack } from "@/utils";
 
 export type TBookClubContext = {
 	isLoading: boolean;
@@ -43,7 +43,7 @@ export const BookClubContext = createContext<TBookClubContext | undefined>({
 	setIsLoading: () => {},
 	isError: false,
 	setIsError: () => {},
-	view: 'table',
+	view: "table",
 	setView: () => {},
 	cart: [],
 	setCart: () => {},
@@ -52,15 +52,15 @@ export const BookClubContext = createContext<TBookClubContext | undefined>({
 	books: [],
 	setBooks: () => {},
 	filter: {
-		category: '',
-		year: '',
-		author: '',
+		category: "",
+		year: "",
+		author: "",
 	},
 	setFilter: () => {},
 	sort: {
-		category: 'desc',
-		year: 'desc',
-		author: 'desc',
+		category: "desc",
+		year: "desc",
+		author: "desc",
 	},
 	setSort: () => {},
 	isFilterVisible: false,
@@ -69,13 +69,13 @@ export const BookClubContext = createContext<TBookClubContext | undefined>({
 	setIsSortVisible: () => {},
 });
 
-const localBooks = localStorage.getItem('books');
-const localCart = localStorage.getItem('cart');
+const localBooks = localStorage.getItem("books");
+const localCart = localStorage.getItem("cart");
 
 const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
-	const [view, setView] = useState<View>('table');
+	const [view, setView] = useState<View>("table");
 	const [cart, setCart] = useState<Book[]>([]);
 	const [isCartOpen, setIsCartOpen] = useState(false);
 	const [books, setBooks] = useState<Book[]>([]);
@@ -85,9 +85,9 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		author: null,
 	});
 	const [sort, setSort] = useState<Sort>({
-		category: 'desc',
-		year: 'desc',
-		author: 'desc',
+		category: "desc",
+		year: "desc",
+		author: "desc",
 	});
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const [isSortVisible, setIsSortVisible] = useState(false);
@@ -117,8 +117,8 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const updateLocalStorage = useCallback(() => {
 		const booksForLocalStorage = JSON.stringify(books);
 		const cartForLocalStorage = JSON.stringify(cart);
-		localStorage.setItem('books', booksForLocalStorage);
-		localStorage.setItem('cart', cartForLocalStorage);
+		localStorage.setItem("books", booksForLocalStorage);
+		localStorage.setItem("cart", cartForLocalStorage);
 	}, [books, cart]);
 
 	useEffect(() => {
@@ -126,8 +126,8 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			try {
 				setIsLoading(true);
 				const res = await fetch(API_URL, {
-					method: 'GET',
-					mode: 'cors',
+					method: "GET",
+					mode: "cors",
 				});
 				if (!res.ok) {
 					throw new Error(`Server status is ${res.status}`);
@@ -153,9 +153,9 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	}, []);
 
 	useEffect(() => {
-		window.addEventListener('beforeunload', updateLocalStorage);
+		window.addEventListener("beforeunload", updateLocalStorage);
 		return () =>
-			window.removeEventListener('beforeunload', updateLocalStorage);
+			window.removeEventListener("beforeunload", updateLocalStorage);
 	}, [updateLocalStorage]);
 
 	return (

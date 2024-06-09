@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { Badge, Popover } from 'antd';
-import Link from 'next/link';
+import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Badge, Popover } from "antd";
+import Link from "next/link";
 
-import CartList from '@/components/Cart/CartList/CartList';
-import { useBookClub } from '@/hooks';
-import { Button } from '@/ui';
+import CartList from "@/components/Cart/CartList/CartList";
+import { useBookClub } from "@/hooks";
+import { Button } from "@/ui";
 
-import styles from './Cart.module.css';
+import styles from "./Cart.module.css";
 
 const Content = () => {
 	const { cart, setCart } = useBookClub();
@@ -18,7 +18,7 @@ const Content = () => {
 
 	const cost = cart.reduce(
 		(acc, item) => Number((acc + item.quantity * item.price).toFixed(2)),
-		0
+		0,
 	);
 	return (
 		<div className={styles.cartContainer}>
@@ -28,7 +28,7 @@ const Content = () => {
 					<CartList />
 					<div className={styles.totalContainer}>
 						<p className={styles.total}>
-							<strong>Итого в корзине книг на сумму:</strong>{' '}
+							<strong>Итого в корзине книг на сумму:</strong>{" "}
 							{cost} RUB
 						</p>
 						<Link href="/cart">Перейти в корзину</Link>
@@ -54,7 +54,7 @@ const Cart = () => {
 	return (
 		<Popover
 			placement="bottomRight"
-			trigger={'click'}
+			trigger={"click"}
 			content={<Content />}
 		>
 			<Badge count={quantity}>

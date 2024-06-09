@@ -1,17 +1,17 @@
-import type { Metadata } from 'next';
-import { Manrope } from 'next/font/google';
-import { FC, PropsWithChildren } from 'react';
+import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
+import { FC, PropsWithChildren } from "react";
 
-import Header from './components/Header/Header';
-import BookClubContextProvider from './context/BookClub';
+import Header from "./components/Header/Header";
+import BookClubContextProvider from "./context/BookClub";
 
-import './globals.css';
+import "./globals.css";
 
-const manrope = Manrope({ subsets: ['latin'] });
+const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: 'Книгоплан',
-	description: 'Книги всех жанров на любой вкус',
+	title: "Книгоплан",
+	description: "Книги всех жанров на любой вкус",
 };
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (

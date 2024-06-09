@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import ChangeQuantity from '@/components/ChangeQuantity/ChangeQuantity';
-import { useBookClub } from '@/hooks';
-import { Book } from '@/types';
-import { Button } from '@/ui';
+import ChangeQuantity from "@/components/ChangeQuantity/ChangeQuantity";
+import { useBookClub } from "@/hooks";
+import { Book } from "@/types";
+import { Button } from "@/ui";
 
-import styles from './BooksItem.module.css';
+import styles from "./BooksItem.module.css";
 
 const BooksItem = ({ book }: { book: Book }) => {
 	const { title, author, year, category, image, id, price, currency } = book;
@@ -38,7 +38,7 @@ const BooksItem = ({ book }: { book: Book }) => {
 		<li className={styles.book}>
 			<figure className={styles.figure}>
 				<Image
-					src={image ?? ''}
+					src={image ?? ""}
 					width={500}
 					height={500}
 					alt={title}

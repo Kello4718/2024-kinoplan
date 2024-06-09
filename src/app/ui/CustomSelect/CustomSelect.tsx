@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { FC, useState } from 'react';
+import { FC, useState } from "react";
 
-import { SELECT_MAP } from '@/constants';
-import { useBookClub } from '@/hooks';
-import { Filter } from '@/types';
-import { Button } from '@/ui';
+import { SELECT_MAP } from "@/constants";
+import { useBookClub } from "@/hooks";
+import { Filter } from "@/types";
+import { Button } from "@/ui";
 
-import { CustomOption } from './CustomOption/CustomOption';
+import { CustomOption } from "./CustomOption/CustomOption";
 
-import styles from './CustomSelect.module.css';
+import styles from "./CustomSelect.module.css";
 
 type CustomSelectProps = {
 	essence: keyof Filter;

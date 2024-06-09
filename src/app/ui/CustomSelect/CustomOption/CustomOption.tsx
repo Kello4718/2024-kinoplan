@@ -1,11 +1,11 @@
-import { CheckOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { CheckOutlined } from "@ant-design/icons";
+import { FC } from "react";
 
-import { SELECT_MAP } from '@/constants';
-import { useBookClub } from '@/hooks';
-import { Filter } from '@/types';
+import { SELECT_MAP } from "@/constants";
+import { useBookClub } from "@/hooks";
+import { Filter } from "@/types";
 
-import styles from './CustomOption.module.css';
+import styles from "./CustomOption.module.css";
 
 type CustomOptionProps = {
 	item: string;

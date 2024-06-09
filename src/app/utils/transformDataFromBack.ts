@@ -1,4 +1,4 @@
-import { BookFromBack } from '@/types';
+import { BookFromBack } from "@/types";
 
 export const transformDataFromBack = (data: BookFromBack[]) =>
 	data.map((book) => {
@@ -6,7 +6,7 @@ export const transformDataFromBack = (data: BookFromBack[]) =>
 		const { title, authors, publishedDate, categories, imageLinks } =
 			volumeInfo;
 		const price = saleInfo?.retailPrice?.amount ?? 100;
-		const currency = saleInfo?.retailPrice?.currencyCode ?? 'RUB';
+		const currency = saleInfo?.retailPrice?.currencyCode ?? "RUB";
 		return {
 			title,
 			author: authors[0],

@@ -1,20 +1,20 @@
-import { TableOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { TableOutlined, UnorderedListOutlined } from "@ant-design/icons";
 
-import { useBookClub } from '@/hooks';
-import { Button } from '@/ui';
+import { useBookClub } from "@/hooks";
+import { Button } from "@/ui";
 
-import BooksFilter from './BooksFilter/BooksFilter';
-import BooksSorted from './BooksSorted/BooksSorted';
+import BooksFilter from "./BooksFilter/BooksFilter";
+import BooksSorted from "./BooksSorted/BooksSorted";
 
-import styles from './BooksPanel.module.css';
+import styles from "./BooksPanel.module.css";
 
 const BooksPanel = () => {
 	const { view, setView } = useBookClub();
 	const handleViewButtonOnClick = () => {
-		if (view === 'table') {
-			setView('line');
+		if (view === "table") {
+			setView("line");
 		} else {
-			setView('table');
+			setView("table");
 		}
 	};
 
@@ -26,7 +26,7 @@ const BooksPanel = () => {
 				className={styles.viewButton}
 				onClick={handleViewButtonOnClick}
 			>
-				{view === 'line' ? (
+				{view === "line" ? (
 					<TableOutlined />
 				) : (
 					<UnorderedListOutlined />

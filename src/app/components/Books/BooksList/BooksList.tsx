@@ -1,11 +1,11 @@
-import { Result } from 'antd';
+import { Result } from "antd";
 
-import { useBookClub } from '@/hooks';
-import { Book } from '@/types';
+import { useBookClub } from "@/hooks";
+import { Book } from "@/types";
 
-import BooksItem from './BooksItem/BooksItem';
+import BooksItem from "./BooksItem/BooksItem";
 
-import styles from './BooksList.module.css';
+import styles from "./BooksList.module.css";
 
 const BooksList = () => {
 	const { books, filter, view } = useBookClub();
@@ -17,7 +17,7 @@ const BooksList = () => {
 					return false;
 				}
 				return true;
-			})
+			}),
 		);
 
 	const updatedBooks = getBooks();
@@ -27,7 +27,7 @@ const BooksList = () => {
 			{updatedBooks.length ? (
 				<ul
 					className={`${styles.list} ${
-						view === 'line' ? styles.listViewLine : ''
+						view === "line" ? styles.listViewLine : ""
 					}`}
 				>
 					{updatedBooks?.map((book) => (

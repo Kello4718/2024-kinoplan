@@ -35,8 +35,8 @@ type Filter = {
 	author: null | string;
 };
 
-type Sort = Record<keyof Filter, 'asc' | 'desc'>;
+type Sort = Record<keyof Filter, "asc" | "desc">;
 
-type View = 'table' | 'line';
+type View = "table" | "line";
 
 export type { Book, BookFromBack, Filter, Sort, View };

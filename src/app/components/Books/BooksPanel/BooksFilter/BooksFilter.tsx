@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { FilterOutlined } from '@ant-design/icons';
-import { useCallback, useEffect, useRef } from 'react';
+import { FilterOutlined } from "@ant-design/icons";
+import { useCallback, useEffect, useRef } from "react";
 
-import { useBookClub } from '@/hooks';
-import { Button, CustomSelect } from '@/ui';
+import { useBookClub } from "@/hooks";
+import { Button, CustomSelect } from "@/ui";
 
-import styles from './BooksFilter.module.css';
+import styles from "./BooksFilter.module.css";
 
 const BooksFilter = () => {
 	const { isFilterVisible, setIsFilterVisible, books, setFilter } =
@@ -43,12 +43,12 @@ const BooksFilter = () => {
 				setIsFilterVisible(false);
 			}
 		},
-		[setIsFilterVisible]
+		[setIsFilterVisible],
 	);
 
 	useEffect(() => {
-		document.addEventListener('click', closeFilter);
-		return () => document.removeEventListener('click', closeFilter);
+		document.addEventListener("click", closeFilter);
+		return () => document.removeEventListener("click", closeFilter);
 	}, [closeFilter]);
 
 	return (

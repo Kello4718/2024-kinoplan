@@ -1,16 +1,16 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import ChangeQuantity from '@/components/ChangeQuantity/ChangeQuantity';
-import { Book } from '@/types';
+import ChangeQuantity from "@/components/ChangeQuantity/ChangeQuantity";
+import { Book } from "@/types";
 
-import styles from './CartItem.module.css';
+import styles from "./CartItem.module.css";
 
 const CartItem = ({ item }: { item: Book }) => {
 	const { author, category, image, price, title, year, currency } = item;
 	return (
 		<li className={styles.item} key={item.title}>
 			<Image
-				src={image ?? ''}
+				src={image ?? ""}
 				width={500}
 				height={500}
 				alt={title}

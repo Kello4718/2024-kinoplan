@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
 import {
 	AlignRightOutlined,
 	SortAscendingOutlined,
 	SortDescendingOutlined,
-} from '@ant-design/icons';
-import { useCallback, useEffect, useRef } from 'react';
+} from "@ant-design/icons";
+import { useCallback, useEffect, useRef } from "react";
 
-import { useBookClub, useSort } from '@/hooks';
-import { Button } from '@/ui';
+import { useBookClub, useSort } from "@/hooks";
+import { Button } from "@/ui";
 
-import styles from './BooksSorted.module.css';
+import styles from "./BooksSorted.module.css";
 
 const BooksSorted = () => {
 	const { isSortVisible, setIsSortVisible, sort } = useBookClub();
@@ -23,15 +23,15 @@ const BooksSorted = () => {
 	const { handleSort } = useSort();
 
 	const handleSortedCategoriesButtonOnClick = () => {
-		handleSort('category');
+		handleSort("category");
 	};
 
 	const handleSortedYearsButtonOnClick = () => {
-		handleSort('year');
+		handleSort("year");
 	};
 
 	const handleSortedAuthorsButtonOnClick = () => {
-		handleSort('author');
+		handleSort("author");
 	};
 
 	const closeSorted = useCallback(
@@ -43,12 +43,12 @@ const BooksSorted = () => {
 				setIsSortVisible(false);
 			}
 		},
-		[setIsSortVisible]
+		[setIsSortVisible],
 	);
 
 	useEffect(() => {
-		document.addEventListener('click', closeSorted);
-		return () => document.removeEventListener('click', closeSorted);
+		document.addEventListener("click", closeSorted);
+		return () => document.removeEventListener("click", closeSorted);
 	}, [closeSorted]);
 
 	return (
@@ -63,7 +63,7 @@ const BooksSorted = () => {
 						onClick={handleSortedCategoriesButtonOnClick}
 					>
 						<span>По жанрам</span>
-						{sort.category === 'asc' ? (
+						{sort.category === "asc" ? (
 							<SortDescendingOutlined />
 						) : (
 							<SortAscendingOutlined />
@@ -74,7 +74,7 @@ const BooksSorted = () => {
 						onClick={handleSortedYearsButtonOnClick}
 					>
 						<span>По году издания</span>
-						{sort.year === 'asc' ? (
+						{sort.year === "asc" ? (
 							<SortDescendingOutlined />
 						) : (
 							<SortAscendingOutlined />
@@ -85,7 +85,7 @@ const BooksSorted = () => {
 						onClick={handleSortedAuthorsButtonOnClick}
 					>
 						<span>По авторам</span>
-						{sort.author === 'asc' ? (
+						{sort.author === "asc" ? (
 							<SortDescendingOutlined />
 						) : (
 							<SortAscendingOutlined />
