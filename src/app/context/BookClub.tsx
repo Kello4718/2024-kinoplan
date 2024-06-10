@@ -69,7 +69,6 @@ export const BookClubContext = createContext<TBookClubContext | undefined>({
 	setIsSortVisible: () => {},
 });
 
-const localBooks = localStorage.getItem("books");
 const localCart = localStorage.getItem("cart");
 
 const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -143,10 +142,8 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			}
 		};
 
-		if (localBooks && localCart) {
-			setBooks(JSON.parse(localBooks));
+		if (localCart) {
 			setCart(JSON.parse(localCart));
-			return;
 		}
 
 		getBooks();

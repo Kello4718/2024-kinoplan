@@ -1,113 +1,88 @@
 {
-    "extends": [
-        "next/core-web-vitals",
-        "prettier",
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "plugin:react/jsx-runtime", // Добавьте это для нового JSX Transform
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:import/typescript"
-    ],
-    "plugins": [
-        "react",
-        "prettier",
-        "simple-import-sort"
-    ],
-    "rules": {
-        "prettier/prettier": [
-            "error",
-            {
-                "endOfLine": "auto"
-            }
-        ],
-        "simple-import-sort/imports": [
-            "error",
-            {
-                "groups": [
-                    // Группа для "сторонних" библиотек как 'react' или 'lodash'.
-                    [
-                        "^@?\\w"
-                    ],
-                    // Группа для абсолютных путей и алиасов (если используются).
-                    [
-                        "^(@|components|utils|config|vendored-lib)(/.*|$)"
-                    ],
-                    // Группа для относительных импортов.
-                    [
-                        "^\\./(?=.*/)(?!/?$)",
-                        "^\\.(?!/?$)",
-                        "^\\./?$"
-                    ],
-                    // Группа для стилей.
-                    [
-                        "^.+\\.s?css$"
-                    ]
-                ]
-            }
-        ],
-        "react/jsx-uses-react": "off", // Для нового JSX Transform
-        "react/react-in-jsx-scope": "off", // Для нового JSX Transform
-        "simple-import-sort/exports": "error",
-        "array-callback-return": [
-            "error",
-            {
-                "allowImplicit": true
-            }
-        ],
-        "no-const-assign": "error",
-        "no-constant-condition": "warn",
-        "arrow-body-style": [
-            "error",
-            "as-needed",
-            {
-                "requireReturnForObjectLiteral": true
-            }
-        ],
-        "block-scoped-var": "error",
-        "camelcase": [
-            "error",
-            {
-                "properties": "always"
-            }
-        ],
-        "default-case": "error",
-        "default-param-last": "error",
-        "dot-notation": [
-            "error",
-            {
-                "allowKeywords": true,
-                "allowPattern": "^[a-z]+(_[a-z]+)+$"
-            }
-        ],
-        "eqeqeq": [
-            "error",
-            "always"
-        ],
-        "logical-assignment-operators": [
-            "error",
-            "always",
-            {
-                "enforceForIfStatements": true
-            }
-        ],
-        "no-console": "warn"
-    },
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "paths": [
-                    "src"
-                ],
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".ts",
-                    ".tsx",
-                    ".json"
-                ]
-            }
-        }
-    }
+	"extends": [
+		"next/core-web-vitals",
+		"prettier",
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:prettier/recommended",
+		"plugin:react/jsx-runtime", // Добавьте это для нового JSX Transform
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:import/typescript"
+	],
+	"plugins": ["react", "prettier", "simple-import-sort"],
+	"rules": {
+		"prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto"
+			}
+		],
+		"simple-import-sort/imports": [
+			"error",
+			{
+				"groups": [
+					// Группа для "сторонних" библиотек как 'react' или 'lodash'.
+					["^@?\\w"],
+					// Группа для абсолютных путей и алиасов (если используются).
+					["^(@|components|utils|config|vendored-lib)(/.*|$)"],
+					// Группа для относительных импортов.
+					["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+					// Группа для стилей.
+					["^.+\\.s?css$"]
+				]
+			}
+		],
+		"react/jsx-uses-react": "off", // Для нового JSX Transform
+		"react/react-in-jsx-scope": "off", // Для нового JSX Transform
+		"simple-import-sort/exports": "error",
+		"array-callback-return": [
+			"error",
+			{
+				"allowImplicit": true
+			}
+		],
+		"no-const-assign": "error",
+		"no-constant-condition": "warn",
+		"arrow-body-style": [
+			"error",
+			"as-needed",
+			{
+				"requireReturnForObjectLiteral": true
+			}
+		],
+		"block-scoped-var": "error",
+		"camelcase": [
+			"error",
+			{
+				"properties": "always"
+			}
+		],
+		"default-case": "error",
+		"default-param-last": "error",
+		"dot-notation": [
+			"error",
+			{
+				"allowKeywords": true,
+				"allowPattern": "^[a-z]+(_[a-z]+)+$"
+			}
+		],
+		"eqeqeq": ["error", "always"],
+		"logical-assignment-operators": [
+			"error",
+			"always",
+			{
+				"enforceForIfStatements": true
+			}
+		],
+		"no-console": "warn"
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"paths": ["src"],
+				"extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+			}
+		}
+	}
 }

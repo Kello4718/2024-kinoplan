@@ -8,27 +8,6 @@
 	}
 }
 
-@keyframes animate {
-	0% {
-		rotate: 0deg;
-	}
-	100% {
-		rotate: 360deg;
-	}
-}
-
-@keyframes gradientBorderAnimation {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
 .animated-border {
 	display: inline-block;
 	padding: 20px;
@@ -41,42 +20,15 @@
 	position: relative;
 	border-radius: 8px;
 	opacity: 1;
-    padding: 10px;
-	z-index: 1;
-    overflow: hidden;
 	transition-property: width opacity;
 	transition-timing-function: ease-in-out;
 	transition-duration: 300ms;
+	box-sizing: border-box;
 
-	&::before, &::after  {
-		content: none;
-        width: 100%;
-        height: 100%;
-		display: block;
-		position: absolute;
-		top: -5px;
-		left: -5px;
-		right: -5px;
-		bottom: -5px;
-		background: linear-gradient(60deg, transparent, #45f3ff, #45f3ff);
-		z-index: -1; /* Подкладываем под основной элемент */
-		border-radius: 8px;
-		animation: animate 6s linear infinite;
-	}
-
-	&:hover {
-        background: var(--black01);
-		&::before {
-			content: "";
-            transform-origin: center;
+	@media (width >= 1024px) {
+		&:hover {
+			background: var(--black01);
 		}
-
-        &::after {
-            content: "";
-            transform-origin: center;
-            background: linear-gradient(60deg, transparent, #d9138a, #d9138a);
-            animation-delay: 3s;
-        }
 	}
 
 	@media (width < 1280px) {
@@ -88,16 +40,20 @@
 	}
 }
 
-.list li:hover figure {
-    color: var(--white01);
-    background: var(--black01);
-    transition-property: color, background;
-    transition-duration: 300ms;
-    transition-timing-function: ease-in-out;
-}
 
-.list:hover > :not(:hover) {
-	opacity: 0.4;
+
+@media (width >= 1024px) {
+	.list li:hover figure {
+		color: var(--white01);
+		background: var(--black01);
+		transition-property: color, background;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+	}
+
+	.list:hover > :not(:hover) {
+		opacity: 0.4;
+	}
 }
 
 .listViewLine {
@@ -110,7 +66,7 @@
 
 .listViewLine figure {
 	flex-flow: row;
-    background: var(--white01);
+	background: var(--white01);
 	padding: 0 10px 0 0;
 }
 

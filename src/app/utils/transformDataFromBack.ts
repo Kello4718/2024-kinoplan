@@ -1,12 +1,33 @@
-import { BookFromBack } from "@/types";
+import { Book, BookFromBack } from "@/types";
+
+const localCart = localStorage.getItem("cart");
 
 export const transformDataFromBack = (data: BookFromBack[]) =>
 	data.map((book) => {
 		const { volumeInfo, id, saleInfo } = book;
 		const { title, authors, publishedDate, categories, imageLinks } =
 			volumeInfo;
-		const price = saleInfo?.retailPrice?.amount ?? 100;
 		const currency = saleInfo?.retailPrice?.currencyCode ?? "RUB";
+
+		const getPrice = () => {
+			const foundedBook: Book =
+				localCart &&
+				JSON.parse(localCart).find((item: Book) => item.id === id);
+
+			const bookPrice = saleInfo?.retailPrice?.amount;
+			if (foundedBook && bookPrice === foundedBook.price) {
+				return foundedBook.price;
+			}
+			return bookPrice ?? 100;
+		};
+
+		const getQuantity = () => {
+			const foundedBook: Book =
+				localCart &&
+				JSON.parse(localCart).find((item: Book) => item.id === id);
+			return foundedBook ? foundedBook.quantity : 1;
+		};
+
 		return {
 			title,
 			author: authors[0],
@@ -14,8 +35,8 @@ export const transformDataFromBack = (data: BookFromBack[]) =>
 			category: categories[0],
 			image: imageLinks.thumbnail,
 			id,
-			quantity: 1,
-			price,
+			quantity: getQuantity(),
+			price: getPrice(),
 			currency,
 		};
 	});

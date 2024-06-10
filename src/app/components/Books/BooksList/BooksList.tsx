@@ -10,17 +10,14 @@ import styles from "./BooksList.module.css";
 const BooksList = () => {
 	const { books, filter, view } = useBookClub();
 
-	const getBooks = () =>
-		books.filter((book) =>
-			Object.entries(filter).every(([key, value]) => {
-				if (value && book[key as keyof Book] !== value) {
-					return false;
-				}
-				return true;
-			}),
-		);
-
-	const updatedBooks = getBooks();
+	const updatedBooks = books.filter((book) =>
+		Object.entries(filter).every(([key, value]) => {
+			if (value && book[key as keyof Book] !== value) {
+				return false;
+			}
+			return true;
+		}),
+	);
 
 	return (
 		<>
