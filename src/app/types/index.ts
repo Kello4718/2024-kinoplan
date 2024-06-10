@@ -1,4 +1,4 @@
-type Book = {
+export type Book = {
 	title: string;
 	author: string;
 	year: string;
@@ -10,7 +10,7 @@ type Book = {
 	currency: string;
 };
 
-type BookFromBack = {
+export type BookFromBack = {
 	id: string;
 	volumeInfo: {
 		title: string;
@@ -29,14 +29,12 @@ type BookFromBack = {
 	};
 };
 
-type Filter = {
+export type Filter = {
 	category: null | string;
 	year: null | string;
 	author: null | string;
 };
 
-type Sort = Record<keyof Filter, "asc" | "desc">;
+export type Sort = Record<keyof Filter, "asc" | "desc">;
 
-type View = "table" | "line";
-
-export type { Book, BookFromBack, Filter, Sort, View };
+export type View = "table" | "line";
