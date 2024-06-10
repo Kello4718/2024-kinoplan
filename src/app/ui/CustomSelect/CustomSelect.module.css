@@ -8,8 +8,8 @@
 	width: 100%;
 	font-size: 20px;
 	text-align: left;
-	color: var(--white00);
-	background: var(--blue01);
+	color: var(--azure00);
+	background: var(--black01);
 	border: none;
 	border-radius: 8px;
 	padding: 10px;
@@ -32,8 +32,8 @@
 .reset {
 	width: 100%;
 	font-size: 20px;
-	color: var(--white00);
-	background: var(--main);
+	color: var(--azure00);
+	background: var(--black01);
 	border: none;
 	border-radius: 0 0 8px 8px;
 	padding: 5px;

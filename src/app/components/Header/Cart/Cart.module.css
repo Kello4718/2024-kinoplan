@@ -21,10 +21,14 @@
 	width: 100%;
 	height: 100%;
 	display: block;
+	fill: var(--azure00);
 }
 
 .cartContainer {
 	font-size: 20px;
+	color: var(--white01);
+	background: var(--black01);
+	border-radius: 8px;
 
 	@media (width < 768px) {
 		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
@@ -63,8 +67,8 @@
 	position: absolute;
 	top: 15px;
 	right: 15px;
-	color: var(--white00);
-	background: var(--blue01);
+	color: var(--black01);
+	background: var(--azure00);
 	border: none;
 	border-radius: 8px;
 	padding: 0;

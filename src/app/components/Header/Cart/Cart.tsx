@@ -58,7 +58,7 @@ const Cart = () => {
 			content={<Content />}
 		>
 			<button className={styles.test}>
-				<Badge count={quantity} className={styles.test}>
+				<Badge count={quantity} className={styles.test} color="#0B0C10">
 					<ShoppingCartOutlined className={styles.cart} />
 				</Badge>
 			</button>

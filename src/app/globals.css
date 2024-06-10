@@ -1,9 +1,13 @@
 :root {
-	--main: #24374e;
+	--main: #1F2833;
 	--white00: #ffffff;
-	--white01: #f6f9ff;
+	--white01: #f4eee6;
+	--grey00: #C5C6C7;
 	--blue01: #178cfb;
-	--black01: #1c1c1c;
+	--azure00: #66FCF1;
+	--greyAzure00: #45A29E;
+	--black00: #000000;
+	--black01: #0B0C10;
 }
 
 * {
@@ -13,7 +17,8 @@
 html,
 body {
 	width: 100%;
-	height: 100%;
+	min-height: 100vh;
+	height: auto;
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
@@ -42,7 +47,7 @@ ul {
 h1 {
 	font-size: clamp(2.875rem, 2.375rem + 0.625vw, 3.125rem); /* 46-50*/
 	text-align: center;
-	color: var(--white00);
+	color: var(--azure00);
 	margin: 0 0 30px;
 
 	@media (width < 1280px) {
@@ -61,10 +66,16 @@ h1 {
 .ant-popover {
 	/* width: auto;
 	max-width: 90%; */
+	background: var(--azure00);
+	border-radius: 8px;
 
 	@media (width < 1280px) {
 		scale: 0.9 1;
 	}
+}
+
+.ant-popover .ant-popover-inner {
+	background: var(--azure00);
 }
 
 .logo {
@@ -81,7 +92,11 @@ h1 {
 	cursor: pointer;
 
 	@media (width < 1280px) {
-		font-size: clamp(3.125rem, 2.3913rem + 3.2609vw, 5rem); /* 50-80 */
+		font-size: clamp(3,75rem, 5,25rem + -3,125vw, 5rem); /* 60-80 */
+	}
+
+	@media (width < 768px) {
+		font-size: clamp(2.5rem, 1.3971rem + 4.902vw, 3.75rem); /* 40-60 */
 	}
 }
 

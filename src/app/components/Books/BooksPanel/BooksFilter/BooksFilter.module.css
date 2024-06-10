@@ -9,7 +9,7 @@
 	aspect-ratio: 1;
 	position: relative;
 	color: var(--white00);
-	background: var(--blue01);
+	background: var(--azure00);
 	border: none;
 	border-radius: 8px;
 	padding: 10px;
@@ -20,6 +20,7 @@
 
 .tooltipText {
 	font-size: 20px;
+	color: var(--black01);
 
 	@media (width < 768px) {
 		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
@@ -29,6 +30,13 @@
 .tooltip svg {
 	width: 100%;
 	height: 100%;
+	fill: var(--black01);
+}
+
+@media (width > 1024px) {
+	.tooltip:hover svg {
+		filter: invert();
+	}
 }
 
 @keyframes appearance {
@@ -50,7 +58,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: var(--white01);
+	background: var(--azure00);
 	border-radius: 8px;
 	padding: 10px;
 	animation-name: appearance;
@@ -70,8 +78,8 @@
 	font-size: 20px;
 	text-align: center;
 	grid-column: 1 / -1;
-	color: var(--white00);
-	background: var(--blue01);
+	color: var(--azure00);
+	background: var(--black01);
 	border: none;
 	border-radius: 8px;
 	padding: 10px;

@@ -3,8 +3,8 @@
 	display: grid;
 	grid-template-columns: 10% 1fr;
 	gap: 10px;
-	background: var(--white00);
-	border-bottom: 1px solid var(--blue01);
+	background: var(--black01);
+	border-bottom: 1px solid var(--azure00);
 	margin: 0;
 
 	@media (width < 768px) {

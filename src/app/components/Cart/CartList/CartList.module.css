@@ -1,9 +1,10 @@
 .list {
+	max-height: 50dvh;
 	display: flex;
 	flex-flow: column;
 	gap: 10px;
-	background: var(--white00);
 	border-radius: 8px;
+	overflow-y: scroll;
 	padding: 5px;
 	margin: 0 0 30px;
 }
@@ -13,7 +14,7 @@
 	display: grid;
 	grid-template-columns: 10% 20% 10% 10% 10% 13% 1fr;
 	gap: 10px;
-	border-bottom: 1px solid var(--blue01);
+	border-bottom: 1px solid var(--azure00);
 	padding: 5px 0;
 	margin: 0;
 
