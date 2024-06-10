@@ -5,6 +5,7 @@ import {
 	SortAscendingOutlined,
 	SortDescendingOutlined,
 } from "@ant-design/icons";
+import { Tooltip } from "antd";
 import { useCallback, useEffect, useRef } from "react";
 
 import { useBookClub, useSort } from "@/hooks";
@@ -53,9 +54,16 @@ const BooksSorted = () => {
 
 	return (
 		<div ref={selectContainer} className={styles.filterContainer}>
-			<Button className={styles.button} onClick={handleButtonOnChange}>
-				<AlignRightOutlined />
-			</Button>
+			<Tooltip
+				placement="top"
+				color="#178cfb"
+				title={<span className={styles.tooltipText}>Сортировка</span>}
+			>
+				<AlignRightOutlined
+					className={styles.tooltip}
+					onClick={handleButtonOnChange}
+				/>
+			</Tooltip>
 			{isSortVisible && (
 				<div className={styles.buttonContainer}>
 					<Button

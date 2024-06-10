@@ -57,9 +57,11 @@ const Cart = () => {
 			trigger={"click"}
 			content={<Content />}
 		>
-			<Badge count={quantity}>
-				<ShoppingCartOutlined className={styles.cart} />
-			</Badge>
+			<button className={styles.test}>
+				<Badge count={quantity} className={styles.test}>
+					<ShoppingCartOutlined className={styles.cart} />
+				</Badge>
+			</button>
 		</Popover>
 	);
 };

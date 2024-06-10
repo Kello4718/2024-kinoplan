@@ -1,6 +1,7 @@
 "use client";
 
 import { FilterOutlined } from "@ant-design/icons";
+import { Tooltip } from "antd";
 import { useCallback, useEffect, useRef } from "react";
 
 import { useBookClub } from "@/hooks";
@@ -53,9 +54,16 @@ const BooksFilter = () => {
 
 	return (
 		<div ref={selectContainer} className={styles.filterContainer}>
-			<Button className={styles.button} onClick={handleButtonOnChange}>
-				<FilterOutlined />
-			</Button>
+			<Tooltip
+				placement="topLeft"
+				color="#178cfb"
+				title={<span className={styles.tooltipText}>Фильтрация</span>}
+			>
+				<FilterOutlined
+					className={styles.tooltip}
+					onClick={handleButtonOnChange}
+				/>
+			</Tooltip>
 			{isFilterVisible && (
 				<div className={styles.selectContainer}>
 					<CustomSelect essence="category" data={sortedCategories} />

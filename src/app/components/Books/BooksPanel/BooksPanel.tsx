@@ -1,7 +1,7 @@
 import { TableOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import { Tooltip } from "antd";
 
 import { useBookClub } from "@/hooks";
-import { Button } from "@/ui";
 
 import BooksFilter from "./BooksFilter/BooksFilter";
 import BooksSorted from "./BooksSorted/BooksSorted";
@@ -22,16 +22,23 @@ const BooksPanel = () => {
 		<div className={styles.panel}>
 			<BooksFilter />
 			<BooksSorted />
-			<Button
-				className={styles.viewButton}
-				onClick={handleViewButtonOnClick}
+			<Tooltip
+				placement="topRight"
+				color="#178cfb"
+				title={<span className={styles.tooltipText}>Вид книг</span>}
 			>
 				{view === "line" ? (
-					<TableOutlined />
+					<TableOutlined
+						className={styles.tooltip}
+						onClick={handleViewButtonOnClick}
+					/>
 				) : (
-					<UnorderedListOutlined />
+					<UnorderedListOutlined
+						className={styles.tooltip}
+						onClick={handleViewButtonOnClick}
+					/>
 				)}
-			</Button>
+			</Tooltip>
 		</div>
 	);
 };

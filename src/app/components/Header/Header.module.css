@@ -9,5 +9,17 @@
 	@media (width < 768px) {
 		flex-flow: column;
 		gap: 20px;
+		padding: 10px;
+	}
+}
+
+.header button {
+	background: transparent;
+	border: none;
+	padding: 0;
+	margin: 0 15px 0 auto;
+
+	@media (width < 768px) {
+		margin: 0 10px 0 auto;
 	}
 }

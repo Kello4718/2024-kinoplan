@@ -59,20 +59,11 @@ h1 {
 }
 
 .ant-popover {
-	width: auto;
-	max-width: 90%;
+	/* width: auto;
+	max-width: 90%; */
 
-	@media (width < 1024px) {
-		width: 100%;
-		max-width: 95%;
-		left: 50% !important;
-		transform: translateX(-50%) !important;
-	}
-
-	.ant-popover-arrow {
-		@media (width < 768px) {
-			left: 50%;
-		}
+	@media (width < 1280px) {
+		scale: 0.9 1;
 	}
 }
 
