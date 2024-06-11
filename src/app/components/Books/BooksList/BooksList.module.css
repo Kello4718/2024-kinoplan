@@ -96,7 +96,7 @@
 	margin: 30px auto 0;
 }
 
-.title {
+.resultTitle {
 	font-size: 30px;
 	text-align: center;
 	color: var(--black01);
@@ -107,7 +107,7 @@
 	}
 }
 
-.subtitle {
+.resultSubtitle {
 	font-size: 20px;
 	color: var(--black01);
 

@@ -11,7 +11,7 @@ import { Button } from "@/ui";
 
 import styles from "./page.module.css";
 
-const Cart = () => {
+const CartPage = () => {
 	const [isPaid, setIsPaid] = useState(false);
 	const { cart, setCart } = useBookClub();
 	const cost = cart.reduce(
@@ -26,8 +26,9 @@ const Cart = () => {
 		<>
 			<Link className={styles.buttonBack} href="/">
 				<ArrowLeftOutlined />
-				<span>Вернуться назад</span>
+				<span>Вернуться на главную</span>
 			</Link>
+			{/* TODO тут почему-то 20px шрифт, а не 16 на 360 */}
 			{!isPaid ? (
 				<>
 					<h1>Корзина</h1>
@@ -56,12 +57,12 @@ const Cart = () => {
 				<Result
 					status="success"
 					title={
-						<p className={styles.title}>
+						<p className={styles.resultTitle}>
 							Подравляю, вы успешно оплатили товары!
 						</p>
 					}
 					subTitle={
-						<p className={styles.subtitle}>
+						<p className={styles.resultSubtitle}>
 							Номер заказа: 2017182818828182881. Чек придет на
 							почту, в течении 5 минут. Хорошего вам дня
 						</p>
@@ -73,4 +74,4 @@ const Cart = () => {
 	);
 };
 
-export default Cart;
+export default CartPage;

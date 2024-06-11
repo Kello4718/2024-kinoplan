@@ -9,7 +9,7 @@ import { useBookClub } from "./hooks";
 
 import styles from "./page.module.css";
 
-const Main = () => {
+const MainPage = () => {
 	const { isLoading, isError, books } = useBookClub();
 	return (
 		<>
@@ -17,12 +17,12 @@ const Main = () => {
 				<Result
 					status="error"
 					title={
-						<p className={styles.title}>
+						<p className={styles.resultTitle}>
 							Опаааааа, а данные то не пришли...
 						</p>
 					}
 					subTitle={
-						<p className={styles.subtitle}>
+						<p className={styles.resultSubtitle}>
 							Зайдите к нам через часик
 						</p>
 					}
@@ -41,4 +41,4 @@ const Main = () => {
 	);
 };
 
-export default Main;
+export default MainPage;

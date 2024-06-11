@@ -37,4 +37,6 @@ export type Filter = {
 
 export type Sort = Record<keyof Filter, "asc" | "desc">;
 
+export type User = Record<"email" | "password", string>;
+
 export type View = "table" | "line";

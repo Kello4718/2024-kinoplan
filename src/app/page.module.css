@@ -5,7 +5,7 @@
 	margin: 30px auto 0;
 }
 
-.title {
+.resultTitle {
 	font-size: 30px;
 	text-align: center;
 	color: var(--main);
@@ -16,7 +16,7 @@
 	}
 }
 
-.subtitle {
+.resultSubtitle {
 	font-size: 20px;
 	color: var(--main);
 

@@ -35,12 +35,12 @@ const BooksList = () => {
 				<Result
 					status="info"
 					title={
-						<p className={styles.title}>
+						<p className={styles.resultTitle}>
 							По выбранным фильтрам книг нет
 						</p>
 					}
 					subTitle={
-						<p className={styles.subtitle}>
+						<p className={styles.resultSubtitle}>
 							Попробуйте выбрать другие фильтры
 						</p>
 					}
