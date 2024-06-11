@@ -1,10 +1,13 @@
 .buttonContainer {
+	width: min(100%, 140px);
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
 	gap: 5px;
+	margin: 0 0 0 auto;
 
-	@media (width < 1024px) {
-		justify-content: flex-end;
+	@media (width < 768px) {
+		margin: 0;
 	}
 }
 
@@ -27,12 +30,11 @@
 
 	@media (width > 1024px) {
 		&:hover {
-			outline: 2px solid var(--azure00);
-			outline-offset: -2px;
+			color: var(--white01);
 		}
 	}
 
-	@media (width < 768px) {
+	@media (width < 1280px) {
 		width: 30px;
 	}
 }

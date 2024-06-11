@@ -3,7 +3,7 @@
 	display: grid;
 	grid-template-columns: 10% 1fr;
 	gap: 10px;
-	background: var(--black01);
+	color: var(--white01);
 	border-bottom: 1px solid var(--azure00);
 	margin: 0;
 
@@ -82,21 +82,4 @@
 	@media (width < 768px) {
 		text-align: left;
 	}
-}
-
-.quantityContainer {
-	padding: 0;
-}
-
-.quantityContainer div {
-	justify-content: flex-end;
-
-	@media (width < 768px) {
-		width: 140px;
-		justify-content: flex-start;
-	}
-}
-
-.quantityContainer button {
-	width: 30px;
 }

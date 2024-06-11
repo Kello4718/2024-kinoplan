@@ -74,7 +74,8 @@ h1 {
 	}
 }
 
-.ant-popover .ant-popover-inner {
+.ant-popover .ant-popover-inner,
+.ant-popover .ant-popover-arrow::before {
 	background: var(--azure00);
 }
 

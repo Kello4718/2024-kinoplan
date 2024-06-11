@@ -134,8 +134,7 @@
 	}
 
 	.book:hover .button:hover {
-		outline: 2px solid var(--azure00);
-		outline-offset: -2px;
+		color: var(--white01);
 	}
 }
 
@@ -169,5 +168,9 @@
 	.book:hover .activityContainer div button {
 		color: var(--azure00);
 		background: var(--black01);
+	}
+
+	.book:hover .activityContainer div button:hover {
+		color: var(--white01);
 	}
 }

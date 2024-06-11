@@ -53,10 +53,14 @@
 	width: 100%;
 	height: 100%;
 	fill: var(--black01);
+	transition-property: fill;
+	transition-duration: 300ms;
+	transition-timing-function: ease-in-out;
+
 }
 
 @media (width > 1024px) {
 	.tooltip:hover svg {
-		filter: invert();
+		fill: var(--white01);
 	}
 }

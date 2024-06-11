@@ -22,6 +22,13 @@
 	height: 100%;
 	display: block;
 	fill: var(--azure00);
+	transition-property: fill;
+	transition-duration: 300ms;
+	transition-timing-function: ease-in-out;
+
+	&:hover {
+		fill: var(--white01);
+	}
 }
 
 .cartContainer {
@@ -29,6 +36,7 @@
 	color: var(--white01);
 	background: var(--black01);
 	border-radius: 8px;
+	padding: 10px;
 
 	@media (width < 768px) {
 		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
@@ -65,8 +73,8 @@
 	aspect-ratio: 1;
 	font-size: 20px;
 	position: absolute;
-	top: 15px;
-	right: 15px;
+	top: 25px;
+	right: 25px;
 	color: var(--black01);
 	background: var(--azure00);
 	border: none;
@@ -77,4 +85,14 @@
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
+}
+
+.button {
+	color: var(--white01);
+
+	@media (width > 1024px) {
+		&:hover {
+			color: var(--azure00);
+		}
+	}
 }

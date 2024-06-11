@@ -31,7 +31,9 @@ const Content = () => {
 							<strong>Итого в корзине книг на сумму:</strong>{" "}
 							{cost} RUB
 						</p>
-						<Link href="/cart">Перейти в корзину</Link>
+						<Link className={styles.button} href="/cart">
+							Перейти в корзину
+						</Link>
 						<Button
 							className={styles.deleteCart}
 							onClick={handleDeleteCartOnClick}
@@ -41,7 +43,9 @@ const Content = () => {
 					</div>
 				</>
 			) : (
-				<Link href="/cart">Перейти в корзину</Link>
+				<Link className={styles.button} href="/cart">
+					Перейти в корзину
+				</Link>
 			)}
 		</div>
 	);
