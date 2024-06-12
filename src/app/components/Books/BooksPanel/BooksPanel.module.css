@@ -30,6 +30,13 @@
 	margin: 0 0 0 auto;
 	cursor: pointer;
 	z-index: 2;
+    transition-property: background;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+
+    &:hover {
+        background: var(--white01);
+    }
 
 	@media (width < 1280px) {
 		width: 38px;
@@ -56,11 +63,4 @@
 	transition-property: fill;
 	transition-duration: 300ms;
 	transition-timing-function: ease-in-out;
-
-}
-
-@media (width > 1024px) {
-	.tooltip:hover svg {
-		fill: var(--white01);
-	}
 }

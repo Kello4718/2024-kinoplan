@@ -1,14 +1,15 @@
 .book {
 	background: var(--black01);
 	border-radius: 8px;
+    transition-property: box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
 
 	@media (width > 1024px) {
 		&:hover {
-			color: var(--black01);
-			background: var(--white01);
-			transition-property: color, background;
-			transition-duration: 300ms;
-			transition-timing-function: ease-in-out;
+			box-shadow:
+				0 0 10px var(--azure00),
+				0 0 10px var(--azure00) inset;
 		}
 	}
 }
@@ -60,12 +61,6 @@
 	}
 }
 
-@media (width > 1024px) {
-	.book:hover .figcaption {
-		color: var(--black01);
-	}
-}
-
 .title {
 	font-size: 30px;
 	-webkit-line-clamp: 2;
@@ -79,12 +74,6 @@
 		font-size: clamp(1.5rem, 1.1691rem + 1.4706vw, 1.875rem); /* 24-30 */
 		text-align: center;
 		display: block;
-	}
-}
-
-@media (width > 1024px) {
-	.book:hover .title {
-		color: var(--greyAzure00);
 	}
 }
 
@@ -114,7 +103,7 @@
 	padding: 10px;
 	margin: 20px 10px 0;
 	cursor: pointer;
-	transition-property: color, background;
+	transition-property: background;
 	transition-duration: 300ms;
 	transition-timing-function: ease-in-out;
 
@@ -128,13 +117,8 @@
 }
 
 @media (width > 1024px) {
-	.book:hover .button {
-		color: var(--azure00);
-		background: var(--black01);
-	}
-
 	.book:hover .button:hover {
-		color: var(--white01);
+        background: var(--white01);;
 	}
 }
 
@@ -161,16 +145,12 @@
 }
 
 @media (width > 1024px) {
-	.book:hover .activityContainer {
+	.book:hover .activityContainer div button {
 		color: var(--black01);
 	}
 
-	.book:hover .activityContainer div button {
-		color: var(--azure00);
-		background: var(--black01);
-	}
-
 	.book:hover .activityContainer div button:hover {
-		color: var(--white01);
+		color: var(--black01);
+        background: var(--white01);
 	}
 }

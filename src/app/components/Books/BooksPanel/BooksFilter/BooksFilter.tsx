@@ -56,7 +56,7 @@ const BooksFilter = () => {
 		<div ref={selectContainer} className={styles.filterContainer}>
 			<Tooltip
 				placement="topLeft"
-				color="#66FCF1"
+				color="#f4eee6"
 				title={<span className={styles.tooltipText}>Фильтрация</span>}
 			>
 				<FilterOutlined

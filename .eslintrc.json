@@ -4,8 +4,9 @@
 		"prettier",
 		"eslint:recommended",
 		"plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
 		"plugin:prettier/recommended",
-		"plugin:react/jsx-runtime", // Добавьте это для нового JSX Transform
+		"plugin:react/jsx-runtime",
 		"plugin:import/errors",
 		"plugin:import/warnings",
 		"plugin:import/typescript"

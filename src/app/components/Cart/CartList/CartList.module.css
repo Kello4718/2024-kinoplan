@@ -1,5 +1,4 @@
 .list {
-	max-height: 50dvh;
 	display: flex;
 	flex-flow: column;
 	gap: 10px;

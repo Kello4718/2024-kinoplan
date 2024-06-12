@@ -24,7 +24,7 @@ const BooksPanel = () => {
 			<BooksSorted />
 			<Tooltip
 				placement="topRight"
-				color="#66FCF1"
+				color="#f4eee6"
 				title={<span className={styles.tooltipText}>Вид книг</span>}
 			>
 				{view === "line" ? (

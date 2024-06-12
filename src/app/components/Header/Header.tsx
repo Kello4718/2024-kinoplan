@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Cart from "./Cart/Cart";
 
 import styles from "./Header.module.css";
+import User from "./User/User";
 
 const Header = () => {
 	const pathname = usePathname();
@@ -16,6 +17,7 @@ const Header = () => {
 				Книгоплан
 			</Link>
 			{isMainPage && <Cart />}
+			<User />
 		</header>
 	);
 };

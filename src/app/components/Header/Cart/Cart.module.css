@@ -47,6 +47,10 @@
 	margin: 0 0 20px;
 }
 
+.text + ul {
+    max-height: 50dvh;
+}
+
 .totalContainer {
 	display: flex;
 	justify-content: space-between;

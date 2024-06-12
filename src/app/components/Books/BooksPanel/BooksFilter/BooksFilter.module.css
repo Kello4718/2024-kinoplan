@@ -16,6 +16,13 @@
 	margin: 0;
 	cursor: pointer;
 	z-index: 2;
+    transition-property: background;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+
+    &:hover {
+        background: var(--white01);
+    }
 }
 
 .tooltipText {
@@ -34,13 +41,6 @@
 	transition-property: fill;
 	transition-duration: 300ms;
 	transition-timing-function: ease-in-out;
-
-}
-
-@media (width > 1024px) {
-	.tooltip:hover svg {
-		fill: var(--white01);
-	}
 }
 
 @keyframes appearance {

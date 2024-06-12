@@ -56,7 +56,7 @@ const BooksSorted = () => {
 		<div ref={selectContainer} className={styles.filterContainer}>
 			<Tooltip
 				placement="top"
-				color="#66FCF1"
+				color="#f4eee6"
 				title={<span className={styles.tooltipText}>Сортировка</span>}
 			>
 				<AlignRightOutlined
