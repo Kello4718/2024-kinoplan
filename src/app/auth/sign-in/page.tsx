@@ -1,46 +1,30 @@
 "use client";
 
-import { ChangeEvent } from "react";
+import { Button, Form, FormProps, Input, message } from "antd";
+import { useRouter } from "next/navigation";
 
 import { useBookClub } from "@/hooks";
 import supabase from "@/supabase";
-import { Button, Form, FormProps, Input } from "antd";
+import { FieldType, User } from "@/types";
 
 import styles from "./page.module.css";
-import { User } from "@/types";
-import { useRouter } from "next/navigation";
-
-
-type FieldType = {
-	email?: string;
-	password?: string;
-};
 
 const SignInPage = () => {
-    const router = useRouter();
+	const { setUser } = useBookClub();
+	const router = useRouter();
 
-    const localeStorageUserEmail = localStorage.getItem('userEmail')
-    const localeStorageUserPassword = localStorage.getItem('userPassword')
+	const localeStorageUserEmail = localStorage.getItem("userEmail");
+	const localeStorageUserPassword = localStorage.getItem("userPassword");
 
-    if (localeStorageUserEmail && localeStorageUserPassword) {
-        router.push("/personal-account/general");
-    }
-
-	const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-		errorInfo,
-	) => {
-		console.log("Failed:", errorInfo);
-	};
+	if (localeStorageUserEmail && localeStorageUserPassword) {
+		router.push("/personal-account/general");
+	}
 
 	const onFinish: FormProps<FieldType>["onFinish"] = async ({
 		email,
 		password,
 	}) => {
-		// const { data, error } = await supabase.auth.signInWithPassword({
-		// 	email: values?.email ?? "",
-		// 	password: values?.password ?? "",
-		// });
-		let { data: users, error } = await supabase.from("Users").select("*");
+		const { data: users } = await supabase.from("Users").select("*");
 		const userFromBack: User = users?.find(
 			(user: User) => user.email === email,
 		);
@@ -49,11 +33,12 @@ const SignInPage = () => {
 				email === userFromBack.email &&
 				password === userFromBack.password
 			) {
-                localStorage.setItem('userEmail', email);
-                localStorage.setItem('userPassword', password);
+				localStorage.setItem("userEmail", email);
+				localStorage.setItem("userPassword", password);
 				router.push("/personal-account/general");
+				setUser({ email, password });
 			} else {
-				return;
+				message.error("Введенные данные неправильны");
 			}
 		}
 	};
@@ -62,9 +47,8 @@ const SignInPage = () => {
 		<section>
 			<h1>Страница авторизации</h1>
 			<Form
-				name="basic"
+				name="signin"
 				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
 				autoComplete="off"
 				className={styles.form}
 			>
@@ -107,27 +91,6 @@ const SignInPage = () => {
 					</Button>
 				</Form.Item>
 			</Form>
-			{/* <form onSubmit={handleOnSubmit}>
-				<label htmlFor="email">Email:</label>
-				<input
-					id="email"
-					name="email"
-					type="email"
-					required
-					value={user.email}
-					onChange={(evt) => handleOnInput(evt, "email")}
-				/>
-				<label htmlFor="password">Password:</label>
-				<input
-					id="password"
-					name="password"
-					type="password"
-					required
-					value={user.password}
-					onChange={(evt) => handleOnInput(evt, "password")}
-				/>
-				<button>Log in</button>
-			</form> */}
 		</section>
 	);
 };

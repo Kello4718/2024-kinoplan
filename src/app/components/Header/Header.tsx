@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import Cart from "./Cart/Cart";
+import User from "./User/User";
 
 import styles from "./Header.module.css";
-import User from "./User/User";
 
 const Header = () => {
 	const pathname = usePathname();

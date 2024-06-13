@@ -40,3 +40,5 @@ export type Sort = Record<keyof Filter, "asc" | "desc">;
 export type User = Record<"email" | "password", string>;
 
 export type View = "table" | "line";
+
+export type FieldType = Record<"email" | "password", string>;

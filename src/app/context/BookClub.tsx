@@ -36,6 +36,8 @@ export type TBookClubContext = {
 	setIsFilterVisible: Dispatch<SetStateAction<boolean>>;
 	isSortVisible: boolean;
 	setIsSortVisible: Dispatch<SetStateAction<boolean>>;
+	user: User;
+	setUser: Dispatch<SetStateAction<User>>;
 };
 
 export const BookClubContext = createContext<TBookClubContext | undefined>({
@@ -67,9 +69,16 @@ export const BookClubContext = createContext<TBookClubContext | undefined>({
 	setIsFilterVisible: () => {},
 	isSortVisible: false,
 	setIsSortVisible: () => {},
+	user: {
+		email: "",
+		password: "",
+	},
+	setUser: () => {},
 });
 
-const localCart = localStorage.getItem("cart");
+const localeStorageCart = localStorage.getItem("cart");
+const localeStorageUserEmail = localStorage.getItem("userEmail");
+const localeStorageUserPassword = localStorage.getItem("userPassword");
 
 const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -90,6 +99,12 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	});
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const [isSortVisible, setIsSortVisible] = useState(false);
+	const [user, setUser] = useState<User>(() => {
+		return {
+			email: localeStorageUserEmail ?? "",
+			password: localeStorageUserPassword ?? "",
+		};
+	});
 
 	const value: TBookClubContext = {
 		isLoading,
@@ -112,6 +127,8 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		setSort,
 		isSortVisible,
 		setIsSortVisible,
+		user,
+		setUser,
 	};
 
 	const updateLocalStorage = useCallback(() => {
@@ -143,8 +160,8 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			}
 		};
 
-		if (localCart) {
-			setCart(JSON.parse(localCart));
+		if (localeStorageCart) {
+			setCart(JSON.parse(localeStorageCart));
 		}
 
 		getBooks();

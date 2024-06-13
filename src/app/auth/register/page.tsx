@@ -1,111 +1,137 @@
 "use client";
 
-import { ChangeEvent, FormEvent } from "react";
+import { Button, Form, FormProps, Input, message, Result } from "antd";
+import Link from "next/link";
+import { useState } from "react";
 
-import { useBookClub } from "@/hooks";
 import supabase from "@/supabase";
-import { Button, Form, FormProps, Input } from "antd";
+import { FieldType, User } from "@/types";
 
 import styles from "./page.module.css";
 
-type FieldType = {
-	email?: string;
-	password?: string;
-};
-
 const RegisterPage = () => {
-	const localeStorageUserEmail = localStorage.getItem("userEmail");
-	const localeStorageUserPassword = localStorage.getItem("userPassword");
+	const [isSuccess, setIsSuccess] = useState(false);
 
-	// const handleOnSubmit = async (evt: FormEvent<HTMLFormElement>) => {
-	// 	evt.preventDefault();
-	// 	const { data, error } = await supabase.auth.signInWithPassword({
-	// 		email: localeStorageUserEmail ?? ,
-	// 		password: localeStorageUserPassword,
-	// 	});
-	// 	console.log(data, error);
-	// };
+	const onFinish: FormProps<FieldType>["onFinish"] = async ({
+		email,
+		password,
+	}) => {
+		const { data: users } = await supabase.from("Users").select("*");
+		const userFromBack: User = users?.find(
+			(user: User) => user.email === email,
+		);
 
-	const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-		console.log("Success:", values);
-	};
+		if (userFromBack) {
+			message.error("Данный пользователь уже существует");
+			return;
+		}
 
-	const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-		errorInfo,
-	) => {
-		console.log("Failed:", errorInfo);
+		await supabase.from("Users").insert([{ email, password }]).select();
+		setIsSuccess(true);
 	};
 
 	return (
 		<section>
 			<h1>Страница регистрации</h1>
-			<Form
-				name="basic"
-				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
-				autoComplete="off"
-				className={styles.form}
-			>
-				<Form.Item<FieldType>
-					name="email"
-					rules={[
-						{
-							required: true,
-							message: "Пожалуйста, введите вашу почту",
-						},
-					]}
-					className={styles.formItem}
+			{isSuccess ? (
+				<Result
+					status="success"
+					title={
+						<p className={styles.resultTitle}>
+							Вы успешно зарегистрировались
+						</p>
+					}
+					subTitle={
+						<Link
+							className={styles.resultButton}
+							href="/auth/sign-in"
+						>
+							Авторизоваться
+						</Link>
+					}
+					className={styles.result}
+				/>
+			) : (
+				<Form
+					name="register"
+					onFinish={onFinish}
+					autoComplete="off"
+					className={styles.form}
 				>
-					<Input className={styles.input} placeholder="Ваша почта" />
-				</Form.Item>
-
-				<Form.Item<FieldType>
-					name="password"
-					rules={[
-						{
-							required: true,
-							message: "Пожалуйста, введите ваш пароль",
-						},
-					]}
-					className={styles.formItem}
-				>
-					<Input.Password
-						className={styles.input}
-						placeholder="Ваш пароль"
-					/>
-				</Form.Item>
-
-				<Form.Item className={styles.formItem}>
-					<Button
-						className={styles.submit}
-						type="primary"
-						htmlType="submit"
+					<Form.Item<FieldType>
+						name="email"
+						rules={[
+							{
+								required: true,
+								message: "Пожалуйста, введите вашу почту",
+							},
+						]}
+						className={styles.formItem}
 					>
-						Зарегистрироваться
-					</Button>
-				</Form.Item>
-			</Form>
-			{/* <form onSubmit={handleOnSubmit}>
-				<label htmlFor="email">Email:</label>
-				<input
-					id="email"
-					name="email"
-					type="email"
-					required
-					value={user.email}
-					onChange={(evt) => handleOnInput(evt, "email")}
-				/>
-				<label htmlFor="password">Password:</label>
-				<input
-					id="password"
-					name="password"
-					type="password"
-					required
-					value={user.password}
-					onChange={(evt) => handleOnInput(evt, "password")}
-				/>
-				<button>Log in</button>
-			</form> */}
+						<Input
+							className={styles.input}
+							placeholder="Ваша почта"
+						/>
+					</Form.Item>
+
+					<Form.Item<FieldType>
+						name="password"
+						rules={[
+							{
+								required: true,
+								message: "Пожалуйста, введите ваш пароль",
+							},
+						]}
+						className={styles.formItem}
+					>
+						<Input.Password
+							className={styles.input}
+							placeholder="Ваш пароль"
+						/>
+					</Form.Item>
+					<Form.Item
+						name="confirm"
+						dependencies={["password"]}
+						hasFeedback
+						className={styles.formItem}
+						rules={[
+							{
+								required: true,
+								message: "Пожалуйста подтвердите пароль",
+							},
+							({ getFieldValue }) => {
+								return {
+									validator(_, value) {
+										if (
+											!value ||
+											getFieldValue("password") === value
+										) {
+											return Promise.resolve();
+										}
+										return Promise.reject(
+											new Error("Пароли не совпадают"),
+										);
+									},
+								};
+							},
+						]}
+					>
+						<Input.Password
+							className={styles.input}
+							placeholder="Подтвердите ваш пароль"
+						/>
+					</Form.Item>
+					<Form.Item className={styles.formItem}>
+						<Button
+							className={styles.submit}
+							type="primary"
+							htmlType="submit"
+						>
+							Зарегистрироваться
+						</Button>
+					</Form.Item>
+				</Form>
+			)}
 		</section>
 	);
 };

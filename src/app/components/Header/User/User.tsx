@@ -1,29 +1,30 @@
+import {
+	PoweroffOutlined,
+	SolutionOutlined,
+	UserOutlined,
+} from "@ant-design/icons";
 import { Popover } from "antd";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { useBookClub } from "@/hooks";
 
 import styles from "./User.module.css";
-import {
-    PoweroffOutlined,
-    SolutionOutlined,
-    UserOutlined,
-} from "@ant-design/icons";
-import { usePathname, useRouter } from "next/navigation";
-
-const localeStorageUserEmail = localStorage.getItem("userEmail");
-const localeStorageUserPassword = localStorage.getItem("userPassword");
 
 const UserContent = () => {
-    const pathname = usePathname();
+	const { user, setUser } = useBookClub();
+	const pathname = usePathname();
 	const isMainPage = pathname === "/";
 
 	const toLogOut = () => {
 		localStorage.setItem("userEmail", "");
 		localStorage.setItem("userPassword", "");
+		setUser({ email: "", password: "" });
 	};
 
 	return (
 		<>
-			{localeStorageUserEmail && localeStorageUserPassword ? (
+			{user.email && user.password ? (
 				<ul className={styles.list}>
 					{isMainPage && (
 						<li className={styles.item}>
@@ -57,12 +58,10 @@ const UserContent = () => {
 	);
 };
 
-const User = () => {
-	return (
-		<Popover content={UserContent}>
-			<UserOutlined className={styles.user} />
-		</Popover>
-	);
-};
+const User = () => (
+	<Popover content={UserContent}>
+		<UserOutlined className={styles.user} />
+	</Popover>
+);
 
 export default User;
