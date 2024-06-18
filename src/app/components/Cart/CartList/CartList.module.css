@@ -31,12 +31,15 @@
 .itemTitleYear {
 	text-align: center;
 }
+
 .itemTitleCategory {
 	text-align: center;
 }
+
 .itemTitleCost {
 	text-align: center;
 }
+
 .itemTitleQuantity {
 	text-align: right;
 }

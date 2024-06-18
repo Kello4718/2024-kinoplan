@@ -1,20 +1,23 @@
-import { TableOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 
+import { KIND_OF_BOOKS_VIEW } from "@/constants";
 import { useBookClub } from "@/hooks";
 
 import BooksFilter from "./BooksFilter/BooksFilter";
 import BooksSorted from "./BooksSorted/BooksSorted";
 
+import { TableOutlined, UnorderedListOutlined } from "@ant-design/icons";
+
 import styles from "./BooksPanel.module.css";
 
 const BooksPanel = () => {
 	const { view, setView } = useBookClub();
+
 	const handleViewButtonOnClick = () => {
-		if (view === "table") {
-			setView("line");
+		if (view !== KIND_OF_BOOKS_VIEW.Line) {
+			setView(KIND_OF_BOOKS_VIEW.Line);
 		} else {
-			setView("table");
+			setView(KIND_OF_BOOKS_VIEW.Table);
 		}
 	};
 
@@ -22,21 +25,11 @@ const BooksPanel = () => {
 		<div className={styles.panel}>
 			<BooksFilter />
 			<BooksSorted />
-			<Tooltip
-				placement="topRight"
-				color="#f4eee6"
-				title={<span className={styles.tooltipText}>Вид книг</span>}
-			>
-				{view === "line" ? (
-					<TableOutlined
-						className={styles.tooltip}
-						onClick={handleViewButtonOnClick}
-					/>
+			<Tooltip placement="topRight" color="var(--azure00)" title={<span className={styles.tooltipText}>Вид книг</span>}>
+				{view === KIND_OF_BOOKS_VIEW.Line ? (
+					<TableOutlined className={styles.tooltip} onClick={handleViewButtonOnClick} />
 				) : (
-					<UnorderedListOutlined
-						className={styles.tooltip}
-						onClick={handleViewButtonOnClick}
-					/>
+					<UnorderedListOutlined className={styles.tooltip} onClick={handleViewButtonOnClick} />
 				)}
 			</Tooltip>
 		</div>

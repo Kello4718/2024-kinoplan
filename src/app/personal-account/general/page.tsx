@@ -1,65 +1,33 @@
 "use client";
 
 import { Button, Form, FormProps, Input, message } from "antd";
-import { ChangeEvent, useState } from "react";
 
-import { useBookClub } from "@/hooks";
+import { useUser } from "@/hooks/useUser";
 import supabase from "@/supabase";
 import { FieldType } from "@/types";
 
 import styles from "./page.module.css";
 
 const GeneralPage = () => {
-	const [isVisible, setIsVisible] = useState(false);
-	const { user, setUser } = useBookClub();
-	const onFinish: FormProps<FieldType>["onFinish"] = async ({
-		email,
-		password,
-	}) => {
-		await supabase
-			.from("Users")
-			.update({ email, password })
-			.eq("email", email)
-			.select();
+	const { userEmail } = useUser();
 
-		localStorage.setItem("userEmail", email);
-		localStorage.setItem("userPassword", password);
-		message.success("Данные успешно обновлены");
-		setUser({ email, password });
-		setIsVisible(false);
-	};
-
-	const handleInputOnChange = (
-		evt: ChangeEvent<HTMLInputElement>,
-		value: string,
-		type: string,
-	) => {
-		setUser((prevState) => {
-			return { ...prevState, [type]: value };
-		});
-		if (evt.target.value !== value) {
-			setIsVisible(true);
+	const onFinish: FormProps<FieldType>["onFinish"] = async ({ password }) => {
+		const { error } = await supabase.auth.updateUser({ password });
+		if (error) {
+			message.error("Пароли не отличаются");
 		} else {
-			setIsVisible(false);
+			message.success("Данные успешно обновлены");
 		}
 	};
 
+	const initialValues = {
+		email: userEmail,
+	};
+
 	return (
-		<Form
-			name="general"
-			onFinish={onFinish}
-			autoComplete="off"
-			className={styles.form}
-		>
+		<Form onFinish={onFinish} autoComplete="off" className={styles.form} initialValues={initialValues}>
 			<Form.Item<FieldType> name="email" className={styles.formItem}>
-				<Input
-					className={styles.input}
-					placeholder="Ваша почта"
-					value={user.email}
-					onChange={(evt) =>
-						handleInputOnChange(evt, user.email, "email")
-					}
-				/>
+				<Input className={styles.input} placeholder="Введите почту" readOnly />
 			</Form.Item>
 
 			<Form.Item<FieldType>
@@ -69,30 +37,22 @@ const GeneralPage = () => {
 						required: true,
 						message: "Пожалуйста, введите ваш пароль",
 					},
+					{
+						pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+						message:
+							"Пароль должен содержать минимум 8 символов, включая заглавные и строчные буквы, цифры и специальные символы.",
+					},
 				]}
+				validateTrigger="onSubmit"
 				className={styles.formItem}
 			>
-				<Input.Password
-					className={styles.input}
-					placeholder="Ваш пароль"
-					value={user.password}
-					onChange={(evt) => {
-						handleInputOnChange(evt, user.password, "password");
-					}}
-				/>
+				<Input.Password className={styles.input} placeholder="Введите пароль" autoComplete="off" />
 			</Form.Item>
-
-			{isVisible && (
-				<Form.Item className={styles.formItem}>
-					<Button
-						className={styles.submit}
-						type="primary"
-						htmlType="submit"
-					>
-						Обновить данные
-					</Button>
-				</Form.Item>
-			)}
+			<Form.Item className={styles.formItem}>
+				<Button className={styles.submit} type="primary" htmlType="submit">
+					Обновить данные
+				</Button>
+			</Form.Item>
 		</Form>
 	);
 };

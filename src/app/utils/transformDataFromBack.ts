@@ -5,14 +5,10 @@ const localCart = localStorage.getItem("cart");
 export const transformDataFromBack = (data: BookFromBack[]) =>
 	data.map((book) => {
 		const { volumeInfo, id, saleInfo } = book;
-		const { title, authors, publishedDate, categories, imageLinks } =
-			volumeInfo;
-		const currency = saleInfo?.retailPrice?.currencyCode ?? "RUB";
+		const { title, authors, publishedDate, categories, imageLinks } = volumeInfo;
 
 		const getPrice = () => {
-			const foundedBook: Book =
-				localCart &&
-				JSON.parse(localCart).find((item: Book) => item.id === id);
+			const foundedBook: Book = localCart && JSON.parse(localCart).find((bookElement: Book) => bookElement.id === id);
 
 			const bookPrice = saleInfo?.retailPrice?.amount;
 			if (foundedBook && bookPrice === foundedBook.price) {
@@ -22,9 +18,7 @@ export const transformDataFromBack = (data: BookFromBack[]) =>
 		};
 
 		const getQuantity = () => {
-			const foundedBook: Book =
-				localCart &&
-				JSON.parse(localCart).find((item: Book) => item.id === id);
+			const foundedBook: Book = localCart && JSON.parse(localCart).find((bookElement: Book) => bookElement.id === id);
 			return foundedBook ? foundedBook.quantity : 1;
 		};
 
@@ -37,6 +31,5 @@ export const transformDataFromBack = (data: BookFromBack[]) =>
 			id,
 			quantity: getQuantity(),
 			price: getPrice(),
-			currency,
 		};
 	});

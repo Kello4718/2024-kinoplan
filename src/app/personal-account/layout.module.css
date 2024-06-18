@@ -14,24 +14,30 @@
 	margin: 0 0 10px;
 	cursor: pointer;
 	user-select: none;
-	transition-property: background;
-	transition-duration: 300ms;
-	transition-timing-function: ease-in-out;
 
-	@media (width > 1024px) {
+	@media (width >= 1024px) {
+		transition-property: background;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
 		&:hover {
 			background: var(--white01);
 		}
 	}
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		font-size: var(--clamp-mobile-16-20);
 	}
 }
 
 .container {
 	display: grid;
 	grid-template-columns: 1fr 9fr;
+
+	@media (width < 768px) {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
 }
 
 .result {
@@ -39,6 +45,10 @@
 	border-radius: 8px;
 	background: var(--white00);
 	margin: 30px auto 0;
+
+	@media (width < 768px) {
+		padding: 20px;
+	}
 }
 
 .resultTitle {
@@ -48,7 +58,7 @@
 	margin: 0 0 30px;
 
 	@media (width < 768px) {
-		font-size: clamp(1.25rem, 0.6985rem + 2.451vw, 1.875rem); /* 20-30 */
+		font-size: var(--clamp-mobile-20-30);
 	}
 }
 
@@ -57,14 +67,18 @@
 	color: var(--main);
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		font-size: var(--clamp-mobile-16-20);
 	}
 }
 
 .resultButtonContainer {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+
+	@media (width < 768px) {
+		flex-flow: column;
+	}
 }
 
 .resultButton {
@@ -83,11 +97,12 @@
 	margin: 0 auto 10px;
 	cursor: pointer;
 	user-select: none;
-	transition-property: color, background;
-	transition-duration: 300ms;
-	transition-timing-function: ease-in-out;
 
-	@media (width > 1024px) {
+	@media (width >= 1024px) {
+		transition-property: color, background;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
 		&:hover {
 			color: var(--white01);
 			background: var(--black01);
@@ -95,6 +110,6 @@
 	}
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		font-size: var(--clamp-mobile-16-20);
 	}
 }

@@ -4,46 +4,45 @@ import Image from "next/image";
 
 import ChangeQuantity from "@/components/ChangeQuantity/ChangeQuantity";
 import { useBookClub } from "@/hooks";
+import emptyImage from "@/public/images/empty.jpg";
 import { Book } from "@/types";
 import { Button } from "@/ui";
+import { formatCost } from "@/utils";
 
 import styles from "./BooksItem.module.css";
 
 const BooksItem = ({ book }: { book: Book }) => {
-	const { title, author, year, category, image, id, price, currency } = book;
-	const { cart, setCart, books, setBooks } = useBookClub();
+	const { title, author, year, category, image, id, price } = book;
+	const { cart, setCart, setBooks } = useBookClub();
+
+	const formatCartPrice = formatCost.format(price);
+
+	const resetBookQuantity = (bookElement: Book) => {
+		if (bookElement.id === id) {
+			return {
+				...bookElement,
+				quantity: 1,
+			};
+		}
+
+		return bookElement;
+	};
+
 	const addInCart = () => {
 		setCart((prevState) => [...prevState, { ...book, quantity: 1 }]);
-		const indexOfItem = books.findIndex((element) => element.id === id);
-		const updatedBooks = books.with(indexOfItem, {
-			...book,
-			quantity: 1,
-		});
-		setBooks(updatedBooks);
+		setBooks((prevState) => prevState.map((bookElement) => resetBookQuantity(bookElement)));
 	};
 
 	const removeFromCart = (id: string) => {
-		const filteredCart = cart.filter((item) => item.id !== id);
-		setCart(filteredCart);
-		const indexOfItem = books.findIndex((element) => element.id === id);
-		const updatedBooks = books.with(indexOfItem, {
-			...book,
-			quantity: 1,
-		});
-		setBooks(updatedBooks);
+		setCart((prevState) => prevState.filter((bookElement) => bookElement.id !== id));
+		setBooks((prevState) => prevState.map((bookElement) => resetBookQuantity(bookElement)));
 	};
 
-	const isInCart = cart.find((element) => element.id === id);
+	const isInCart = cart.some((cartElement) => cartElement.id === id);
 	return (
 		<li className={styles.book}>
 			<figure className={styles.figure}>
-				<Image
-					src={image ?? ""}
-					width={500}
-					height={500}
-					alt={title}
-					className={styles.image}
-				/>
+				<Image src={image ?? emptyImage} width={500} height={500} alt={title} className={styles.image} />
 				<figcaption className={styles.figcaption}>
 					<h2 title={title} className={styles.title}>
 						{title}
@@ -58,21 +57,17 @@ const BooksItem = ({ book }: { book: Book }) => {
 						<strong>Жанр:</strong> {category}
 					</p>
 					<p className={styles.price}>
-						<strong>Стоимость книги:</strong> {price} {currency}
+						<strong>Стоимость книги:</strong> {formatCartPrice}
 					</p>
 				</figcaption>
-				{Boolean(isInCart) && (
+				{isInCart ? (
 					<div className={styles.activityContainer}>
-						<Button
-							className={styles.button}
-							onClick={() => removeFromCart(id)}
-						>
+						<Button className={styles.button} onClick={() => removeFromCart(id)}>
 							Удалить из корзины
 						</Button>
 						<ChangeQuantity item={book} />
 					</div>
-				)}
-				{Boolean(!isInCart) && (
+				) : (
 					<Button className={styles.button} onClick={addInCart}>
 						Добавить в корзину
 					</Button>

@@ -8,19 +8,13 @@
 	}
 }
 
-.animated-border {
-	display: inline-block;
-	padding: 20px;
-	font-size: 24px;
-}
-
 .list li {
 	width: 31%;
 	height: auto;
 	position: relative;
 	border-radius: 8px;
 	opacity: 1;
-	transition-property: width opacity;
+	transition-property: width, opacity;
 	transition-timing-function: ease-in-out;
 	transition-duration: 300ms;
 	box-sizing: border-box;
@@ -82,7 +76,7 @@
 }
 
 .listViewLine .button {
-	margin: auto 0 0 0;
+	margin: auto 0 0;
 }
 
 .listViewLine div button {
@@ -94,6 +88,10 @@
 	border-radius: 8px;
 	background: var(--white01);
 	margin: 30px auto 0;
+
+	@media (width < 768px) {
+		padding: 20px;
+	}
 }
 
 .resultTitle {
@@ -103,7 +101,7 @@
 	margin: 0 0 30px;
 
 	@media (width < 768px) {
-		font-size: clamp(1.25rem, 0.6985rem + 2.451vw, 1.875rem); /* 20-30 */
+		font-size: var(--clamp-mobile-20-30);
 	}
 }
 
@@ -112,6 +110,6 @@
 	color: var(--black01);
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		font-size: var(--clamp-mobile-16-20);
 	}
 }

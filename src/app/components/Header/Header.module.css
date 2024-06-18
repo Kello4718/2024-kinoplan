@@ -1,16 +1,15 @@
 .header {
 	display: flex;
 	align-items: center;
-    justify-content: space-between;
+	justify-content: space-between;
 	position: sticky;
 	top: 0;
 	background: var(--black01);
-	backdrop-filter: blur(45px);
 	padding: 20px;
 	z-index: 3;
 
 	@media (width < 768px) {
-		gap: 20px;
+		gap: 10px;
 		padding: 10px;
 	}
 }

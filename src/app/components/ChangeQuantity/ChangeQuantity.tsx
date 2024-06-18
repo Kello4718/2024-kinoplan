@@ -4,42 +4,45 @@ import { Book } from "@/types";
 import styles from "./ChangeQuantity.module.css";
 
 const ChangeQuantity = ({ item }: { item: Book }) => {
-	const { cart, setCart, books, setBooks } = useBookClub();
+	const { setCart, setBooks } = useBookClub();
+
 	const { id, quantity } = item;
-	const indexOfItemBook = books.findIndex((element) => element.id === id);
-	const indexOfItemCart = cart.findIndex((element) => element.id === id);
+
+	const decrementQuantity = (bookElement: Book) => {
+		if (bookElement.id === id) {
+			return {
+				...item,
+				quantity: quantity - 1,
+			};
+		}
+
+		return bookElement;
+	};
+
+	const incrementQuantity = (bookElement: Book) => {
+		if (bookElement.id === id) {
+			return {
+				...item,
+				quantity: quantity + 1,
+			};
+		}
+
+		return bookElement;
+	};
+
 	const decrement = () => {
 		if (quantity === 1) {
-			const filteredCart = cart.filter((element) => element.id !== id);
-			setCart(filteredCart);
+			setCart((prevState) => prevState.filter((bookElement) => bookElement.id !== id));
 			return;
 		}
 
-		const updatedBooks = books.with(indexOfItemBook, {
-			...item,
-			quantity: quantity - 1,
-		});
-
-		const updatedCart = cart.with(indexOfItemCart, {
-			...item,
-			quantity: quantity - 1,
-		});
-		setBooks(updatedBooks);
-		setCart(updatedCart);
+		setBooks((prevState) => prevState.map((bookElement) => decrementQuantity(bookElement)));
+		setCart((prevState) => prevState.map((bookElement) => decrementQuantity(bookElement)));
 	};
 
 	const increment = () => {
-		const updatedBooks = books.with(indexOfItemBook, {
-			...item,
-			quantity: quantity + 1,
-		});
-
-		const updatedCart = cart.with(indexOfItemCart, {
-			...item,
-			quantity: quantity + 1,
-		});
-		setBooks(updatedBooks);
-		setCart(updatedCart);
+		setBooks((prevState) => prevState.map((bookElement) => incrementQuantity(bookElement)));
+		setCart((prevState) => prevState.map((bookElement) => incrementQuantity(bookElement)));
 	};
 
 	return (

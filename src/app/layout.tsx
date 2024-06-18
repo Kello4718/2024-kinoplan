@@ -4,6 +4,7 @@ import { FC, PropsWithChildren } from "react";
 
 import Header from "./components/Header/Header";
 import BookClubContextProvider from "./context/BookClub";
+import UserContextProvider from "./context/User";
 
 import "./globals.css";
 
@@ -20,10 +21,12 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
 			<link rel="icon" href="/favicon.ico" />
 		</head>
 		<body className={manrope.className}>
-			<BookClubContextProvider>
-				<Header />
-				<main className="main">{children}</main>
-			</BookClubContextProvider>
+			<UserContextProvider>
+				<BookClubContextProvider>
+					<Header />
+					<main className="main">{children}</main>
+				</BookClubContextProvider>
+			</UserContextProvider>
 		</body>
 	</html>
 );

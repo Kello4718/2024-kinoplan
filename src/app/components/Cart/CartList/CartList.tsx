@@ -17,8 +17,8 @@ const CartList = () => {
 				<span className={styles.itemTitleCost}>Стоимость книги</span>
 				<span className={styles.itemTitleQuantity}>Количество</span>
 			</li>
-			{cart.map((item) => (
-				<CartItem key={item.title} item={item} />
+			{cart.map((bookElement) => (
+				<CartItem key={bookElement.title} item={bookElement} />
 			))}
 		</ul>
 	);

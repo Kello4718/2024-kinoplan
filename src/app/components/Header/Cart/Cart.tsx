@@ -1,25 +1,32 @@
 "use client";
 
-import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Badge, Popover } from "antd";
 import Link from "next/link";
+import { useEffect } from "react";
 
 import CartList from "@/components/Cart/CartList/CartList";
 import { useBookClub } from "@/hooks";
 import { Button } from "@/ui";
+import { formatCost } from "@/utils";
+
+import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 import styles from "./Cart.module.css";
 
 const Content = () => {
-	const { cart, setCart } = useBookClub();
+	const { cart, setCart, cartCost, setCartCost, setIsCartOpen } = useBookClub();
+
 	const handleDeleteCartOnClick = () => {
 		setCart([]);
+		setIsCartOpen((prevState) => !prevState);
 	};
 
-	const cost = cart.reduce(
-		(acc, item) => Number((acc + item.quantity * item.price).toFixed(2)),
-		0,
-	);
+	useEffect(() => {
+		setCartCost(cart.reduce((acc, item) => Number((acc + item.quantity * item.price).toFixed(2)), 0));
+	}, [cart, setCartCost]);
+
+	const formatCartCost = formatCost.format(cartCost);
+
 	return (
 		<div className={styles.cartContainer}>
 			{cart.length ? (
@@ -28,16 +35,12 @@ const Content = () => {
 					<CartList />
 					<div className={styles.totalContainer}>
 						<p className={styles.total}>
-							<strong>Итого в корзине книг на сумму:</strong>{" "}
-							{cost} RUB
+							<strong>Итого в корзине книг на сумму:</strong> {formatCartCost}
 						</p>
 						<Link className={styles.button} href="/cart">
 							Перейти в корзину
 						</Link>
-						<Button
-							className={styles.deleteCart}
-							onClick={handleDeleteCartOnClick}
-						>
+						<Button className={styles.deleteCart} onClick={handleDeleteCartOnClick}>
 							<DeleteOutlined />
 						</Button>
 					</div>
@@ -53,16 +56,11 @@ const Content = () => {
 
 const Cart = () => {
 	const { cart } = useBookClub();
-
 	const quantity = cart.reduce((acc, item) => acc + item.quantity, 0);
 	return (
-		<Popover
-			placement="bottomRight"
-			trigger={"click"}
-			content={<Content />}
-		>
+		<Popover placement="bottom" trigger={"click"} content={<Content />}>
 			<button className={styles.test}>
-				<Badge count={quantity} className={styles.test} color="#0B0C10">
+				<Badge count={quantity} className={styles.test} color="var(--black01)">
 					<ShoppingCartOutlined className={styles.cart} />
 				</Badge>
 			</button>

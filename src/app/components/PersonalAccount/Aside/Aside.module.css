@@ -1,3 +1,10 @@
+.aside {
+	@media (width < 768px) {
+		width: min(100%, 350px);
+		margin: 0 auto;
+	}
+}
+
 .list {
 	display: flex;
 	flex-flow: column;
@@ -11,11 +18,12 @@
 .item {
 	border-radius: 8px;
 	padding: 5px 10px;
-	transition-property: background;
-	transition-duration: 300ms;
-	transition-timing-function: ease-in-out;
 
-	@media (width > 1024px) {
+	@media (width >= 1024px) {
+		transition-property: background;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
 		&:hover {
 			background: var(--black01);
 		}
@@ -34,22 +42,23 @@
 	gap: 20px;
 	color: var(--black01);
 	cursor: pointer;
-	transition-property: color;
-	transition-duration: 300ms;
-	transition-timing-function: ease-in-out;
 
-	@media (width > 1024px) {
+	@media (width >= 1024px) {
+		transition-property: color;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
 		&:hover {
 			color: var(--white01);
 		}
 	}
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		font-size: var(--clamp-mobile-16-20);
 	}
 }
 
-@media (width > 1024px) {
+@media (width >= 1024px) {
 	.item:hover .itemLink {
 		color: var(--white01);
 	}

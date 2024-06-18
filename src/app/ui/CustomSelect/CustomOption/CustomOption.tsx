@@ -1,29 +1,29 @@
-import { CheckOutlined } from "@ant-design/icons";
 import { FC } from "react";
 
-import { SELECT_MAP } from "@/constants";
+import { LABELS_OF_BOOKS_FILTER } from "@/constants";
 import { useBookClub } from "@/hooks";
 import { Filter } from "@/types";
+
+import { CheckOutlined } from "@ant-design/icons";
 
 import styles from "./CustomOption.module.css";
 
 type CustomOptionProps = {
-	item: string;
-	essence: keyof Filter;
+	item: Filter[keyof Filter];
+	entity: keyof Filter;
 };
 
-export const CustomOption: FC<CustomOptionProps> = ({ item, essence }) => {
-	const { filter, setFilter, setIsFilterVisible } = useBookClub();
+export const CustomOption: FC<CustomOptionProps> = ({ item, entity }) => {
+	const { filter, setFilter } = useBookClub();
 
 	const handleOptionOnChange = () => {
-		if (SELECT_MAP[essence]) {
+		if (LABELS_OF_BOOKS_FILTER[entity]) {
 			setFilter((prevState) => {
 				return {
 					...prevState,
-					[essence]: item,
+					[entity]: item,
 				};
 			});
-			setIsFilterVisible(false);
 		}
 	};
 

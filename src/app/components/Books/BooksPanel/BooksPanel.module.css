@@ -1,14 +1,11 @@
 .panel {
 	width: 100%;
 	display: flex;
-
 	gap: 30px;
 	margin: 0 0 30px;
 
-
-
 	@media (width < 1024px) {
-		gap: clamp(1.25rem, 0.6985rem + 2.451vw, 1.875rem); /* 20-30 */
+		gap: var(--clamp-mobile-20-30);
 	}
 
 	@media (width < 768px) {
@@ -30,16 +27,15 @@
 	margin: 0 0 0 auto;
 	cursor: pointer;
 	z-index: 2;
-    transition-property: background;
-    transition-duration: 300ms;
-    transition-timing-function: ease-in-out;
 
-    &:hover {
-        background: var(--white01);
-    }
+	@media (width >= 1024px) {
+		transition-property: background;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
 
-	@media (width < 1280px) {
-		width: 38px;
+		&:hover {
+			background: var(--white01);
+		}
 	}
 
 	@media (width < 768px) {
@@ -52,7 +48,7 @@
 	color: var(--black01);
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		font-size: var(--clamp-mobile-16-20);
 	}
 }
 

@@ -7,7 +7,6 @@ export type Book = {
 	id: string;
 	quantity: number;
 	price: number;
-	currency: string;
 };
 
 export type BookFromBack = {
@@ -30,9 +29,9 @@ export type BookFromBack = {
 };
 
 export type Filter = {
-	category: null | string;
-	year: null | string;
-	author: null | string;
+	category: string;
+	year: string;
+	author: string;
 };
 
 export type Sort = Record<keyof Filter, "asc" | "desc">;
@@ -42,3 +41,8 @@ export type User = Record<"email" | "password", string>;
 export type View = "table" | "line";
 
 export type FieldType = Record<"email" | "password", string>;
+
+export type RequirementsForPassword = Record<
+	"hasUpperCase" | "hasLowerCase" | "hasNumber" | "hasSpecialChar" | "minLength",
+	boolean
+>;

@@ -4,16 +4,8 @@
 	aspect-ratio: 1;
 	cursor: pointer;
 
-	@media (width < 1280px) {
-		width: clamp(2.3125rem, 1.3125rem + 1.5625vw, 2.5625rem); /* 37-41 */
-	}
-
-	@media (width < 1024px) {
-		width: clamp(2.0625rem, 1.3125rem + 1.5625vw, 2.3125rem); /* 33-37 */
-	}
-
 	@media (width < 768px) {
-		width: clamp(1.6875rem, 1.3566rem + 1.4706vw, 2.0625rem); /* 27-33 */
+		width: 30px;
 	}
 }
 
@@ -22,12 +14,15 @@
 	height: 100%;
 	display: block;
 	fill: var(--azure00);
-	transition-property: fill;
-	transition-duration: 300ms;
-	transition-timing-function: ease-in-out;
 
-	&:hover {
-		fill: var(--white01);
+	@media (width >= 1024px) {
+		transition-property: fill;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
+		&:hover {
+			fill: var(--white01);
+		}
 	}
 }
 
@@ -39,7 +34,7 @@
 	padding: 10px;
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		font-size: var(--clamp-mobile-16-20);
 	}
 }
 
@@ -48,7 +43,7 @@
 }
 
 .text + ul {
-    max-height: 50dvh;
+	max-height: 50dvh;
 }
 
 .totalContainer {
@@ -94,7 +89,7 @@
 .button {
 	color: var(--white01);
 
-	@media (width > 1024px) {
+	@media (width >= 1024px) {
 		&:hover {
 			color: var(--azure00);
 		}

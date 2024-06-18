@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 
-import { SELECT_MAP } from "@/constants";
+import { LABELS_OF_BOOKS_FILTER } from "@/constants";
 import { useBookClub } from "@/hooks";
 import { Filter } from "@/types";
 import { Button } from "@/ui";
@@ -12,50 +12,35 @@ import { CustomOption } from "./CustomOption/CustomOption";
 import styles from "./CustomSelect.module.css";
 
 type CustomSelectProps = {
-	essence: keyof Filter;
-	data: string[];
+	entity: keyof Filter;
+	data: Filter[keyof Filter][];
 };
 
-export const CustomSelect: FC<CustomSelectProps> = ({ essence, data }) => {
+export const CustomSelect: FC<CustomSelectProps> = ({ entity, data }) => {
 	const [isListVisible, setIsListVisible] = useState(false);
 	const { setFilter } = useBookClub();
-	const uniqueData = new Set(data);
 
 	const handleSelectOnClick = () => {
 		setIsListVisible((prevState) => !prevState);
 	};
 
 	const handleButtonResetOnClick = () => {
-		if (essence) {
-			setFilter((prevState) => {
-				return {
-					...prevState,
-					[essence]: null,
-				};
-			});
-		}
+		setFilter((prevState) => ({ ...prevState, [entity]: null }));
 	};
 
 	return (
 		<div className={styles.selectContainer}>
 			<Button onClick={handleSelectOnClick} className={styles.select}>
-				{SELECT_MAP[essence]}
+				{LABELS_OF_BOOKS_FILTER[entity]}
 			</Button>
 			{isListVisible && (
 				<>
 					<ul className={styles.optionList}>
-						{Array.from(uniqueData).map((item) => (
-							<CustomOption
-								key={item}
-								item={item}
-								essence={essence}
-							/>
+						{Array.from(data).map((item) => (
+							<CustomOption key={item} item={item} entity={entity} />
 						))}
 					</ul>
-					<Button
-						className={styles.reset}
-						onClick={handleButtonResetOnClick}
-					>
+					<Button className={styles.reset} onClick={handleButtonResetOnClick}>
 						Сбросить
 					</Button>
 				</>

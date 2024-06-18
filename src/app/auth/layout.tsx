@@ -1,8 +1,9 @@
 "use client";
 
-import { ArrowLeftOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { ReactNode } from "react";
+
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 import styles from "./layout.module.css";
 

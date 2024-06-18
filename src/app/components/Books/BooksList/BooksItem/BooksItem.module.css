@@ -1,11 +1,12 @@
 .book {
 	background: var(--black01);
 	border-radius: 8px;
-    transition-property: box-shadow;
-    transition-duration: 300ms;
-    transition-timing-function: ease-in-out;
 
-	@media (width > 1024px) {
+	@media (width >= 1024px) {
+		transition-property: box-shadow;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
 		&:hover {
 			box-shadow:
 				0 0 10px var(--azure00),
@@ -57,7 +58,7 @@
 	margin: 0;
 
 	@media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+		font-size: var(--clamp-mobile-16-20);
 	}
 }
 
@@ -71,7 +72,7 @@
 	margin: 0 0 auto;
 
 	@media (width < 768px) {
-		font-size: clamp(1.5rem, 1.1691rem + 1.4706vw, 1.875rem); /* 24-30 */
+		font-size: var(--clamp-mobile-24-30);
 		text-align: center;
 		display: block;
 	}
@@ -110,15 +111,11 @@
 	@media (width < 1280px) {
 		font-size: 16px;
 	}
-
-	@media (width < 768px) {
-		padding: 10px 5px;
-	}
 }
 
-@media (width > 1024px) {
+@media (width >= 1024px) {
 	.book:hover .button:hover {
-        background: var(--white01);;
+		background: var(--white01);
 	}
 }
 
@@ -127,7 +124,7 @@
 	grid-template-columns: max-content 1fr;
 	gap: 20px;
 	color: var(--white01);
-	margin: 20px 10px 0;
+	margin: 20px 8px 0;
 }
 
 .activityContainer .button {
@@ -135,7 +132,7 @@
 }
 
 .activityContainer div {
-	width: min(100%, 140px);
+	width: 135px;
 	justify-content: space-between;
 	margin: 0 0 0 auto;
 }
@@ -144,13 +141,13 @@
 	width: 38px;
 }
 
-@media (width > 1024px) {
+@media (width >= 1024px) {
 	.book:hover .activityContainer div button {
 		color: var(--black01);
 	}
 
 	.book:hover .activityContainer div button:hover {
 		color: var(--black01);
-        background: var(--white01);
+		background: var(--white01);
 	}
 }

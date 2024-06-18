@@ -1,47 +1,46 @@
-import {
-	PoweroffOutlined,
-	SolutionOutlined,
-	UserOutlined,
-} from "@ant-design/icons";
-import { Popover } from "antd";
+import { message, Popover } from "antd";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { useBookClub } from "@/hooks";
+import { useUser } from "@/hooks/useUser";
+import supabase from "@/supabase";
+
+import { PoweroffOutlined, SolutionOutlined, UserOutlined } from "@ant-design/icons";
 
 import styles from "./User.module.css";
 
 const UserContent = () => {
-	const { user, setUser } = useBookClub();
+	const { isAuth, setIsAuth, setUserEmail } = useUser();
 	const pathname = usePathname();
 	const isMainPage = pathname === "/";
 
-	const toLogOut = () => {
-		localStorage.setItem("userEmail", "");
-		localStorage.setItem("userPassword", "");
-		setUser({ email: "", password: "" });
+	const toLogOut = async () => {
+		try {
+			await supabase.auth.signOut();
+			setIsAuth(false);
+			setUserEmail("");
+		} catch (error) {
+			message.error("Ошибка при выходе");
+		}
 	};
 
 	return (
 		<>
-			{user.email && user.password ? (
+			{isAuth ? (
 				<ul className={styles.list}>
 					{isMainPage && (
 						<li className={styles.item}>
-							<Link
-								href="/personal-account/general"
-								className={styles.itemLink}
-							>
+							<Link href="/personal-account/general" className={styles.itemLink}>
 								<SolutionOutlined />
 								<span>Личный кабинет</span>
 							</Link>
 						</li>
 					)}
 					<li className={styles.item} onClick={toLogOut}>
-						<Link href="/logout" className={styles.itemLink}>
+						<div className={styles.itemLink}>
 							<PoweroffOutlined />
 							<span>Выйти</span>
-						</Link>
+						</div>
 					</li>
 				</ul>
 			) : (
@@ -58,10 +57,12 @@ const UserContent = () => {
 	);
 };
 
-const User = () => (
-	<Popover content={UserContent}>
-		<UserOutlined className={styles.user} />
-	</Popover>
-);
+const User = () => {
+	return (
+		<Popover content={<UserContent />} placement="bottom" trigger={"click"}>
+			<UserOutlined className={styles.user} />
+		</Popover>
+	);
+};
 
 export default User;

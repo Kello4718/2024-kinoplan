@@ -1,13 +1,26 @@
 :root {
-	--main: #1F2833;
+	--main: #1f2833;
 	--white00: #ffffff;
 	--white01: #f4eee6;
-	--grey00: #C5C6C7;
+	--grey00: #c5c6c7;
 	--blue01: #178cfb;
-	--azure00: #66FCF1;
-	--greyAzure00: #45A29E;
+	--azure00: #66fcf1;
+	--grey-azure00: #45a29e;
 	--black00: #000000;
-	--black01: #0B0C10;
+	--black01: #0b0c10;
+	--error: #ff4d4f;
+	--success: #b7eb8f;
+	--clamp-mobile-16-20: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem);
+	--clamp-mobile-20-30: clamp(1.25rem, 0.6985rem + 2.451vw, 1.875rem);
+	--clamp-mobile-24-30: clamp(1.5rem, 1.1691rem + 1.4706vw, 1.875rem);
+	--clamp-mobile-30-36: clamp(1.875rem, 1.5433rem + 1.4742vw, 2.25rem);
+	--clamp-mobile-40-60: clamp(2.5rem, 1.3971rem + 4.902vw, 3.75rem);
+	--clamp-tablet-20-24: clamp(1.25rem, 0.5rem + 1.5625vw, 1.5rem);
+	--clamp-tablet-36-40: clamp(2.25rem, 1.5rem + 1.5625vw, 2.5rem);
+	--clamp-laptop-24-28: clamp(1.5rem, 0.5rem + 1.5625vw, 1.75rem);
+	--clamp-laptop-40-46: clamp(2.5rem, 1rem + 2.3438vw, 2.875rem);
+	--clamp-laptop-60-80: clamp(3, 75rem, 5, 25rem + -3, 125vw, 5rem);
+	--clamp-desktop-46-50: clamp(2.875rem, 2.375rem + 0.625vw, 3.125rem);
 }
 
 * {
@@ -45,33 +58,27 @@ ul {
 }
 
 h1 {
-	font-size: clamp(2.875rem, 2.375rem + 0.625vw, 3.125rem); /* 46-50*/
+	font-size: var(--clamp-desktop-46-50);
 	text-align: center;
 	color: var(--azure00);
 	margin: 0 0 30px;
 
 	@media (width < 1280px) {
-		font-size: clamp(2.5rem, 1rem + 2.3438vw, 2.875rem); /* 40-46 */
+		font-size: var(--clamp-laptop-40-46);
 	}
 
 	@media (width < 1024px) {
-		font-size: clamp(2.25rem, 1.5rem + 1.5625vw, 2.5rem); /* 36-40 */
+		font-size: var(--clamp-tablet-36-40);
 	}
 
 	@media (width < 768px) {
-		font-size: clamp(1.875rem, 1.5433rem + 1.4742vw, 2.25rem); /* 30-36 */
+		font-size: var(--clamp-mobile-30-36);
 	}
 }
 
 .ant-popover {
-	/* width: auto;
-	max-width: 90%; */
 	background: var(--azure00);
 	border-radius: 8px;
-
-	@media (width < 1280px) {
-		scale: 0.9 1;
-	}
 }
 
 .ant-popover .ant-popover-inner,
@@ -85,19 +92,18 @@ h1 {
 	text-align: center;
 	text-decoration: none;
 	color: transparent;
-	background: url('../../public/images/preview/preview.jpg') no-repeat 50% 50% /
-		cover;
+	background: url("../../public/images/preview/preview.jpg") no-repeat 50% 50% / cover;
 	background-clip: text;
 	margin: 0;
 	pointer-events: none;
 	cursor: pointer;
 
 	@media (width < 1280px) {
-		font-size: clamp(3,75rem, 5,25rem + -3,125vw, 5rem); /* 60-80 */
+		font-size: var(--clamp-laptop-60-80);
 	}
 
 	@media (width < 768px) {
-		font-size: clamp(2.5rem, 1.3971rem + 4.902vw, 3.75rem); /* 40-60 */
+		font-size: var(--clamp-mobile-40-60);
 	}
 }
 
@@ -106,10 +112,10 @@ h1 {
 }
 
 .ant-form-item-explain-error {
-    font-size: 20px;
-    padding: 10px 0;
+	font-size: 20px;
+	padding: 10px 0;
 
-    @media (width < 768px) {
-		font-size: clamp(1rem, 0.7794rem + 0.9804vw, 1.25rem); /* 16-20 */
+	@media (width < 768px) {
+		font-size: var(--clamp-mobile-16-20);
 	}
 }
