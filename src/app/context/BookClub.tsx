@@ -71,6 +71,7 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [view, setView] = useState<View>("table");
 	const [cart, setCart] = useState<Book[]>([]);
 	const [isCartOpen, setIsCartOpen] = useState(false);
+	const [cartCost, setCartCost] = useState(0);
 	const [books, setBooks] = useState<Book[]>([]);
 	const [filter, setFilter] = useState<Filter>({
 		category: "",
@@ -84,7 +85,6 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	});
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const [isSortVisible, setIsSortVisible] = useState(false);
-	const [cartCost, setCartCost] = useState(0);
 
 	const value: TBookClubContext = useMemo(
 		() => ({
@@ -98,6 +98,8 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			setCart,
 			isCartOpen,
 			setIsCartOpen,
+			cartCost,
+			setCartCost,
 			books,
 			setBooks,
 			filter,
@@ -108,8 +110,6 @@ const BookClubContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			setSort,
 			isSortVisible,
 			setIsSortVisible,
-			cartCost,
-			setCartCost,
 		}),
 		[books, cart, cartCost, filter, isCartOpen, isError, isFilterVisible, isLoading, isSortVisible, sort, view],
 	);

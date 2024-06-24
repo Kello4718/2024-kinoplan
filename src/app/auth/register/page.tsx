@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import supabase from "@/supabase";
 import { FieldType } from "@/types";
+import { confirmPasswordRules, emailRules, passwordRules } from "@/utils";
 
 import styles from "./page.module.css";
 
@@ -40,74 +41,32 @@ const RegisterPage = () => {
 					className={styles.result}
 				/>
 			) : (
-				<Form name="register" onFinish={onFinish} autoComplete="off" className={styles.form}>
-					<Form.Item<FieldType>
-						name="email"
-						rules={[
-							{
-								required: true,
-								message: "Пожалуйста, введите вашу почту",
-								validateTrigger: "onSubmit",
-							},
-							{
-								pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-								message: "Почта должна быть в формате example@domain.com",
-								validateTrigger: "onSubmit",
-							},
-						]}
-						className={styles.formItem}
-					>
-						<Input className={styles.input} placeholder="Введите почту" autoComplete="off" />
+				<Form name="register" onFinish={onFinish} autoComplete="false" className={styles.form}>
+					<Form.Item<FieldType> name="email" rules={emailRules} validateTrigger="onSubmit" className={styles.formItem}>
+						<Input className={styles.input} placeholder="Введите почту" autoComplete="username" />
 					</Form.Item>
 
 					<Form.Item<FieldType>
 						name="password"
-						rules={[
-							{
-								required: true,
-								message: "Пожалуйста, введите ваш пароль",
-								validateTrigger: "onSubmit",
-							},
-							{
-								pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-								message:
-									"Пароль должен содержать минимум 8 символов, включая заглавные и строчные буквы, цифры и специальные символы.",
-								validateTrigger: "onSubmit",
-							},
-						]}
+						rules={passwordRules}
+						validateTrigger="onSubmit"
 						className={styles.formItem}
 					>
-						<Input.Password className={styles.input} placeholder="Введите пароль" autoComplete="off" />
+						<Input.Password className={styles.input} placeholder="Введите пароль" autoComplete="new-password" />
 					</Form.Item>
 					<Form.Item
 						name="confirm"
 						dependencies={["password"]}
 						hasFeedback
 						className={styles.formItem}
-						rules={[
-							{
-								required: true,
-								message: "Пожалуйста подтвердите пароль",
-							},
-							{
-								pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-								message:
-									"Пароль должен содержать минимум 8 символов, включая заглавные и строчные буквы, цифры и специальные символы.",
-							},
-							({ getFieldValue }) => {
-								return {
-									validator(_, value) {
-										if (!value || getFieldValue("password") === value) {
-											return Promise.resolve();
-										}
-										return Promise.reject(new Error("Пароли не совпадают"));
-									},
-								};
-							},
-						]}
+						rules={confirmPasswordRules}
 						validateTrigger="onSubmit"
 					>
-						<Input.Password className={styles.input} placeholder="Подтвердите ваш пароль" autoComplete="off" />
+						<Input.Password
+							className={styles.input}
+							placeholder="Подтвердите ваш пароль"
+							autoComplete="new-password"
+						/>
 					</Form.Item>
 					<Form.Item className={styles.formItem}>
 						<Button className={styles.submit} type="primary" htmlType="submit">

@@ -1,5 +1,5 @@
 .buttonContainer {
-	width: min(100%, 140px);
+	width: 140px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

@@ -1,18 +1,14 @@
 import styles from "./Loader.module.css";
 
 const Loader = () => (
-	<div className={styles.loaderContainer}>
-		<div className={styles.loader}>
-			<span>W</span>
-			<span>a</span>
-			<span>i</span>
-			<span>t</span>
-			<span>i</span>
-			<span>n</span>
-			<span>g</span>
-			<span>.</span>
-			<span>.</span>
-			<span>.</span>
+	<div className={styles.bookContainer}>
+		<div className={styles.book}>
+			<div className={styles.bookPgShadow}></div>
+			<div className={styles.bookPg}></div>
+			<div className={`${styles.bookPg} ${styles.bookPg2}`}></div>
+			<div className={`${styles.bookPg} ${styles.bookPg3}`}></div>
+			<div className={`${styles.bookPg} ${styles.bookPg4}`}></div>
+			<div className={`${styles.bookPg} ${styles.bookPg5}`}></div>
 		</div>
 	</div>
 );

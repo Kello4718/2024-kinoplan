@@ -37,6 +37,7 @@
 				"except": ["first-nested"],
 				"ignore": ["after-comment"]
 			}
-		]
+		],
+		"color-function-notation": "modern"
 	}
 }

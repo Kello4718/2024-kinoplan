@@ -10,14 +10,13 @@ import { PoweroffOutlined, SolutionOutlined, UserOutlined } from "@ant-design/ic
 import styles from "./User.module.css";
 
 const UserContent = () => {
-	const { isAuth, setIsAuth, setUserEmail } = useUser();
+	const { userEmail, setUserEmail } = useUser();
 	const pathname = usePathname();
 	const isMainPage = pathname === "/";
 
 	const toLogOut = async () => {
 		try {
 			await supabase.auth.signOut();
-			setIsAuth(false);
 			setUserEmail("");
 		} catch (error) {
 			message.error("Ошибка при выходе");
@@ -26,7 +25,7 @@ const UserContent = () => {
 
 	return (
 		<>
-			{isAuth ? (
+			{userEmail ? (
 				<ul className={styles.list}>
 					{isMainPage && (
 						<li className={styles.item}>

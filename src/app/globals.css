@@ -23,6 +23,13 @@
 	--clamp-desktop-46-50: clamp(2.875rem, 2.375rem + 0.625vw, 3.125rem);
 }
 
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: hsl(var(--loader-hue) 10% 30%);
+		--fg: hsl(var(--loader-hue) 10% 90%);
+	}
+}
+
 * {
 	box-sizing: border-box;
 }

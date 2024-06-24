@@ -9,6 +9,10 @@
 	margin: 0 auto;
 }
 
+.email {
+	pointer-events: none;
+}
+
 .form .input {
 	font-size: 20px;
 	color: var(--black01);

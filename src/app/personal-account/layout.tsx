@@ -5,15 +5,12 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 import Aside from "@/components/PersonalAccount/Aside/Aside";
-import { useUser } from "@/hooks/useUser";
 
 import { ArrowLeftOutlined } from "@ant-design/icons";
 
 import styles from "./layout.module.css";
 
 const PersonalAccountLayout = ({ children }: { children: ReactNode }) => {
-	const { isAuth } = useUser();
-
 	return (
 		<>
 			<Link className={styles.buttonBack} href="/">
@@ -21,7 +18,7 @@ const PersonalAccountLayout = ({ children }: { children: ReactNode }) => {
 				<span>Вернуться на главную</span>
 			</Link>
 			<h1>Личный кабинет</h1>
-			{isAuth ? (
+			{localStorage.getItem("userEmail") ? (
 				<div className={styles.container}>
 					<Aside />
 					{children}
