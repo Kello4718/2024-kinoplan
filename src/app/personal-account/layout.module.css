@@ -1,0 +1,115 @@
+.buttonBack {
+	width: max-content;
+	height: auto;
+	font-size: 20px;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--black01);
+	background: var(--azure00);
+	border: none;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 0 0 10px;
+	cursor: pointer;
+	user-select: none;
+
+	@media (width >= 1024px) {
+		transition-property: background;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
+		&:hover {
+			background: var(--white01);
+		}
+	}
+
+	@media (width < 768px) {
+		font-size: var(--clamp-mobile-16-20);
+	}
+}
+
+.container {
+	display: grid;
+	grid-template-columns: 1fr 9fr;
+
+	@media (width < 768px) {
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+}
+
+.result {
+	width: min(100%, 800px);
+	border-radius: 8px;
+	background: var(--white00);
+	margin: 30px auto 0;
+
+	@media (width < 768px) {
+		padding: 20px;
+	}
+}
+
+.resultTitle {
+	font-size: 30px;
+	text-align: center;
+	color: var(--white);
+	margin: 0 0 30px;
+
+	@media (width < 768px) {
+		font-size: var(--clamp-mobile-20-30);
+	}
+}
+
+.resultSubtitle {
+	font-size: 20px;
+	color: var(--main);
+
+	@media (width < 768px) {
+		font-size: var(--clamp-mobile-16-20);
+	}
+}
+
+.resultButtonContainer {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+
+	@media (width < 768px) {
+		flex-flow: column;
+	}
+}
+
+.resultButton {
+	width: max-content;
+	height: auto;
+	font-size: 20px;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--black01);
+	background: var(--azure00);
+	border: none;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 0 auto 10px;
+	cursor: pointer;
+	user-select: none;
+
+	@media (width >= 1024px) {
+		transition-property: color, background;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
+		&:hover {
+			color: var(--white01);
+			background: var(--black01);
+		}
+	}
+
+	@media (width < 768px) {
+		font-size: var(--clamp-mobile-16-20);
+	}
+}

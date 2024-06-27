@@ -1,0 +1,97 @@
+.cart {
+	width: 41px;
+	height: auto;
+	aspect-ratio: 1;
+	cursor: pointer;
+
+	@media (width < 768px) {
+		width: 30px;
+	}
+}
+
+.cart svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+	fill: var(--azure00);
+
+	@media (width >= 1024px) {
+		transition-property: fill;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
+		&:hover {
+			fill: var(--white01);
+		}
+	}
+}
+
+.cartContainer {
+	font-size: 20px;
+	color: var(--white01);
+	background: var(--black01);
+	border-radius: 8px;
+	padding: 10px;
+
+	@media (width < 768px) {
+		font-size: var(--clamp-mobile-16-20);
+	}
+}
+
+.text {
+	margin: 0 0 20px;
+}
+
+.text + ul {
+	max-height: 50dvh;
+}
+
+.totalContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+
+	@media (width < 768px) {
+		flex-flow: column;
+		align-items: flex-start;
+	}
+}
+
+.total {
+	margin: 0;
+
+	@media (width < 768px) {
+		width: 80%;
+	}
+}
+
+.deleteCart {
+	width: 30px;
+	height: auto;
+	aspect-ratio: 1;
+	font-size: 20px;
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	color: var(--black01);
+	background: var(--azure00);
+	border: none;
+	border-radius: 8px;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.button {
+	color: var(--white01);
+
+	@media (width >= 1024px) {
+		&:hover {
+			color: var(--azure00);
+		}
+	}
+}

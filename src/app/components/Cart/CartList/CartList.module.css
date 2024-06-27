@@ -1,0 +1,45 @@
+.list {
+	display: flex;
+	flex-flow: column;
+	gap: 10px;
+	border-radius: 8px;
+	overflow-y: auto;
+	padding: 5px;
+	margin: 0 0 30px;
+}
+
+.item {
+	font-size: 16px;
+	display: grid;
+	grid-template-columns: 10% 20% 10% 10% 10% 13% 1fr;
+	gap: 10px;
+	color: var(--white01);
+	border-bottom: 1px solid var(--azure00);
+	padding: 5px 0;
+	margin: 0;
+
+	@media (width < 768px) {
+		display: none;
+	}
+}
+
+.itemTitle {
+	font-weight: 700;
+	text-align: center;
+}
+
+.itemTitleYear {
+	text-align: center;
+}
+
+.itemTitleCategory {
+	text-align: center;
+}
+
+.itemTitleCost {
+	text-align: center;
+}
+
+.itemTitleQuantity {
+	text-align: right;
+}

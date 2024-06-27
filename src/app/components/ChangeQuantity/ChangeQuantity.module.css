@@ -1,0 +1,41 @@
+.buttonContainer {
+	width: 140px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 5px;
+	margin: 0 0 0 auto;
+
+	@media (width < 768px) {
+		margin: 0;
+	}
+}
+
+.button {
+	width: 40px;
+	height: auto;
+	aspect-ratio: 1;
+	font-size: 20px;
+	color: var(--black01);
+	background: var(--azure00);
+	border: none;
+	border-radius: 8px;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	user-select: none;
+
+	@media (width >= 1024px) {
+		transition-property: background;
+		transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+
+		&:hover {
+			background: var(--white01);
+		}
+	}
+
+	@media (width < 1280px) {
+		width: 30px;
+	}
+}

@@ -1,0 +1,56 @@
+.result {
+	width: min(100%, 800px);
+	border-radius: 8px;
+	background: var(--white00);
+	margin: 30px auto 0;
+
+	@media (width < 768px) {
+		padding: 20px;
+	}
+}
+
+.resultTitle {
+	font-size: 30px;
+	text-align: center;
+	color: var(--main);
+	margin: 0 0 30px;
+
+	@media (width < 768px) {
+		font-size: var(--clamp-mobile-20-30);
+	}
+}
+
+.resultSubtitle {
+	font-size: 20px;
+	color: var(--main);
+
+	@media (width < 768px) {
+		font-size: var(--clamp-mobile-16-20);
+	}
+}
+
+.resultRetryDataButton {
+	width: max-content;
+	font-size: 20px;
+	color: var(--black01);
+	background: var(--azure00);
+	border: none;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 20px 10px 0;
+	cursor: pointer;
+	transition-property: color, background;
+	transition-duration: 300ms;
+	transition-timing-function: ease-in-out;
+
+	@media (width < 1280px) {
+		font-size: 16px;
+	}
+
+	@media (width >= 1024px) {
+		&:hover {
+			color: var(--white01);
+			background: var(--black01);
+		}
+	}
+}
